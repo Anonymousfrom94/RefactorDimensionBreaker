@@ -18,6 +18,7 @@ import universite_paris8.iut.osall.boom.modele.item.Equipement.CouronneTemporel;
 import universite_paris8.iut.osall.boom.modele.item.Item;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 public class Environnement {
     private Map map;

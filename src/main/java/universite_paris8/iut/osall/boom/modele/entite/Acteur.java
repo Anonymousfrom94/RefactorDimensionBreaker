@@ -1,10 +1,11 @@
 package universite_paris8.iut.osall.boom.modele.entite;
-
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import universite_paris8.iut.osall.boom.modele.Environnement.Environnement;
+import universite_paris8.iut.osall.boom.modele.Utilitaire.Hitbox;
+import universite_paris8.iut.osall.boom.modele.Utilitaire.Position;
 
 public abstract class Acteur {
 
@@ -13,15 +14,14 @@ public abstract class Acteur {
     private String id;
     private int vitesse;
     private static int compteur = 0;
-    private IntegerProperty x, y;
-    private int largeur, hauteur;
+    private Position position;
     private int pvMax;
     private IntegerProperty pv;
+    private Hitbox hitbox;
 
-    public Acteur(Environnement environnement, int x, int y, int largeur, int hauteur, int vitesse, int pvMax) {
+    public Acteur(Environnement environnement, Position position, int vitesse, int pvMax, Hitbox hitbox) {
         this.environnement = environnement;
-        this.x = new SimpleIntegerProperty(x);
-        this.y = new SimpleIntegerProperty(y);
+        this.position = position;
         this.direction = new SimpleStringProperty("");
         this.vitesse = vitesse;
         this.pvMax = pvMax;
@@ -29,8 +29,11 @@ public abstract class Acteur {
         this.id = "#" + compteur;
         compteur++;
         this.environnement.getActeurs().add(this);
-        this.largeur = largeur;
-        this.hauteur = hauteur;
+        this.hitbox = hitbox;
+    }
+
+    public Position getPosition(){
+        return position;
     }
 
     public void enleverPv(int degat) {
@@ -109,12 +112,10 @@ public abstract class Acteur {
         return pv;
     }
 
-    public int getLargeur() {
-        return largeur;
+    public Hitbox getHitbox() {
+        return hitbox;
     }
-    public int getHauteur() {
-        return hauteur;
-    }
+
 
     public String getDirection() {
         return this.direction.get();

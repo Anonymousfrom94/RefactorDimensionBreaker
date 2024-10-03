@@ -25,7 +25,7 @@ public class Joueur extends Acteur {
     }
 
     public void seDeplace() {
-        if (getEnvironnement().getMap().peutSeDeplacer(this, aBottesDeLevitation())) {
+        if (getEnvironnement().getMap().peutSeDeplacer()) {
             int dx = 0;
             int dy = 0;
             int vitesse = getVitesse();

@@ -1,5 +1,7 @@
 package universite_paris8.iut.osall.boom.modele.Environnement;
 
+import universite_paris8.iut.osall.boom.modele.Utilitaire.Hitbox;
+import universite_paris8.iut.osall.boom.modele.Utilitaire.Position;
 import universite_paris8.iut.osall.boom.modele.entite.Acteur;
 
 public class Map {
@@ -19,8 +21,51 @@ public class Map {
     }
 
     public boolean peutSeDeplacer(Acteur acteur, boolean aBottesDeLevitation) {
-        int indice1, indice2;
-        int obstacle;
+        collision();
+    }
+
+    private void collision(Acteur acteur) {
+
+        Hitbox hitbox = getEnvironnement().getJoueur().getHitbox();
+
+
+        Position position = acteur.getPosition();
+        String direction = acteur.getDirection();
+        double vitesse = acteur.getVitesse();
+
+        int x = position.getX() + vitesse * direction.getX();
+        int y = position.getY() + vitesse * direction.getY();
+
+            double extremite1;
+            double extremite2;
+
+            if (direction == "bas" || direction == "haut") {
+                extremite1 = hitbox.getPointLePlusAGauche(x);
+                extremite2 = hitbox.getPointLePlusADroite(x);
+            } else {
+                extremite1 = hitbox.getPointLePlusEnHaut(y);
+                extremite2 = hitbox.getPointLePlusEnBas(y);
+            }
+
+            boolean collision = false;
+            int cpt = (int) extremite1;
+
+            while (cpt <= extremite2 && !collision) {
+                if (direction.equals(Direction.BAS)) {
+                    collision = nontraversable[(int) (hitbox.getPointLePlusEnBas(y))][cpt] != -1;
+                } else if (direction.equals(Direction.HAUT)) {
+                    collision = nontraversable[(int) (hitbox.getPointLePlusEnHaut(y))][cpt] != -1;
+                } else if (direction.equals(Direction.DROITE)) {
+                    collision = nontraversable[cpt][(int) (hitbox.getPointLePlusADroite(x))] != -1;
+                } else if (direction.equals(Direction.GAUCHE)) {
+                    collision = nontraversable[cpt][(int) (hitbox.getPointLePlusAGauche(x))] != -1;
+                }
+                cpt++;
+            }
+
+            return collision;
+        }
+
 
         for (int i = 0; i < environnement.getObstacles().size(); i++) {
             obstacle = environnement.getObstacles().get(i);
@@ -54,6 +99,7 @@ public class Map {
             }
         }
         return true;
+
     }
 
     private boolean obstacle(int indice1, int indice2, int obstacle, boolean aBottesDeLevitation) {
