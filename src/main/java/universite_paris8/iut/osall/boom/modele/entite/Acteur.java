@@ -5,6 +5,8 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import universite_paris8.iut.osall.boom.modele.Environnement.Environnement;
+import universite_paris8.iut.osall.boom.modele.item.Arme.Arme;
+import universite_paris8.iut.osall.boom.modele.item.Arme.EpeEnBois;
 
 public abstract class Acteur {
 
@@ -17,6 +19,7 @@ public abstract class Acteur {
     private int largeur, hauteur;
     private int pvMax;
     private IntegerProperty pv;
+    private Arme arme;
 
     public Acteur(Environnement environnement, int x, int y, int largeur, int hauteur, int vitesse, int pvMax) {
         this.environnement = environnement;
@@ -31,6 +34,7 @@ public abstract class Acteur {
         this.environnement.getActeurs().add(this);
         this.largeur = largeur;
         this.hauteur = hauteur;
+        this.arme = new EpeEnBois(environnement);
     }
 
     public void enleverPv(int degat) {
@@ -126,7 +130,15 @@ public abstract class Acteur {
         return this.direction;
     }
 
-/* *********************************************************************************************************************
+    public Arme getArme() {
+        return arme;
+    }
+
+    public void setArme(Arme arme) {
+        this.arme = arme;
+    }
+
+    /* *********************************************************************************************************************
 
 ********************************************************************************************************************* */
     @Override

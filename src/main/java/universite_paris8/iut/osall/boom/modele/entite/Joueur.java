@@ -13,14 +13,13 @@ import universite_paris8.iut.osall.boom.modele.item.Item;
 public class Joueur extends Acteur {
 
     private final ObservableList<Item> inventaire;
-    private Arme arme;
+
     private Equipement equipement;
 
     public Joueur(Environnement environnement) {
         super(environnement, 780, 485,14, 14, 5, 300);
         this.inventaire = FXCollections.observableArrayList();
-        this.arme = new EpeEnBois(environnement);
-        inventaire.add(this.arme);
+        inventaire.add(super.getArme());
         this.equipement = null;
     }
 
@@ -122,13 +121,6 @@ public class Joueur extends Acteur {
 
     public StringProperty getPropertyDirection(){
         return this.direction;
-    }
-
-    public Arme getArme(){
-        return this.arme;
-    }
-    public void setArme(Arme arme) {
-        this.arme = arme;
     }
 
     public Equipement getEquipement() {
