@@ -3,6 +3,7 @@ package universite_paris8.iut.osall.boom.modele.Utilitaire;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleDoubleProperty;
+import universite_paris8.iut.osall.boom.modele.Environnement.Map;
 
 public class Position {
     private DoubleProperty x;
@@ -26,7 +27,7 @@ public class Position {
     public void setX(double x)
     {
         if (x < 0 || x > Map.getSizeMondeLargeur())
-            throw new PositionInvalideExeption("x hors map");
+            //throw new PositionInvalideExeption("x hors map");
 
         this.x.set(x);
     }
@@ -34,16 +35,16 @@ public class Position {
     public void setY(double y)
     {
         if (y < 0 || y > Map.getSizeMondeHauteur())
-            throw new PositionInvalideExeption("y hors map");
+            //throw new PositionInvalideExeption("y hors map");
 
         this.y.set(y);
     }
 
-    public IntegerProperty getXProperty() {
+    public DoubleProperty getXProperty() {
         return x;
     }
 
-    public IntegerProperty getYProperty() {
+    public DoubleProperty3getYProperty() {
         return y;
     }
 
