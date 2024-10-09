@@ -33,6 +33,7 @@ public class Ennemi extends Acteur {
 
 
     public void seDeplace() {
+
         Environnement environnement = getEnvironnement();
         Joueur joueur = environnement.getJoueur();
 
@@ -82,7 +83,7 @@ public class Ennemi extends Acteur {
                 }
             }
 
-            if (super.getArme() != null && distance <= super.getArme().getRange() && peutAttaquer()) {
+            if (super.getArme() != null && distance <= super.getArme().getRange()) {
                 attaque(joueur);
             }
         }
@@ -112,24 +113,19 @@ public class Ennemi extends Acteur {
             }
         }
 
-
         return true; // Aucun obstacle trouvé, mouvement possible
     }
 
-    private void attaque(Joueur joueur) {
+    @Override
+    public void attaque(Acteur joueur) {
 //        joueur.enleverPv(super.getArme().getDegat());
-        super.getArme().utilise(joueur);
-        derniereAttaque = System.currentTimeMillis();
-    }
+        if (peutAttaquer()) {
+            super.getArme().utilise(joueur);
+            derniereAttaque = System.currentTimeMillis();
 
-
-
-
-    public void subitDegat(int degats) {
-        enleverPv(degats);
-        if (!this.estVivant()) {
-            System.out.println("Ennemi " + getId() + " vaincu !");
         }
     }
+
+
 
 }

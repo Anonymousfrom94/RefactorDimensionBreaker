@@ -64,17 +64,17 @@ public class Joueur extends Acteur {
                     System.out.println("ennemie proche");
                     return e;
                 }
-
             }
         }
         System.out.println("Pas d'ennemie");
         return null;
     }
 
-    public void attaque() {
+    @Override
+    public void attaque(Acteur acteur) {
         Acteur e = estAttaquable();
-        if (e != null) {
-            this.getArme().utilise((Ennemi) e);
+        if (e != null && e!=this) {
+            this.getArme().utilise(e);
         }
     }
 

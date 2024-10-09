@@ -3,6 +3,7 @@ package universite_paris8.iut.osall.boom.controller;
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import universite_paris8.iut.osall.boom.modele.entite.Acteur;
 import universite_paris8.iut.osall.boom.modele.entite.Joueur;
 
 import java.util.HashSet;
@@ -46,7 +47,8 @@ public class Clavier implements EventHandler<KeyEvent> {
         this.joueur.setDirection(direction);
         
         if (touchePress.contains(J)){
-            this.joueur.attaque();
+            Acteur acteur = this.joueur.estAttaquable();
+            this.joueur.attaque(acteur);
             touchePress.clear();
         }
 
