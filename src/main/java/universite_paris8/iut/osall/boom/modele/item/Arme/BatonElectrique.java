@@ -15,8 +15,8 @@ public class BatonElectrique extends Arme{
     }
 
     @Override
-    public void utilise(Ennemi e) {
-        attackDeZone(e);
+    public void utilise(Acteur a) {
+        attackDeZone((Ennemi) a);
     }
 
     @Override

@@ -22,8 +22,6 @@ public abstract class Arme extends Item {
         this.range = range;
     }
 
-    public abstract void utilise(Ennemi e);
-
     public abstract void equip(Joueur joueur);
 
 /* *********************************************************************************************************************

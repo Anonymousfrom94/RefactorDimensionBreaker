@@ -14,7 +14,5 @@ public abstract class Equipement extends Item {
         super(environnement, nom, 595, 670);
     }
 
-    public abstract void utilise();
-
     public abstract void equip(Joueur joueur);
 }

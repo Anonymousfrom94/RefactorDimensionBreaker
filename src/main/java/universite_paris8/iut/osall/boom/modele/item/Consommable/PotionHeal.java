@@ -1,5 +1,6 @@
 package universite_paris8.iut.osall.boom.modele.item.Consommable;
 
+import universite_paris8.iut.osall.boom.modele.entite.Acteur;
 import universite_paris8.iut.osall.boom.modele.entite.Joueur;
 
 public class PotionHeal extends Consommable {
@@ -14,8 +15,7 @@ public class PotionHeal extends Consommable {
     }
 
     @Override
-    public void utilise() {
-        joueur.rajouterPv(val_soin);
-        retirerDeLInventaire();
+    public void utilise(Acteur a) {
+        a.rajouterPv(val_soin);
     }
 }

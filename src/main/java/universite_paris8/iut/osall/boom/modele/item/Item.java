@@ -3,8 +3,9 @@ package universite_paris8.iut.osall.boom.modele.item;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import universite_paris8.iut.osall.boom.modele.Environnement.Environnement;
+import universite_paris8.iut.osall.boom.modele.entite.Acteur;
 
-public class Item {
+public abstract class Item {
     private String nom;
     private IntegerProperty x;
     private IntegerProperty y;
@@ -30,6 +31,8 @@ public class Item {
         compteur++;
         random();
     }
+
+    public abstract void utilise(Acteur a);
 
     private int indice(int newX, int newY) {
         int ligne, colonne;

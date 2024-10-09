@@ -1,5 +1,6 @@
 package universite_paris8.iut.osall.boom.modele.item.Consommable;
 
+import universite_paris8.iut.osall.boom.modele.entite.Acteur;
 import universite_paris8.iut.osall.boom.modele.entite.Joueur;
 
 public class TotemResurrection extends Consommable {
@@ -13,8 +14,7 @@ public class TotemResurrection extends Consommable {
     }
 
     @Override
-    public void utilise() {
-        joueur.setPv(joueur.getPvMax());
-        this.retirerDeLInventaire();
+    public void utilise(Acteur a) {
+        a.setPv(a.getPvMax());
     }
 }

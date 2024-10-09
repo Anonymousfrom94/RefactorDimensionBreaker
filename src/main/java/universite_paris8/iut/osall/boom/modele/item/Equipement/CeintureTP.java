@@ -1,6 +1,7 @@
 package universite_paris8.iut.osall.boom.modele.item.Equipement;
 
 import universite_paris8.iut.osall.boom.modele.Environnement.Environnement;
+import universite_paris8.iut.osall.boom.modele.entite.Acteur;
 import universite_paris8.iut.osall.boom.modele.entite.Joueur;
 
 public class CeintureTP extends Equipement{
@@ -13,41 +14,42 @@ public class CeintureTP extends Equipement{
         super(environnement, "Ceinture de Téléportation", x, y);
     }
 
-    public void utilise(){
-        seTeleporte();
-    }
-
-    public void seTeleporte(){
+    public void seTeleporte(Acteur a){
         int rangeTP = 80;
         int dx = 0;
         int dy = 0;
 
-        if (getEnvironnement().getJoueur().direction.get().contains("haut")){
-            if (getEnvironnement().getJoueur().getY() - rangeTP > 0){
+        if (a.direction.get().contains("haut")){
+            if (a.getY() - rangeTP > 0){
                 dy -= rangeTP;
             }
         }
-        if (getEnvironnement().getJoueur().direction.get().contains("bas")){
-            if (getEnvironnement().getJoueur().getY() + 16 + rangeTP < this.getEnvironnement().getHeight()){
+        if (a.direction.get().contains("bas")){
+            if (a.getY() + 16 + rangeTP < this.getEnvironnement().getHeight()){
                 dy += rangeTP;
             }
         }
-        if (getEnvironnement().getJoueur().direction.get().contains("gauche")){
-            if (getEnvironnement().getJoueur().getX() - rangeTP > 0){
+        if (a.direction.get().contains("gauche")){
+            if (a.getX() - rangeTP > 0){
                 dx -= rangeTP;
             }
         }
-        if (getEnvironnement().getJoueur().direction.get().contains("droite")){
-            if (getEnvironnement().getJoueur().getX() + 16 + rangeTP < this.getEnvironnement().getWidth()){
+        if (a.direction.get().contains("droite")){
+            if (a.getX() + 16 + rangeTP < this.getEnvironnement().getWidth()){
                 dx += rangeTP;
             }
         }
-        getEnvironnement().getJoueur().setX(getEnvironnement().getJoueur().getX() + dx);
-        getEnvironnement().getJoueur().setY(getEnvironnement().getJoueur().getY() + dy);
+        a.setX(a.getX() + dx);
+        a.setY(getEnvironnement().getJoueur().getY() + dy);
     }
 
     @Override
     public void equip(Joueur joueur) {
         joueur.setEquipement(this);
+    }
+
+    @Override
+    public void utilise(Acteur a) {
+        seTeleporte(a);
     }
 }

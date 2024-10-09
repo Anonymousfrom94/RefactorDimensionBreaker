@@ -14,18 +14,14 @@ public class CouronneTemporel extends Equipement{
         super(environnement, "Couronne Temporel", x, y);
     }
 
-    public void utilise(){
-        ralentirEnnemies();
-    }
-
     @Override
     public void equip(Joueur joueur) {
         joueur.setEquipement(this);
     }
 
-    public void ralentirEnnemies(){
-        int x = getEnvironnement().getJoueur().getX();
-        int y = getEnvironnement().getJoueur().getY();
+    public void ralentirEnnemies(Acteur acteur){
+        int x = acteur.getX();
+        int y = acteur.getY();
         int rangeConnexion = 128;
 
         for(Acteur a : this.getEnvironnement().getActeurs()){
@@ -40,5 +36,10 @@ public class CouronneTemporel extends Equipement{
                 }
             }
         }
+    }
+
+    @Override
+    public void utilise(Acteur a) {
+        ralentirEnnemies(a);
     }
 }
