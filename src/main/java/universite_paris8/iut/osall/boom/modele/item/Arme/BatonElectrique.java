@@ -19,11 +19,6 @@ public class BatonElectrique extends Arme{
         attackDeZone(e);
     }
 
-    @Override
-    public void equip(Joueur joueur) {
-        joueur.setArme(this);
-    }
-
     public void attackDeZone(Ennemi e){
         e.enleverPv(this.getDegat());
         int rangeConnexion = 80;

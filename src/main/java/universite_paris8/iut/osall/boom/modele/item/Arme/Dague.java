@@ -17,9 +17,4 @@ public class Dague extends Arme{
     public void utilise(Ennemi e) {
         e.enleverPv(this.getDegat());
     }
-
-    @Override
-    public void equip(Joueur joueur) {
-        joueur.setArme(this);
-    }
 }

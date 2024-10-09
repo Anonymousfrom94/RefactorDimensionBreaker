@@ -22,11 +22,6 @@ public class Arc extends Arme {
         }
     }
 
-    @Override
-    public void equip(Joueur joueur) {
-        joueur.setArme(this);
-    }
-
     public ArrayList<Fleche> getFleches() {
         return fleches;
     }

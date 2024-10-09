@@ -24,7 +24,9 @@ public abstract class Arme extends Item {
 
     public abstract void utilise(Ennemi e);
 
-    public abstract void equip(Joueur joueur);
+    public void equip(Joueur joueur) {
+        joueur.setArme(this);
+    }
 
 /* *********************************************************************************************************************
                                           GETTER & SETTER & BOOLEAN

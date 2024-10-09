@@ -27,11 +27,4 @@ public class Sniper extends Arme{
             joueur.setPv(joueur.getPv()-10);
         }
     }
-
-    @Override
-    public void equip(Joueur joueur) {
-        joueur.setArme(this);
-    }
-
-
 }

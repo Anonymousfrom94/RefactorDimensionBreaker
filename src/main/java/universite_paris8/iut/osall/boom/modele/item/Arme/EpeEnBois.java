@@ -16,9 +16,4 @@ public class EpeEnBois extends Arme{
     public void utilise(Ennemi e) {
         e.subitDegat(getDegat());
     }
-
-    @Override
-    public void equip(Joueur joueur) {
-        joueur.setArme(this);
-    }
 }
