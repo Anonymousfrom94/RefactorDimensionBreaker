@@ -6,10 +6,10 @@ public class TotemResurrection extends Consommable{
 
     private Joueur joueur;
 
-    public TotemResurrection(Joueur joueur) {
-        super(joueur.getEnvironnement(), "Totem de résurection");
-        this.joueur = joueur;
-    }
+//    public TotemResurrection(Joueur joueur) {
+//        super(joueur.getEnvironnement(), "Totem de résurection");
+//        this.joueur = joueur;
+//    }
 
     public TotemResurrection(Joueur joueur, int x, int y) {
         super(joueur.getEnvironnement(), "Totem de résurection", x, y);

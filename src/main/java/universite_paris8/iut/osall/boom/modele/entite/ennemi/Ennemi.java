@@ -16,7 +16,7 @@ public class Ennemi extends Acteur {
 
     public Ennemi(Environnement environnement, int largeur, int hauteur, int vitesse, int pvMax) {
         super(environnement, 0, 0, largeur, hauteur, vitesse, pvMax);
-        this.arme = new EpeEnBois(environnement);
+        this.arme = new EpeEnBois(environnement, this.getX(), this.getY());
         random();
     }
     private void random() {
@@ -115,16 +115,9 @@ public class Ennemi extends Acteur {
         joueur.enleverPv(arme.getDegat());
         derniereAttaque = System.currentTimeMillis();
     }
+
     public void setArme(Arme arme) {
         this.arme = arme;
-    }
-
-
-    public void subitDegat(int degats) {
-        enleverPv(degats);
-        if (!this.estVivant()) {
-            System.out.println("Ennemi " + getId() + " vaincu !");
-        }
     }
 
 }

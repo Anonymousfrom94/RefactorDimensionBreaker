@@ -16,5 +16,7 @@ public abstract class Equipement extends Item {
 
     public abstract void utilise();
 
-    public abstract void equip(Joueur joueur);
+    public void equip(Joueur joueur) {
+        joueur.setEquipement(this);
+    }
 }

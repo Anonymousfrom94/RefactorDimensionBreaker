@@ -18,11 +18,6 @@ public class CouronneTemporel extends Equipement{
         ralentirEnnemies();
     }
 
-    @Override
-    public void equip(Joueur joueur) {
-        joueur.setEquipement(this);
-    }
-
     public void ralentirEnnemies(){
         int x = getEnvironnement().getJoueur().getX();
         int y = getEnvironnement().getJoueur().getY();

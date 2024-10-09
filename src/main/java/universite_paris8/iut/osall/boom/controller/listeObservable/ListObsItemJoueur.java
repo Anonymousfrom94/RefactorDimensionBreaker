@@ -1,4 +1,4 @@
-package universite_paris8.iut.osall.boom.modele.listeObservable;
+package universite_paris8.iut.osall.boom.controller.listeObservable;
 
 import javafx.collections.ListChangeListener;
 import javafx.scene.layout.Pane;

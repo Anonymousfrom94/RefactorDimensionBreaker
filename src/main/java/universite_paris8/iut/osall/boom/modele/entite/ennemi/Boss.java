@@ -8,7 +8,7 @@ public class Boss extends Ennemi{
         super(environnement, 32, 32, 5, 150);
         this.setX(700);
         this.setY(1150);
-        this.setArme(new BatonElectrique(getEnvironnement()));
+        this.setArme(new BatonElectrique(getEnvironnement(), this.getX(), this.getY()));
         invoque();
     }
 

@@ -6,10 +6,10 @@ public class PotionHeal extends Consommable{
 
     private Joueur joueur;
 
-    public PotionHeal(Joueur joueur) {
-        super(joueur.getEnvironnement(), "Potion de Soin");
-        this.joueur = joueur;
-    }
+//    public PotionHeal(Joueur joueur) {
+//        super(joueur.getEnvironnement(), "Potion de Soin");
+//        this.joueur = joueur;
+//    }
 
     public PotionHeal(Joueur joueur, int x, int y) {
         super(joueur.getEnvironnement(), "Potion de Soin", x, y);

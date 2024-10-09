@@ -11,9 +11,4 @@ public class BotteLevitation extends Equipement{
     @Override
     public void utilise() {
     }
-
-    @Override
-    public void equip(Joueur joueur) {
-        joueur.setEquipement(this);
-    }
 }

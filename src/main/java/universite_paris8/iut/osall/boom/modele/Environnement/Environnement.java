@@ -89,7 +89,7 @@ public class Environnement {
             // Rajouter les ennemis en fonction
         }
         // Spawn des 4 totem de résurrection
-        this.getInventaireEnvironnement().add(new TotemResurrection(this.getJoueur()));
+        this.getInventaireEnvironnement().add(new TotemResurrection(this.getJoueur(), 200, 135));
         this.getInventaireEnvironnement().add(new TotemResurrection(this.getJoueur(), 1300, 50));
         this.getInventaireEnvironnement().add(new TotemResurrection(this.getJoueur(), 82, 1300));
         this.getInventaireEnvironnement().add(new TotemResurrection(this.getJoueur(), 1400, 1300));
@@ -97,7 +97,7 @@ public class Environnement {
         // Spawn des 12 PotionHeal
         for (int i = 0; i < 3; i++){
             int ecart = i*128;
-            this.getInventaireEnvironnement().add(new PotionHeal(this.getJoueur()));
+            this.getInventaireEnvironnement().add(new PotionHeal(this.getJoueur(), 89, 78));
             this.getInventaireEnvironnement().add(new PotionHeal(this.getJoueur(), 1100 + ecart, 50 + ecart));
             this.getInventaireEnvironnement().add(new PotionHeal(this.getJoueur(), 50 + ecart, 1100 + ecart));
             this.getInventaireEnvironnement().add(new PotionHeal(this.getJoueur(), 1300 + ecart, 1100 - ecart));
@@ -109,7 +109,7 @@ public class Environnement {
         this.getInventaireEnvironnement().add(new CouronneTemporel(this, 1450, 150));
 
         // Spawn des Armes (une arme par zone)
-        this.getInventaireEnvironnement().add(new Dague(this));
+        this.getInventaireEnvironnement().add(new Dague(this, 150, 100));
         this.getInventaireEnvironnement().add(new Sniper(this, 1200, 200));
         this.getInventaireEnvironnement().add(new BatonElectrique(this, 800, 1500));
     }
