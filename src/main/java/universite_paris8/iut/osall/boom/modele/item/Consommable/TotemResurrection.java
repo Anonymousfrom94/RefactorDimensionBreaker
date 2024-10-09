@@ -14,6 +14,7 @@ public class TotemResurrection extends Consommable {
 
     @Override
     public void utilise() {
-        fullSoin();
+        joueur.setPv(joueur.getPvMax());
+        this.retirerDeLInventaire();
     }
 }

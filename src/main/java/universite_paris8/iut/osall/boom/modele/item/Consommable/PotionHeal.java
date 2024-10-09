@@ -4,7 +4,6 @@ import universite_paris8.iut.osall.boom.modele.entite.Joueur;
 
 public class PotionHeal extends Consommable {
     private static final int val_soin = 90;
-    private static final int val_pvMax = 300;
 
     public PotionHeal(Joueur joueur) {
         super(joueur, "Potion de Soin");
@@ -16,6 +15,7 @@ public class PotionHeal extends Consommable {
 
     @Override
     public void utilise() {
-        soin(val_soin, val_pvMax);
+        joueur.rajouterPv(val_soin);
+        retirerDeLInventaire();
     }
 }

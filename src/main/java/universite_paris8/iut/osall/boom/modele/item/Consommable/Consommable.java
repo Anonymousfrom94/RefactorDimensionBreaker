@@ -18,21 +18,7 @@ public abstract class Consommable extends Item {
 
     public abstract void utilise();
 
-    protected void soin(int valeurSoin, int limitePvMax) {
-        if (joueur.getPv() + valeurSoin <= limitePvMax) {
-            joueur.rajouterPv(valeurSoin);
-        } else {
-            joueur.setPv(limitePvMax);
-        }
-        retirerDeLInventaire();
-    }
-
-    public void fullSoin() {
-        joueur.setPv(joueur.getPvMax());
-        retirerDeLInventaire();
-    }
-
-    private void retirerDeLInventaire() {
+    public void retirerDeLInventaire() {
         joueur.getInventaire().remove(this);
     }
 }

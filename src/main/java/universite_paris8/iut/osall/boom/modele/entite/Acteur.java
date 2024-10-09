@@ -46,6 +46,9 @@ public abstract class Acteur {
         if (this.getPv() + pv <= this.pvMax){
             this.pv.setValue(this.pv.getValue() + pv);
         }
+        else {
+            this.pv.setValue(this.pvMax);
+        }
     }
 
     public abstract void seDeplace();
