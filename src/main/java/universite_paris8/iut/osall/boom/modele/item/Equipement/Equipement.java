@@ -10,9 +10,9 @@ public abstract class Equipement extends Item {
         super(environnement, nom, x, y);
     }
 
-    public Equipement(Environnement environnement, String nom) {
-        super(environnement, nom, 595, 670);
-    }
+//    public Equipement(Environnement environnement, String nom) {
+//        super(environnement, nom, 595, 670);
+//    }
 
     public abstract void utilise();
 

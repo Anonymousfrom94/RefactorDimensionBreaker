@@ -58,8 +58,7 @@ public class Joueur extends Acteur {
     public Acteur estAttaquable(){
         for(Acteur e : this.getEnvironnement().getActeurs()){
             if(e instanceof Ennemi){
-                if (
-                        (this.getX() - getArme().getRange() <= e.getX() && this.getX() + 16 + getArme().getRange() >= e.getX()) &&
+                if ((this.getX() - getArme().getRange() <= e.getX() && this.getX() + 16 + getArme().getRange() >= e.getX()) &&
                                 (this.getY() - getArme().getRange() <= e.getY() && this.getY() + 16 + getArme().getRange() >= e.getY())
                 ){
                     System.out.println("ennemie proche");
