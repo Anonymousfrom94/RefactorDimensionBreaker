@@ -16,7 +16,6 @@ public class Arc extends Arme {
         this.fleches = new ArrayList<>();
     }
 
-
     public void utilise(Ennemi e){
         for (Fleche fleche : fleches){
             fleche.tire(e);

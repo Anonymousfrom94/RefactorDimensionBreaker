@@ -4,6 +4,7 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import universite_paris8.iut.osall.boom.modele.Attribut.PV;
 import universite_paris8.iut.osall.boom.modele.Environnement.Environnement;
 import universite_paris8.iut.osall.boom.modele.item.Arme.Arme;
 import universite_paris8.iut.osall.boom.modele.item.Arme.EpeEnBois;
@@ -17,6 +18,7 @@ public abstract class Acteur {
     private static int compteur = 0;
     private IntegerProperty x, y;
     private int largeur, hauteur;
+    private PV pv;
     private int pvMax;
     private IntegerProperty pv;
     private Arme arme;
@@ -27,29 +29,15 @@ public abstract class Acteur {
         this.y = new SimpleIntegerProperty(y);
         this.direction = new SimpleStringProperty("");
         this.vitesse = vitesse;
+        this.pv = new PV(pvMax);
         this.pvMax = pvMax;
-        this.pv = new SimpleIntegerProperty(pvMax);
+        this.pv = new PV(pvMax);
         this.id = "#" + compteur;
         compteur++;
         this.environnement.getActeurs().add(this);
         this.largeur = largeur;
         this.hauteur = hauteur;
         this.arme = new EpeEnBois(environnement);
-    }
-
-    public void enleverPv(int degat) {
-        if (this.pv.getValue() - degat >= 0){
-            this.pv.setValue(this.pv.getValue() - degat);
-        }
-        else {
-            this.pv.setValue(0);
-        }
-    }
-
-    public void rajouterPv(int pv){
-        if (this.getPv() + pv <= this.pvMax){
-            this.pv.setValue(this.pv.getValue() + pv);
-        }
     }
 
     public abstract void seDeplace();
