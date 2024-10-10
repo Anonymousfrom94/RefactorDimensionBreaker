@@ -51,5 +51,5 @@ public class Clavier implements EventHandler<KeyEvent> {
         }
 
         if (touchePress.contains(K) && joueur.getEquipement() != null){
-            joueur.getEquipement().utilise();}}
+            joueur.getEquipement().utilise(joueur);}}
 }
