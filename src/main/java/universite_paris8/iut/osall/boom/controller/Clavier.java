@@ -47,8 +47,7 @@ public class Clavier implements EventHandler<KeyEvent> {
         this.joueur.setDirection(direction);
         
         if (touchePress.contains(J)){
-            Acteur acteur = this.joueur.estAttaquable();
-            this.joueur.attaque(acteur);
+            this.joueur.attaque();
             touchePress.clear();
         }
 

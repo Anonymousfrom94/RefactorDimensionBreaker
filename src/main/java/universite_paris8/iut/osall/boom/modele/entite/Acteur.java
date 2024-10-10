@@ -54,7 +54,7 @@ public abstract class Acteur {
 
     public abstract void seDeplace();
 
-    public abstract void attaque(Acteur a);
+    public abstract void attaque();
 
 /* *********************************************************************************************************************
                                                 GETTER & SETTER
@@ -70,37 +70,30 @@ public abstract class Acteur {
     public void setX(int x) {
         this.x.setValue(x);
     }
-
     public int getY(){
         return this.y.getValue();
     }
     public void setY(int y) {
         this.y.setValue(y);
     }
-
     public IntegerProperty getXproperty(){
         return this.x;
     }
-
     public IntegerProperty getYproperty(){
         return this.y;
     }
-
     public int getVitesse() {
         return vitesse;
     }
     public void setVitesse(int vitesse) {
         this.vitesse = vitesse;
     }
-
     public Environnement getEnvironnement() {
         return environnement;
     }
-
     public boolean estVivant(){
         return pv.getValue() > 0;
     }
-
     public int getPvMax() {
         return pvMax;
     }
@@ -110,11 +103,9 @@ public abstract class Acteur {
     public void setPv(int pv) {
         this.pv.set(pv);
     }
-
     public IntegerProperty pvProperty() {
         return pv;
     }
-
     public int getLargeur() {
         return largeur;
     }

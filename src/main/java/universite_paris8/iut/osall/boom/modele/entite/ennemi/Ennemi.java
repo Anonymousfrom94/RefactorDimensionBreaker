@@ -31,7 +31,6 @@ public class Ennemi extends Acteur {
         this.setY(y);
     }
 
-
     public void seDeplace() {
 
         Environnement environnement = getEnvironnement();
@@ -84,7 +83,7 @@ public class Ennemi extends Acteur {
             }
 
             if (super.getArme() != null && distance <= super.getArme().getRange()) {
-                attaque(joueur);
+                attaque();
             }
         }
     }
@@ -117,8 +116,9 @@ public class Ennemi extends Acteur {
     }
 
     @Override
-    public void attaque(Acteur joueur) {
+    public void attaque() {
 //        joueur.enleverPv(super.getArme().getDegat());
+        Joueur joueur = getEnvironnement().getJoueur();
         if (peutAttaquer()) {
             super.getArme().utilise(joueur);
             derniereAttaque = System.currentTimeMillis();

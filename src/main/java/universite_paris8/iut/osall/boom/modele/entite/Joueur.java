@@ -71,7 +71,7 @@ public class Joueur extends Acteur {
     }
 
     @Override
-    public void attaque(Acteur acteur) {
+    public void attaque() {
         Acteur e = estAttaquable();
         if (e != null && e!=this) {
             this.getArme().utilise(e);
@@ -91,7 +91,8 @@ public class Joueur extends Acteur {
         return null;
     }
 
-    public void ramasse(){
+    public void ramasse() {
+
         Item item = peutRamasse();
         if (item != null){
             this.inventaire.add(item);
