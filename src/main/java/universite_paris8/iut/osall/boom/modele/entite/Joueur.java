@@ -3,6 +3,7 @@ import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import universite_paris8.iut.osall.boom.modele.Environnement.Environnement;
+import universite_paris8.iut.osall.boom.modele.Utilitaire.Direction;
 import universite_paris8.iut.osall.boom.modele.entite.ennemi.Ennemi;
 import universite_paris8.iut.osall.boom.modele.item.Arme.Arme;
 import universite_paris8.iut.osall.boom.modele.item.Arme.EpeEnBois;
@@ -17,7 +18,7 @@ public class Joueur extends Acteur {
     private Equipement equipement;
 
     public Joueur(Environnement environnement) {
-        super(environnement, 780, 485,14, 14, 5, 300);
+        super(environnement, 780,, Direction.BAS, 5,300, 14,14);
         this.inventaire = FXCollections.observableArrayList();
         this.arme = new EpeEnBois(environnement);
         inventaire.add(this.arme);

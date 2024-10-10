@@ -4,12 +4,13 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import universite_paris8.iut.osall.boom.modele.Environnement.Environnement;
+import universite_paris8.iut.osall.boom.modele.Utilitaire.Direction;
 import universite_paris8.iut.osall.boom.modele.Utilitaire.Hitbox;
 import universite_paris8.iut.osall.boom.modele.Utilitaire.Position;
 
 public abstract class Acteur {
 
-    public final StringProperty direction;
+    private Direction direction;
     private Environnement environnement;
     private String id;
     private int vitesse;
@@ -17,12 +18,13 @@ public abstract class Acteur {
     private Position position;
     private int pvMax;
     private IntegerProperty pv;
+    //refactor
     private Hitbox hitbox;
 
-    public Acteur(Environnement environnement, Position position, int vitesse, int pvMax, Hitbox hitbox) {
+    public Acteur(Environnement environnement, Position position, Direction direction, int vitesse, int pvMax, Hitbox hitbox) {
         this.environnement = environnement;
         this.position = position;
-        this.direction = new SimpleStringProperty("");
+        this.direction = direction;
         this.vitesse = vitesse;
         this.pvMax = pvMax;
         this.pv = new SimpleIntegerProperty(pvMax);
@@ -117,8 +119,8 @@ public abstract class Acteur {
     }
 
 
-    public String getDirection() {
-        return this.direction.get();
+    public Direction getDirection() {
+        return this.direction;
     }
     public void setDirection(String direction) {
         this.direction.set(direction);

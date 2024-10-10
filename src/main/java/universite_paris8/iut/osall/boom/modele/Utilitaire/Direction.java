@@ -1,7 +1,7 @@
 package universite_paris8.iut.osall.boom.modele.Utilitaire;
 
-public class Direction {
+public enum Direction {
 
-    //changer en enum
+    HAUT, BAS, DROITE, GAUCHE;
 
 }

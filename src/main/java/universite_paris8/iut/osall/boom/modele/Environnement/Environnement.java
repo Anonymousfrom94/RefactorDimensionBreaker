@@ -19,6 +19,7 @@ import universite_paris8.iut.osall.boom.modele.item.Equipement.BotteLevitation;
 import universite_paris8.iut.osall.boom.modele.item.Equipement.CeintureTP;
 import universite_paris8.iut.osall.boom.modele.item.Equipement.CouronneTemporel;
 import universite_paris8.iut.osall.boom.modele.item.Item;
+import universite_paris8.iut.osall.boom.modele.Environnement.Map;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -136,7 +137,7 @@ public class Environnement {
 
 
         Position position = acteur.getPosition();
-        String direction = acteur.getDirection();
+        Direction direction = acteur.getDirection();
         double vitesse = acteur.getVitesse();
 
         int x = position.getX() + vitesse * direction.getX();
