@@ -5,10 +5,6 @@ import universite_paris8.iut.osall.boom.modele.entite.Joueur;
 
 public class CeintureTP extends Equipement{
 
-//    public CeintureTP(Environnement environnement) {
-//        super(environnement, "Ceinture de Téléportation", 650, 670);
-//    }
-
     public CeintureTP(Environnement environnement, int x, int y) {
         super(environnement, "Ceinture de Téléportation", x, y);
     }

@@ -5,9 +5,6 @@ import universite_paris8.iut.osall.boom.modele.entite.Acteur;
 import universite_paris8.iut.osall.boom.modele.entite.ennemi.Ennemi;
 
 public class CouronneTemporel extends Equipement{
-//    public CouronneTemporel(Environnement environnement) {
-//        super(environnement, "Couronne Temporel", 685, 670);
-//    }
 
     public CouronneTemporel(Environnement environnement, int x, int y) {
         super(environnement, "Couronne Temporel", x, y);
