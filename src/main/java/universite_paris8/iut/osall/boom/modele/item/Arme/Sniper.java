@@ -23,8 +23,8 @@ public class Sniper extends Arme{
     @Override
     public void utilise(Ennemi e) {
         if (e instanceof Squelette){
-            e.enleverPv(this.getDegat());
-            joueur.setPv(joueur.getPv()-10);
+            e.getPV().enleverPv(this.getDegat());
+            joueur.getPV().setPv(joueur.getPV().getPv()-10);
         }
     }
 

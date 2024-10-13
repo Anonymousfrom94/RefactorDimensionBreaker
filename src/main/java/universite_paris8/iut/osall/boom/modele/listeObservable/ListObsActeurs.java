@@ -29,7 +29,7 @@ public class ListObsActeurs implements ListChangeListener<Acteur> {
             for (Acteur a : change.getAddedSubList()) {
                 creerSpriteEnnemie(pane, (Ennemi) a);
                 //Ajout des listener à chaque ennemi après qu'ils soient créer
-                a.pvProperty().addListener(
+                a.getPV().pvProperty().addListener(
                         (obs, old, nouv) -> ListObsActeurs.updateBarreDeVie(a, pane)
                 );
             }
@@ -63,7 +63,7 @@ public class ListObsActeurs implements ListChangeListener<Acteur> {
 
     public static void updateBarreDeVie(Acteur acteur, Pane pane) {
         int largeurBarre = 16;
-        double pourcentageVieRestante = (double) acteur.getPv() / acteur.getPvMax();
+        double pourcentageVieRestante = (double) acteur.getPV().getPv() / acteur.getPV().getPvMax();
         Rectangle vieBarre = (Rectangle) pane.lookup("#vieBarre_" + acteur.getId());
         System.out.println("Pourcentage de vie " + pourcentageVieRestante);
 

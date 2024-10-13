@@ -109,7 +109,7 @@ public class Controller implements Initializable {
         this.pane.setTranslateX(pane.getPrefWidth() / 4 - environnement.getJoueur().getX()-(environnement.getJoueur().getLargeur()/2));
         this.pane.setTranslateY(pane.getPrefHeight() / 4 - environnement.getJoueur().getY()-(environnement.getJoueur().getHauteur()/2));
         // Ajout du listener au pv du joueur
-        environnement.getJoueur().pvProperty().addListener(
+        environnement.getJoueur().getPV().pvProperty().addListener(
                 (obs, old, nouv) -> VueJoueur.updateBarreDeVie(environnement.getJoueur(), equipementJoueur)
         );
     }
@@ -235,7 +235,7 @@ public class Controller implements Initializable {
                 break;
             }
         }
-        System.out.println(" \n\npv du joueur : " + environnement.getJoueur().getPv());
+        System.out.println(" \n\npv du joueur : " + environnement.getJoueur().getPV().getPv());
     }
 
 
@@ -260,7 +260,7 @@ public class Controller implements Initializable {
                 break;
             }
         }
-        System.out.println(" \n\npv du joueur : " + environnement.getJoueur().getPv());
+        System.out.println(" \n\npv du joueur : " + environnement.getJoueur().getPV().getPv());
     }
 
 

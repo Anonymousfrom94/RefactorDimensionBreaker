@@ -19,8 +19,6 @@ public abstract class Acteur {
     private IntegerProperty x, y;
     private int largeur, hauteur;
     private PV pv;
-    private int pvMax;
-    private IntegerProperty pv;
     private Arme arme;
 
     public Acteur(Environnement environnement, int x, int y, int largeur, int hauteur, int vitesse, int pvMax) {
@@ -29,8 +27,6 @@ public abstract class Acteur {
         this.y = new SimpleIntegerProperty(y);
         this.direction = new SimpleStringProperty("");
         this.vitesse = vitesse;
-        this.pv = new PV(pvMax);
-        this.pvMax = pvMax;
         this.pv = new PV(pvMax);
         this.id = "#" + compteur;
         compteur++;
@@ -80,20 +76,9 @@ public abstract class Acteur {
         return environnement;
     }
     public boolean estVivant(){
-        return pv.getValue() > 0;
+        return getPV().getPv() > 0;
     }
-    public int getPvMax() {
-        return pvMax;
-    }
-    public int getPv() {
-        return pv.get();
-    }
-    public void setPv(int pv) {
-        this.pv.set(pv);
-    }
-    public IntegerProperty pvProperty() {
-        return pv;
-    }
+    public PV getPV() {return pv;}
     public int getLargeur() {
         return largeur;
     }

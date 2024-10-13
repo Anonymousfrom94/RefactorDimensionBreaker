@@ -63,7 +63,7 @@ public class VueJoueur {
 
     public static void updateBarreDeVie(Acteur acteur, Pane pane) {
         int largeurBarre = 256;
-        double pourcentageVieRestante = (double) acteur.getPv() / acteur.getPvMax();
+        double pourcentageVieRestante = (double) acteur.getPV().getPv() / acteur.getPV().getPvMax();
         Rectangle vieBarre = (Rectangle) pane.lookup("#vieBarre_" + acteur.getId());
         System.out.println("Pourcentage de vie " + pourcentageVieRestante);
 

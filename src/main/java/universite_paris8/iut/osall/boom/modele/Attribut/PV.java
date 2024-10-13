@@ -24,7 +24,6 @@ public class PV {
     public IntegerProperty pvProperty() {
         return pv;
     }
-
     public void enleverPv(int degat) {
         if (this.pv.getValue() - degat >= 0){
             this.pv.setValue(this.pv.getValue() - degat);
@@ -33,7 +32,6 @@ public class PV {
             this.pv.setValue(0);
         }
     }
-
     public void rajouterPv(int pv){
         if (this.getPv() + pv <= this.pvMax){
             this.pv.setValue(this.pv.getValue() + pv);

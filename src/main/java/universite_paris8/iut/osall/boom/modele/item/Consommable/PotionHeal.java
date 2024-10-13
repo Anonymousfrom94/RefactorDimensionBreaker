@@ -21,8 +21,8 @@ public class PotionHeal extends Consommable{
     }
 
     public void seSoigne(){
-        if (joueur.getPv() + 90 <= 300){
-            joueur.rajouterPv(90);
+        if (joueur.getPV().getPv() + 90 <= 300){
+            joueur.getPV().rajouterPv(90);
             this.joueur.getInventaire().remove(this);
         }
     }

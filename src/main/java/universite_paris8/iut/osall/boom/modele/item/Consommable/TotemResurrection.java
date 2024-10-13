@@ -21,8 +21,8 @@ public class TotemResurrection extends Consommable{
     }
 
     public void seSoigne(){
-        if (joueur.getPv() < joueur.getPvMax()){
-            this.joueur.setPv(joueur.getPvMax());
+        if (joueur.getPV().getPv() < joueur.getPV().getPvMax()){
+            this.joueur.getPV().setPv(joueur.getPV().getPvMax());
             this.joueur.getInventaire().remove(this);
         }
     }
