@@ -79,7 +79,7 @@ public class Controller implements Initializable {
                 // on définit ce qui se passe à chaque frame
                 // c'est un eventHandler d'ou le lambda
                 (ev ->{
-                    environnement.getJoueur().seDeplace();
+//                    environnement.getJoueur().seDeplace();
                     if (temps == 10){
                         environnement.spawnItemEtEnnemie();
                     }

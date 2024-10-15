@@ -36,6 +36,8 @@ public abstract class Acteur {
         this.arme = new EpeEnBois(environnement);
     }
 
+    public abstract void agit();
+
     public abstract void seDeplace();
 
     public abstract void attaque();

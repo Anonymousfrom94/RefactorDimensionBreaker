@@ -21,34 +21,34 @@ public class Item {
         compteur++;
     }
 
-    public Item(Environnement environnement, String nom) {
-        this.environnement = environnement;
-        this.nom = nom;
-        this.x = new SimpleIntegerProperty(0);
-        this.y = new SimpleIntegerProperty(0);
-        this.id = "I" + compteur ;
-        compteur++;
-        random();
-    }
+//    public Item(Environnement environnement, String nom) {
+//        this.environnement = environnement;
+//        this.nom = nom;
+//        this.x = new SimpleIntegerProperty(0);
+//        this.y = new SimpleIntegerProperty(0);
+//        this.id = "I" + compteur ;
+//        compteur++;
+//        random();
+//    }
 
-    private int indice(int newX, int newY) {
-        int ligne, colonne;
-        colonne = newX / 16;
-        ligne = newY / 16;
-        return ligne * 30 + colonne;
-    }
+//    private int indice(int newX, int newY) {
+//        int ligne, colonne;
+//        colonne = newX / 16;
+//        ligne = newY / 16;
+//        return ligne * 30 + colonne;
+//    }
 
-    private void random(){
-        int x = 0;
-        int y = 0;
-        do {
-            x = (int) (Math.random() * 300);
-            y = (int) (Math.random() * 300);
-        }
-        while(this.environnement.getMap().getTableau()[indice(x, y)] == 1);
-        this.getXProperty().setValue(x);
-        this.getYProperty().setValue(y);
-    }
+//    private void random(){
+//        int x = 0;
+//        int y = 0;
+//        do {
+//            x = (int) (Math.random() * 300);
+//            y = (int) (Math.random() * 300);
+//        }
+//        while(this.environnement.getMap().getTableau()[indice(x, y)] == 1);
+//        this.getXProperty().setValue(x);
+//        this.getYProperty().setValue(y);
+//    }
 
 /* *********************************************************************************************************************
                                           GETTER & SETTER & BOOLEAN

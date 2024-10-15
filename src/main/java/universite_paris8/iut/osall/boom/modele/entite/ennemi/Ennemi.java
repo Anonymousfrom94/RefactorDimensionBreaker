@@ -126,6 +126,12 @@ public class Ennemi extends Acteur {
         }
     }
 
+    @Override
+    public void agit(){
+        seDeplace();
+        attaque();
+    }
+
 
 
 }
