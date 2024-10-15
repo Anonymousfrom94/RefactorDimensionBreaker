@@ -1,11 +1,5 @@
 package universite_paris8.iut.osall.boom.modele.Environnement;
 
-import universite_paris8.iut.osall.boom.modele.Utilitaire.Hitbox;
-import universite_paris8.iut.osall.boom.modele.Utilitaire.Position;
-import universite_paris8.iut.osall.boom.modele.Utilitaire.Direction;
-import universite_paris8.iut.osall.boom.modele.entite.Acteur;
-
-
 public class Map {
 
     private int[] tableau;
@@ -67,6 +61,7 @@ public class Map {
         }
         return false;
     }
+
 
     public int[] getTableau() {
         return tableau;

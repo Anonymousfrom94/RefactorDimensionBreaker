@@ -2,37 +2,39 @@ package universite_paris8.iut.osall.boom.modele.Utilitaire;
 
 public class Hitbox {
 
-    public int getHitbox;
-    private double hauteur;
-    private double largeur;
+    private int hauteur;
+    private int largeur;
 
-    public Hitbox(double hauteur, double largeur) {
+    public Hitbox(int hauteur, int largeur) {
         setHitbox(hauteur, largeur);
     }
 
     //Methode créer en dehors du constructeur pour gerer les exception (sera coder plus tard)
-    private void setHitbox(double hauteur, double largeur) {
+    private void setHitbox(int hauteur, int largeur) {
         this.hauteur = hauteur;
         this.largeur = largeur;
     }
 
-    private double getHauteur(){
+    public double getHauteur(){
         return hauteur;
     }
-    private double getLargeur(){
+    public double getLargeur(){
         return largeur;
     }
 
-    public double getPointLePlusAGauche(int x) {
-        
+    public double getPointLePlusAGauche(Position centre) {
+        return centre.getX()-((double) largeur /2);
     }
 
-    public double getPointLePlusADroite(int x) {
+    public double getPointLePlusADroite(Position centre) {
+        return centre.getX()+((double) largeur /2);
     }
 
-    public double getPointLePlusEnHaut(int y) {
+    public double getPointLePlusEnHaut(Position centre) {
+        return centre.getY()-((double) hauteur /2);
     }
 
-    public double getPointLePlusEnBas(int y) {
+    public double getPointLePlusEnBas(Position centre) {
+        return centre.getY()+((double) hauteur /2);
     }
 }

@@ -83,6 +83,11 @@ public class Ennemi extends Acteur {
         }
     }
 
+    @Override
+    public boolean estDansHitbox() {
+        return false;
+    }
+
     private boolean peutAttaquer() {
         long tempsActuel = System.currentTimeMillis();
         return (tempsActuel - derniereAttaque) >= intervalleAttack;
@@ -92,7 +97,7 @@ public class Ennemi extends Acteur {
         Environnement environnement = getEnvironnement();
         Map map = environnement.getMap();
 
-        for (int i = 0; i < getLargeur(); i++) {
+        for (int i = 0; i < environnement.getJoueur().getHitbox().getLargeur(); i++) {
             for (int j = 0; j < getHauteur(); j++) {
                 int x = newX + i;
                 int y = newY + j;

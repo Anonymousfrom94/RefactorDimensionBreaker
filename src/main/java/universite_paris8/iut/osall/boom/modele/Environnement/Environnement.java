@@ -19,16 +19,15 @@ import universite_paris8.iut.osall.boom.modele.item.Equipement.BotteLevitation;
 import universite_paris8.iut.osall.boom.modele.item.Equipement.CeintureTP;
 import universite_paris8.iut.osall.boom.modele.item.Equipement.CouronneTemporel;
 import universite_paris8.iut.osall.boom.modele.item.Item;
-import universite_paris8.iut.osall.boom.modele.Environnement.Map;
 
 import java.util.ArrayList;
-import java.util.Map;
 
 public class Environnement {
     private Map map;
    // private int width;
    // private int height;
     private Joueur joueur;
+    //joueur dans la liste
     private ObservableList<Acteur> acteurs;
     private ObservableList<Item> inventaireEnvironnement;
 //    private int largeurTuile;
@@ -72,6 +71,7 @@ public class Environnement {
                 System.out.println("Nombre d'ennemis tués : " + compteurKill);
             }
             if (acteur instanceof Ennemi){
+                //sedeplace attaque aussi
                 acteur.seDeplace();
             }
         }
@@ -127,51 +127,13 @@ public class Environnement {
         }
     }
 
-    public boolean peutSeDeplacer(Acteur acteur, boolean aBottesDeLevitation) {
-        collision(getJoueur());
-    }
-
-    private void collision(Acteur acteur) {
-
-        Hitbox hitbox = getJoueur().getHitbox();
+    //dans acteur
+    //public boolean peutSeDeplacer(Acteur acteur, boolean aBottesDeLevitation) {
+    //    collision(getJoueur());
+    //    return true;
+  //  }
 
 
-        Position position = acteur.getPosition();
-        Direction direction = acteur.getDirection();
-        double vitesse = acteur.getVitesse();
-
-        int x = position.getX() + vitesse * direction.getX();
-        int y = position.getY() + vitesse * direction.getY();
-
-        double extremite1;
-        double extremite2;
-
-        if (direction == "bas" || direction == "haut") {
-            extremite1 = hitbox.getPointLePlusAGauche(x);
-            extremite2 = hitbox.getPointLePlusADroite(x);
-        } else {
-            extremite1 = hitbox.getPointLePlusEnHaut(y);
-            extremite2 = hitbox.getPointLePlusEnBas(y);
-        }
-
-        boolean collision = false;
-        int cpt = (int) extremite1;
-
-        while (cpt <= extremite2 && !collision) {
-            if (direction.equals(Direction.BAS)) {
-                collision = nontraversable[(int) (hitbox.getPointLePlusEnBas(y))][cpt] != -1;
-            } else if (direction.equals(Direction.HAUT)) {
-                collision = nontraversable[(int) (hitbox.getPointLePlusEnHaut(y))][cpt] != -1;
-            } else if (direction.equals(Direction.DROITE)) {
-                collision = nontraversable[cpt][(int) (hitbox.getPointLePlusADroite(x))] != -1;
-            } else if (direction.equals(Direction.GAUCHE)) {
-                collision = nontraversable[cpt][(int) (hitbox.getPointLePlusAGauche(x))] != -1;
-            }
-            cpt++;
-        }
-
-        return collision;
-    }
 
 
        /* for (int i = 0; i < environnement.getObstacles().size(); i++) {

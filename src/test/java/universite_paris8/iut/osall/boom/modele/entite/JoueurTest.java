@@ -54,8 +54,8 @@ class JoueurTest {
         joueur.seDeplace();
         assertEquals(0, joueur.getX());
 
-        joueur.setX(environnement.getWidth() - joueur.getLargeur());
-        joueur.setY(environnement.getHeight() - joueur.getHauteur());
+        joueur.setX(environnement.getWidth() - joueur.getHitbox().getLargeur());
+        joueur.setY(environnement.getHeight() - joueur.getHitbox().getHauteur());
         joueur.setDirection("bas");
         joueur.seDeplace();
         assertEquals(environnement.getHeight() - joueur.getHauteur(), joueur.getY());
