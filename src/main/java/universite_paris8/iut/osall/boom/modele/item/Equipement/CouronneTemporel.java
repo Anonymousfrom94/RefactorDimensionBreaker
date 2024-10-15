@@ -11,6 +11,10 @@ public class CouronneTemporel extends Equipement{
         super(environnement, "Couronne Temporel", x, y);
     }
 
+    @Override
+    public void utilise(Acteur a) {
+        ralentirEnnemies(a);
+    }
 
     public void ralentirEnnemies(Acteur acteur){
         int x = acteur.getX();
@@ -31,8 +35,4 @@ public class CouronneTemporel extends Equipement{
         }
     }
 
-    @Override
-    public void utilise(Acteur a) {
-        ralentirEnnemies(a);
-    }
 }

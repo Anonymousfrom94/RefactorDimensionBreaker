@@ -22,36 +22,7 @@ public abstract class Item {
         compteur++;
     }
 
-    public Item(Environnement environnement, String nom) {
-        this.environnement = environnement;
-        this.nom = nom;
-        this.x = new SimpleIntegerProperty(0);
-        this.y = new SimpleIntegerProperty(0);
-        this.id = "I" + compteur ;
-        compteur++;
-        random();
-    }
-
     public abstract void utilise(Acteur a);
-
-    private int indice(int newX, int newY) {
-        int ligne, colonne;
-        colonne = newX / 16;
-        ligne = newY / 16;
-        return ligne * 30 + colonne;
-    }
-
-    private void random(){
-        int x = 0;
-        int y = 0;
-        do {
-            x = (int) (Math.random() * 300);
-            y = (int) (Math.random() * 300);
-        }
-        while(this.environnement.getMap().getTableau()[indice(x, y)] == 1);
-        this.getXProperty().setValue(x);
-        this.getYProperty().setValue(y);
-    }
 
 /* *********************************************************************************************************************
                                           GETTER & SETTER & BOOLEAN
@@ -92,16 +63,8 @@ public abstract class Item {
         this.y.set(y);
     }
 
-    /* *********************************************************************************************************************
+/* *********************************************************************************************************************
 
 ********************************************************************************************************************* */
-    @Override
-    public String toString() {
-        return "Item{" +
-                "nom='" + nom + '\'' +
-                ", x=" + x +
-                ", y=" + y +
-                ", id='" + id + '\'' +
-                '}';
-    }
+
 }

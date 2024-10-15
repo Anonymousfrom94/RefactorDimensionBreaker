@@ -5,8 +5,6 @@ import universite_paris8.iut.osall.boom.modele.entite.Joueur;
 
 public class TotemResurrection extends Consommable {
 
-
-
     public TotemResurrection(Joueur joueur, int x, int y) {
         super(joueur, "Totem de résurection", x, y);
     }

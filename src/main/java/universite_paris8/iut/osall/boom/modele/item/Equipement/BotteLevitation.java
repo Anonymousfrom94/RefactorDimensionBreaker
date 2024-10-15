@@ -16,6 +16,6 @@ public class BotteLevitation extends Equipement{
 
     @Override
     public void utilise(Acteur a) {
-
     }
+
 }
