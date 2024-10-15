@@ -16,8 +16,13 @@ public class BatonElectrique extends Arme{
         attackDeZone((Ennemi) a);
     }
 
+    @Override
+    public void equip(Joueur joueur) {
+
+    }
+
     public void attackDeZone(Ennemi e){
-        e.enleverPv(this.getDegat());
+        e.getPV().enleverPv(this.getDegat());
         int rangeConnexion = 80;
 
         for(Acteur a : this.getEnvironnement().getActeurs()){
@@ -26,7 +31,7 @@ public class BatonElectrique extends Arme{
                         || (a.getX() >= e.getX() && a.getX() <= e.getX()+rangeConnexion))
                         && ((a.getY() <= e.getY() && a.getY() >= e.getY()-rangeConnexion)
                         || (a.getY() >= e.getY() && a.getY() <= e.getY()+rangeConnexion))){
-                    a.enleverPv(this.getDegat());
+                    a.getPV().enleverPv(this.getDegat());
                 }
             }
         }

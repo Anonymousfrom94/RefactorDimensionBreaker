@@ -73,7 +73,7 @@ class JoueurTest {
         ennemie.setY(joueur.getY() + 10);
         environnement.getActeurs().add(ennemie);
 
-        assertNotNull(joueur.estAttaquable());
+        assertNotNull(joueur.chercherActeurAttaquable());
 
         //pas ennemies
         environnement.getActeurs().remove(ennemie);
@@ -81,7 +81,7 @@ class JoueurTest {
         ennemie.setY(joueur.getY() + 300);
         environnement.getActeurs().add(ennemie);
 
-        assertNull(joueur.estAttaquable());
+        assertNull(joueur.chercherActeurAttaquable());
     }
 
     @Test
@@ -92,9 +92,9 @@ class JoueurTest {
         ennemie.setY(joueur.getY() + 10);
         environnement.getActeurs().add(ennemie);
 
-        int pvInitial = ennemie.getPv();
+        int pvInitial = ennemie.getPV().getPv();
         joueur.attaque();
-        assertTrue(ennemie.getPv() < pvInitial);
+        assertTrue(ennemie.getPV().getPv() < pvInitial);
 
         //pas attaquer
         environnement.getActeurs().remove(ennemie);
@@ -102,9 +102,9 @@ class JoueurTest {
         ennemie.setY(joueur.getY() + 300);
         environnement.getActeurs().add(ennemie);
 
-        pvInitial = ennemie.getPv();
+        pvInitial = ennemie.getPV().getPv();
         joueur.attaque();
-        assertEquals(pvInitial, ennemie.getPv());
+        assertEquals(pvInitial, ennemie.getPV().getPv());
     }
 
     @Test

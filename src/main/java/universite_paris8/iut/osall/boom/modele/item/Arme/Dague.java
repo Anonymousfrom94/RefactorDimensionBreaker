@@ -13,6 +13,11 @@ public class Dague extends Arme{
 
     @Override
     public void utilise(Acteur e) {
-        e.enleverPv(this.getDegat());
+        e.getPV().enleverPv(this.getDegat());
+    }
+
+    @Override
+    public void equip(Joueur joueur) {
+
     }
 }

@@ -4,7 +4,10 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import universite_paris8.iut.osall.boom.modele.Attribut.PV;
 import universite_paris8.iut.osall.boom.modele.Environnement.Environnement;
+import universite_paris8.iut.osall.boom.modele.item.Arme.Arme;
+import universite_paris8.iut.osall.boom.modele.item.Arme.EpeEnBois;
 
 public abstract class Acteur {
 
@@ -15,8 +18,8 @@ public abstract class Acteur {
     private static int compteur = 0;
     private IntegerProperty x, y;
     private int largeur, hauteur;
-    private int pvMax;
-    private IntegerProperty pv;
+    private PV pv;
+    private Arme arme;
 
     public Acteur(Environnement environnement, int x, int y, int largeur, int hauteur, int vitesse, int pvMax) {
         this.environnement = environnement;
@@ -24,34 +27,23 @@ public abstract class Acteur {
         this.y = new SimpleIntegerProperty(y);
         this.direction = new SimpleStringProperty("");
         this.vitesse = vitesse;
-        this.pvMax = pvMax;
-        this.pv = new SimpleIntegerProperty(pvMax);
+        this.pv = new PV(pvMax);
         this.id = "#" + compteur;
         compteur++;
         this.environnement.getActeurs().add(this);
         this.largeur = largeur;
         this.hauteur = hauteur;
+        this.arme = new EpeEnBois(environnement,getX(),getY());
     }
 
-    public void enleverPv(int degat) {
-        if (this.pv.getValue() - degat >= 0){
-            this.pv.setValue(this.pv.getValue() - degat);
-        }
-        else {
-            this.pv.setValue(0);
-        }
-    }
-
-    public void rajouterPv(int pv){
-        if (this.getPv() + pv <= this.pvMax){
-            this.pv.setValue(this.pv.getValue() + pv);
-        }
-        else {
-            this.pv.setValue(this.pvMax);
-        }
+    public void agit(){
+        seDeplace();
+        attaque();
     }
 
     public abstract void seDeplace();
+
+    public abstract void attaque();
 
 /* *********************************************************************************************************************
                                                 GETTER & SETTER
@@ -67,51 +59,31 @@ public abstract class Acteur {
     public void setX(int x) {
         this.x.setValue(x);
     }
-
     public int getY(){
         return this.y.getValue();
     }
     public void setY(int y) {
         this.y.setValue(y);
     }
-
     public IntegerProperty getXproperty(){
         return this.x;
     }
-
     public IntegerProperty getYproperty(){
         return this.y;
     }
-
     public int getVitesse() {
         return vitesse;
     }
     public void setVitesse(int vitesse) {
         this.vitesse = vitesse;
     }
-
     public Environnement getEnvironnement() {
         return environnement;
     }
-
     public boolean estVivant(){
-        return pv.getValue() > 0;
+        return getPV().getPv() > 0;
     }
-
-    public int getPvMax() {
-        return pvMax;
-    }
-    public int getPv() {
-        return pv.get();
-    }
-    public void setPv(int pv) {
-        this.pv.set(pv);
-    }
-
-    public IntegerProperty pvProperty() {
-        return pv;
-    }
-
+    public PV getPV() {return pv;}
     public int getLargeur() {
         return largeur;
     }
@@ -129,7 +101,15 @@ public abstract class Acteur {
         return this.direction;
     }
 
-/* *********************************************************************************************************************
+    public Arme getArme() {
+        return arme;
+    }
+
+    public void setArme(Arme arme) {
+        this.arme = arme;
+    }
+
+    /* *********************************************************************************************************************
 
 ********************************************************************************************************************* */
     @Override

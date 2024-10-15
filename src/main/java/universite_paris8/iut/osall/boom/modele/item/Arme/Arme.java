@@ -1,6 +1,7 @@
 package universite_paris8.iut.osall.boom.modele.item.Arme;
 
 import universite_paris8.iut.osall.boom.modele.Environnement.Environnement;
+import universite_paris8.iut.osall.boom.modele.entite.Acteur;
 import universite_paris8.iut.osall.boom.modele.entite.ennemi.Ennemi;
 import universite_paris8.iut.osall.boom.modele.entite.Joueur;
 import universite_paris8.iut.osall.boom.modele.item.Item;
@@ -22,9 +23,9 @@ public abstract class Arme extends Item {
         this.range = range;
     }
 
-    public void equip(Joueur joueur){
-        joueur.setArme(this);
-    }
+    public abstract void utilise(Acteur e);
+
+    public abstract void equip(Joueur joueur);
 
 /* *********************************************************************************************************************
                                           GETTER & SETTER & BOOLEAN

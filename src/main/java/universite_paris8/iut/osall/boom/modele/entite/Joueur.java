@@ -13,17 +13,17 @@ import universite_paris8.iut.osall.boom.modele.item.Item;
 public class Joueur extends Acteur {
 
     private final ObservableList<Item> inventaire;
-    private Arme arme;
+
     private Equipement equipement;
 
     public Joueur(Environnement environnement) {
         super(environnement, 780, 485,14, 14, 5, 300);
         this.inventaire = FXCollections.observableArrayList();
-        this.arme = new EpeEnBois(environnement, this.getX(), this.getY());
-        inventaire.add(this.arme);
+        inventaire.add(super.getArme());
         this.equipement = null;
     }
 
+    @Override
     public void seDeplace() {
         if (getEnvironnement().getMap().peutSeDeplacer(this, aBottesDeLevitation())) {
             int dx = 0;
@@ -55,10 +55,11 @@ public class Joueur extends Acteur {
         }
     }
 
-    public Acteur estAttaquable(){
+    public Acteur chercherActeurAttaquable(){
         for(Acteur e : this.getEnvironnement().getActeurs()){
             if(e instanceof Ennemi){
-                if ((this.getX() - getArme().getRange() <= e.getX() && this.getX() + 16 + getArme().getRange() >= e.getX()) &&
+                if (
+                        (this.getX() - getArme().getRange() <= e.getX() && this.getX() + 16 + getArme().getRange() >= e.getX()) &&
                                 (this.getY() - getArme().getRange() <= e.getY() && this.getY() + 16 + getArme().getRange() >= e.getY())
                 ){
                     System.out.println("ennemie proche");
@@ -71,14 +72,19 @@ public class Joueur extends Acteur {
         return null;
     }
 
+    @Override
     public void attaque() {
-        Acteur e = estAttaquable();
-        if (e != null) {
-            this.getArme().utilise((Ennemi) e);
+
+        Acteur e = chercherActeurAttaquable();
+
+        if (e != null && e!=this) {
+
+            this.getArme().utilise(e);
+
         }
     }
 
-    public Item peutRamasse(){
+    public Item chercherItemRamassable(){
         for (Item item : this.getEnvironnement().getInventaireEnvironnement()){
             if (
                     (this.getX() - 10 <= item.getX() && this.getX() + 16 + 10 >= item.getX()) &&
@@ -91,14 +97,22 @@ public class Joueur extends Acteur {
         return null;
     }
 
-    public void ramasse(){
-        Item item = peutRamasse();
+    public void ramasse() {
+
+        Item item = chercherItemRamassable();
         if (item != null){
             this.inventaire.add(item);
             System.out.println(this.inventaire);
             getEnvironnement().getInventaireEnvironnement().remove(item);
         }
 
+    }
+
+    @Override
+    public void agit() {
+        seDeplace();
+        ramasse();
+        attaque();
     }
 
     public boolean aBottesDeLevitation() {
@@ -121,13 +135,6 @@ public class Joueur extends Acteur {
 
     public StringProperty getPropertyDirection(){
         return this.direction;
-    }
-
-    public Arme getArme(){
-        return this.arme;
-    }
-    public void setArme(Arme arme) {
-        this.arme = arme;
     }
 
     public Equipement getEquipement() {

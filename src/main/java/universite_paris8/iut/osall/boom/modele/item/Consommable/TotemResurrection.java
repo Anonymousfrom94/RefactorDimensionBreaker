@@ -13,6 +13,6 @@ public class TotemResurrection extends Consommable {
 
     @Override
     public void utilise(Acteur a) {
-        a.setPv(a.getPvMax());
+        a.getPV().setPv(a.getPV().getPvMax());
     }
 }

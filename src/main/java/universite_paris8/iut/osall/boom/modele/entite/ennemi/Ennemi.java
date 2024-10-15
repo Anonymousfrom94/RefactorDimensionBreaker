@@ -10,15 +10,16 @@ import java.util.Random;
 public class Ennemi extends Acteur {
 
     private static final int rangeEnnemmi = 200;
-    private Arme arme;
+
     private long derniereAttaque;
     private static final long intervalleAttack = 1000;
 
     public Ennemi(Environnement environnement, int largeur, int hauteur, int vitesse, int pvMax) {
         super(environnement, 0, 0, largeur, hauteur, vitesse, pvMax);
-        this.arme = new EpeEnBois(environnement, this.getX(), this.getY());
+
         random();
     }
+
     private void random() {
         Random rand = new Random();
         int x, y;
@@ -76,10 +77,10 @@ public class Ennemi extends Acteur {
                     }
                 }
             }
-
-            if (arme != null && distance <= arme.getRange() && peutAttaquer()) {
-                attaque(joueur);
-            }
+//
+//            if (super.getArme() != null && distance <= super.getArme().getRange()) {
+//                attaque();
+//            }
         }
     }
 
@@ -111,13 +112,18 @@ public class Ennemi extends Acteur {
         return true; // Aucun obstacle trouvé, mouvement possible
     }
 
-    private void attaque(Joueur joueur) {
-        joueur.enleverPv(arme.getDegat());
-        derniereAttaque = System.currentTimeMillis();
+    @Override
+    public void attaque() {
+//        joueur.enleverPv(super.getArme().getDegat());
+        Joueur joueur = getEnvironnement().getJoueur();
+        if (peutAttaquer()) {
+            super.getArme().utilise(joueur);
+            derniereAttaque = System.currentTimeMillis();
+
+        }
     }
 
-    public void setArme(Arme arme) {
-        this.arme = arme;
-    }
+
+
 
 }

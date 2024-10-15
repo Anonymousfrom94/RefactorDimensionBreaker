@@ -12,6 +12,6 @@ public class PotionHeal extends Consommable {
 
     @Override
     public void utilise(Acteur a) {
-        a.rajouterPv(val_soin);
+        a.getPV().rajouterPv(val_soin);
     }
 }
