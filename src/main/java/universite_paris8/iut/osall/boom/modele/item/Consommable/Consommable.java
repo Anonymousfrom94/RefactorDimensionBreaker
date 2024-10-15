@@ -9,10 +9,6 @@ public abstract class Consommable extends Item {
         super(joueur.getEnvironnement(), nom, x, y);
     }
 
-    public Consommable(Joueur joueur, String nom) {
-        super(joueur.getEnvironnement(), nom);
-    }
-
 //    public void retirerDeLInventaire() { //a voir plus tard
 //        joueur.getInventaire().remove(this);
 //    }

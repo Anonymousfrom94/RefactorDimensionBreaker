@@ -18,12 +18,6 @@ public class Sniper extends Arme{
     }
 
     @Override
-    public void equip(Joueur joueur) {
-        joueur.setArme(this);
-    }
-
-
-    @Override
     public void utilise(Acteur a) {
         if (a instanceof Squelette){
             a.enleverPv(this.getDegat());

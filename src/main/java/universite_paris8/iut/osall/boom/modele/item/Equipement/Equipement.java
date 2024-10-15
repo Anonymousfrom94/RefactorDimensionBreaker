@@ -10,11 +10,8 @@ public abstract class Equipement extends Item {
         super(environnement, nom, x, y);
     }
 
-
     public void equip(Joueur joueur) {
         joueur.setEquipement(this);
     }
 
-
-//    public abstract void equip(Joueur joueur);
 }
