@@ -104,7 +104,7 @@ public class Environnement {
         }
 
         // Spawn des équipements (Bottes, ceinture, Couronne)
-        this.getInventaireEnvironnement().add(new BotteLevitation(this));
+        this.getInventaireEnvironnement().add(new BotteLevitation(this,595,670));
         this.getInventaireEnvironnement().add(new CeintureTP(this, 110, 100));
         this.getInventaireEnvironnement().add(new CouronneTemporel(this, 1450, 150));
 

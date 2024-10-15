@@ -231,7 +231,7 @@ public class Controller implements Initializable {
     void clickOnPotionHeal(ActionEvent event) {
         for (Item i : environnement.getJoueur().getInventaire()) {
             if (i instanceof PotionHeal) {
-                ((PotionHeal) i).utilise();
+                ((PotionHeal) i).utilise(environnement.getJoueur());
                 break;
             }
         }
@@ -256,7 +256,7 @@ public class Controller implements Initializable {
     void clickOnTotem(ActionEvent event) {
         for (Item i : environnement.getJoueur().getInventaire()) {
             if (i instanceof TotemResurrection) {
-                ((TotemResurrection) i).utilise();
+                i.utilise(environnement.getJoueur());
                 break;
             }
         }

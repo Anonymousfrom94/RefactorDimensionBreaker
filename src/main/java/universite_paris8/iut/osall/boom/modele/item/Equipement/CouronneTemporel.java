@@ -3,6 +3,7 @@ package universite_paris8.iut.osall.boom.modele.item.Equipement;
 import universite_paris8.iut.osall.boom.modele.Environnement.Environnement;
 import universite_paris8.iut.osall.boom.modele.entite.Acteur;
 import universite_paris8.iut.osall.boom.modele.entite.ennemi.Ennemi;
+import universite_paris8.iut.osall.boom.modele.entite.Joueur;
 
 public class CouronneTemporel extends Equipement{
 
@@ -10,13 +11,10 @@ public class CouronneTemporel extends Equipement{
         super(environnement, "Couronne Temporel", x, y);
     }
 
-    public void utilise(){
-        ralentirEnnemies();
-    }
 
-    public void ralentirEnnemies(){
-        int x = getEnvironnement().getJoueur().getX();
-        int y = getEnvironnement().getJoueur().getY();
+    public void ralentirEnnemies(Acteur acteur){
+        int x = acteur.getX();
+        int y = acteur.getY();
         int rangeConnexion = 128;
 
         for(Acteur a : this.getEnvironnement().getActeurs()){
@@ -31,5 +29,10 @@ public class CouronneTemporel extends Equipement{
                 }
             }
         }
+    }
+
+    @Override
+    public void utilise(Acteur a) {
+        ralentirEnnemies(a);
     }
 }

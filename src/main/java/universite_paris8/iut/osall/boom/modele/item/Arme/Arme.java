@@ -16,9 +16,13 @@ public abstract class Arme extends Item {
         this.range = range;
     }
 
-    public abstract void utilise(Ennemi e);
+    public Arme(Environnement environnement, String nom, int degat, int range) {
+        super(environnement, nom);
+        this.degat = degat;
+        this.range = range;
+    }
 
-    public void equip(Joueur joueur) {
+    public void equip(Joueur joueur){
         joueur.setArme(this);
     }
 

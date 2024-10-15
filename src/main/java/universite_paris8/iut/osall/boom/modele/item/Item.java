@@ -3,8 +3,9 @@ package universite_paris8.iut.osall.boom.modele.item;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import universite_paris8.iut.osall.boom.modele.Environnement.Environnement;
+import universite_paris8.iut.osall.boom.modele.entite.Acteur;
 
-public class Item {
+public abstract class Item {
     private String nom;
     private IntegerProperty x;
     private IntegerProperty y;
@@ -19,6 +20,37 @@ public class Item {
         this.y = new SimpleIntegerProperty(y);
         this.id = "I" + compteur ;
         compteur++;
+    }
+
+    public Item(Environnement environnement, String nom) {
+        this.environnement = environnement;
+        this.nom = nom;
+        this.x = new SimpleIntegerProperty(0);
+        this.y = new SimpleIntegerProperty(0);
+        this.id = "I" + compteur ;
+        compteur++;
+        random();
+    }
+
+    public abstract void utilise(Acteur a);
+
+    private int indice(int newX, int newY) {
+        int ligne, colonne;
+        colonne = newX / 16;
+        ligne = newY / 16;
+        return ligne * 30 + colonne;
+    }
+
+    private void random(){
+        int x = 0;
+        int y = 0;
+        do {
+            x = (int) (Math.random() * 300);
+            y = (int) (Math.random() * 300);
+        }
+        while(this.environnement.getMap().getTableau()[indice(x, y)] == 1);
+        this.getXProperty().setValue(x);
+        this.getYProperty().setValue(y);
     }
 
 /* *********************************************************************************************************************
