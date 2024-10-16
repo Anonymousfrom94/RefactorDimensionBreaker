@@ -6,6 +6,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import universite_paris8.iut.osall.boom.controller.Clavier;
+import universite_paris8.iut.osall.boom.modele.Utilitaire.Direction;
 import universite_paris8.iut.osall.boom.modele.entite.Acteur;
 import universite_paris8.iut.osall.boom.modele.entite.Joueur;
 import javafx.scene.image.Image;
@@ -84,10 +85,10 @@ public class VueJoueur {
 
     public void methodeSwitch(Image z, Image s, Image q, Image d){
         switch (joueur.getDirection()){
-            case "haut" -> this.imageView.setImage(z);
-            case "bas" -> this.imageView.setImage(s);
-            case "gauche" -> this.imageView.setImage(q);
-            case "droite" -> this.imageView.setImage(d);
+            case HAUT -> this.imageView.setImage(z);
+            case BAS -> this.imageView.setImage(s);
+            case GAUCHE -> this.imageView.setImage(q);
+            case DROITE -> this.imageView.setImage(d);
         }
     }
 

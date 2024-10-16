@@ -1,4 +1,4 @@
-package universite_paris8.iut.osall.boom.modele.Attribut;
+package universite_paris8.iut.osall.boom.modele.Utilitaire;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;

@@ -1,6 +1,7 @@
 package universite_paris8.iut.osall.boom.modele.entite.ennemi;
 import universite_paris8.iut.osall.boom.modele.Environnement.Environnement;
 import universite_paris8.iut.osall.boom.modele.Environnement.Map;
+import universite_paris8.iut.osall.boom.modele.Utilitaire.Direction;
 import universite_paris8.iut.osall.boom.modele.entite.Acteur;
 import universite_paris8.iut.osall.boom.modele.entite.Joueur;
 import universite_paris8.iut.osall.boom.modele.item.Arme.Arme;
@@ -14,8 +15,8 @@ public class Ennemi extends Acteur {
     private long derniereAttaque;
     private static final long intervalleAttack = 1000;
 
-    public Ennemi(Environnement environnement, int largeur, int hauteur, int vitesse, int pvMax) {
-        super(environnement, 0, 0, largeur, hauteur, vitesse, pvMax);
+    public Ennemi(Environnement environnement, , int hauteur, int vitesse, int pvMax) {
+    //    super(environnement, 0, Direction.BAS, largeur, hauteur, vitesse, pvMax);
 
         random();
     }
@@ -92,6 +93,11 @@ public class Ennemi extends Acteur {
 
     }
 
+    @Override
+    public boolean estDansHitbox() {
+        return false;
+    }
+
     private boolean peutAttaquer() {
 //        double distance = Math.sqrt(getX() * getX() + getY() * getY());
 //        if (super.getArme() != null && distance <= super.getArme().getRange()) {
@@ -105,7 +111,7 @@ public class Ennemi extends Acteur {
         Environnement environnement = getEnvironnement();
         Map map = environnement.getMap();
 
-        for (int i = 0; i < getLargeur(); i++) {
+        for (int i = 0; i < environnement.getJoueur().getHitbox().getLargeur(); i++) {
             for (int j = 0; j < getHauteur(); j++) {
                 int x = newX + i;
                 int y = newY + j;

@@ -3,6 +3,9 @@ import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import universite_paris8.iut.osall.boom.modele.Environnement.Environnement;
+import universite_paris8.iut.osall.boom.modele.Utilitaire.Direction;
+import universite_paris8.iut.osall.boom.modele.Utilitaire.Hitbox;
+import universite_paris8.iut.osall.boom.modele.Utilitaire.Position;
 import universite_paris8.iut.osall.boom.modele.entite.ennemi.Ennemi;
 import universite_paris8.iut.osall.boom.modele.item.Arme.Arme;
 import universite_paris8.iut.osall.boom.modele.item.Arme.EpeEnBois;
@@ -16,8 +19,9 @@ public class Joueur extends Acteur {
 
     private Equipement equipement;
 
+
     public Joueur(Environnement environnement) {
-        super(environnement, 780, 485,14, 14, 5, 300);
+        super(environnement, new Position(10,10), Direction.BAS, 5,300, new Hitbox(14,14));
         this.inventaire = FXCollections.observableArrayList();
         inventaire.add(super.getArme());
         this.equipement = null;
@@ -25,27 +29,28 @@ public class Joueur extends Acteur {
 
     @Override
     public void seDeplace() {
-        if (getEnvironnement().getMap().peutSeDeplacer(this, aBottesDeLevitation())) {
+        Direction direction = this.direction;
+        if (peutSeDeplacer()) {
             int dx = 0;
             int dy = 0;
             int vitesse = getVitesse();
 
-            if (this.direction.get().contains("haut")){
+            if (direction.equals(Direction.HAUT)){
                 if (this.getY() - getVitesse() > 0){
                     dy -= vitesse;
                 }
             }
-            if (this.direction.get().contains("bas")){
+            if (direction.equals(Direction.BAS)){
                 if (this.getY() + 16 + getVitesse() < this.getEnvironnement().getHeight()){
                     dy += vitesse;
                 }
             }
-            if (this.direction.get().contains("gauche")){
+            if (direction.equals(Direction.GAUCHE)){
                 if (this.getX() - getVitesse() > 0){
                     dx -= vitesse;
                 }
             }
-            if (this.direction.get().contains("droite")){
+            if (direction.equals(Direction.DROITE)){
                 if (this.getX() + 16 + getVitesse() < this.getEnvironnement().getWidth()){
                     dx += vitesse;
                 }
@@ -119,15 +124,24 @@ public class Joueur extends Acteur {
         return this.equipement instanceof BotteLevitation;
     }
 
-/* *********************************************************************************************************************
+    public boolean peutSeDeplacer(){}
+
+    @Override
+    public boolean estDansHitbox() {
+        Hitbox hitbox = this.getHitbox();
+        if (Direction.DROITE && hitbox.getPointLePlusADroite())
+    }
+
+
+    /* *********************************************************************************************************************
                                                 GETTER & SETTER
 ********************************************************************************************************************* */
     public ObservableList<Item> getInventaire() {
         return inventaire;
     }
 
-    public String getDirection() {
-        return this.direction.get();
+    public Direction getDirection() {
+        return this.direction;
     }
     public void setDirection(String direction) {
         this.direction.set(direction);
