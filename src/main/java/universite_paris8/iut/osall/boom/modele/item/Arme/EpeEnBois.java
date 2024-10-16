@@ -15,4 +15,9 @@ public class EpeEnBois extends Arme{
     public void utilise(Acteur a) {
         a.getPV().enleverPv(getDegat());
     }
+
+    @Override
+    public void equip(Joueur joueur) {
+
+    }
 }

@@ -25,4 +25,9 @@ public class Sniper extends Arme{
         }
     }
 
+    @Override
+    public void equip(Joueur joueur) {
+
+    }
+
 }

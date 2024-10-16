@@ -30,7 +30,10 @@ public class Ennemi extends Acteur {
         this.setX(x);
         this.setY(y);
     }
-    public void seDeplace() {
+
+
+    @Override
+    public void agit() {
         Environnement environnement = getEnvironnement();
         Joueur joueur = environnement.getJoueur();
 
@@ -77,14 +80,23 @@ public class Ennemi extends Acteur {
                     }
                 }
             }
-//
-//            if (super.getArme() != null && distance <= super.getArme().getRange()) {
-//                attaque();
-//            }
+
+            if (super.getArme() != null && distance <= super.getArme().getRange()) {
+                attaque();
+            }
         }
     }
 
+    @Override
+    public void seDeplace() {
+
+    }
+
     private boolean peutAttaquer() {
+//        double distance = Math.sqrt(getX() * getX() + getY() * getY());
+//        if (super.getArme() != null && distance <= super.getArme().getRange()) {
+//            return false;
+//        }
         long tempsActuel = System.currentTimeMillis();
         return (tempsActuel - derniereAttaque) >= intervalleAttack;
     }
