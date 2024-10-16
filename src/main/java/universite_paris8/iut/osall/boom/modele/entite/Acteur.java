@@ -75,6 +75,9 @@ public abstract class Acteur {
             extremite1 = hitbox.getPointLePlusEnHaut(y);
             extremite2 = hitbox.getPointLePlusEnBas(y);
         }
+        public boolean vraie(){
+            return true;
+        }
 
         boolean collision = false;
         int cpt = extremite1;
