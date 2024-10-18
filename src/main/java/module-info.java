@@ -6,6 +6,8 @@ module com.example.boom {
     requires java.desktop;
     requires org.json;
     requires json.simple;
+    requires org.apache.logging.log4j;
+    requires java.logging;
 
     opens universite_paris8.iut.osall.boom to javafx.fxml;
     exports universite_paris8.iut.osall.boom;

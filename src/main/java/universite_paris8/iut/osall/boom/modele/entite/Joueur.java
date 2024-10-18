@@ -2,6 +2,9 @@ package universite_paris8.iut.osall.boom.modele.entite;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import universite_paris8.iut.osall.boom.modele.Environnement.Environnement;
 import universite_paris8.iut.osall.boom.modele.entite.ennemi.Ennemi;
 import universite_paris8.iut.osall.boom.modele.item.Arme.Arme;
@@ -11,6 +14,8 @@ import universite_paris8.iut.osall.boom.modele.item.Equipement.Equipement;
 import universite_paris8.iut.osall.boom.modele.item.Item;
 
 public class Joueur extends Acteur {
+
+    private static final Logger LOGGER = LogManager.getLogger(Acteur.class);
 
     private final ObservableList<Item> inventaire;
     private Arme arme;
@@ -52,6 +57,7 @@ public class Joueur extends Acteur {
             }
             setX(getX() + dx);
             setY(getY() + dy);
+            LOGGER.log(Level.INFO, "getX: {} et getY: {}", this.getX(), this.getY());
         }
     }
 
