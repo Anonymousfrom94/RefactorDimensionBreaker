@@ -101,6 +101,10 @@ public class Joueur extends Acteur {
 
     }
 
+    public void retirerDeInventaire(Item item){
+        this.inventaire.remove(item);
+    }
+
     public boolean aBottesDeLevitation() {
         return this.equipement instanceof BotteLevitation;
     }
