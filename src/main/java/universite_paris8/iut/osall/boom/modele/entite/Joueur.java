@@ -25,7 +25,7 @@ public class Joueur extends Acteur {
 
     @Override
     public void seDeplace() {
-        if (getEnvironnement().getMap().peutSeDeplacer(this, aBottesDeLevitation())) {
+        if (peutSeDeplacer(this, aBottesDeLevitation())) {
             int dx = 0;
             int dy = 0;
             int vitesse = getVitesse();
@@ -117,6 +117,56 @@ public class Joueur extends Acteur {
 
     public boolean aBottesDeLevitation() {
         return this.equipement instanceof BotteLevitation;
+    }
+
+    public boolean peutSeDeplacer(Acteur acteur, boolean aBottesDeLevitation) {
+        int indice1, indice2;
+        int obstacle;
+
+        for (int i = 0; i < getEnvironnement().getObstacles().size(); i++) {
+            obstacle = getEnvironnement().getObstacles().get(i);
+            if (acteur.getDirection().contains("haut")) {
+                indice1 = indice(acteur.getX(), acteur.getY() - acteur.getVitesse());
+                indice2 = indice(acteur.getX() + acteur.getLargeur(), acteur.getY() - acteur.getVitesse());
+                if (!obstacle(indice1, indice2, obstacle, aBottesDeLevitation)) {
+                    return false;
+                }
+            }
+            if (acteur.getDirection().contains("bas")) {
+                indice1 = indice(acteur.getX(), acteur.getY() + acteur.getHauteur() + acteur.getVitesse());
+                indice2 = indice(acteur.getX() + acteur.getLargeur(), acteur.getY() + acteur.getHauteur() + acteur.getVitesse());
+                if (!obstacle(indice1, indice2, obstacle, aBottesDeLevitation)) {
+                    return false;
+                }
+            }
+            if (acteur.getDirection().contains("gauche")) {
+                indice1 = indice(acteur.getX() - acteur.getVitesse(), acteur.getY());
+                indice2 = indice(acteur.getX() - acteur.getVitesse(), acteur.getY() + acteur.getHauteur());
+                if (!obstacle(indice1, indice2, obstacle, aBottesDeLevitation)) {
+                    return false;
+                }
+            }
+            if (acteur.getDirection().contains("droite")) {
+                indice1 = indice(acteur.getX() + acteur.getLargeur() + acteur.getVitesse(), acteur.getY());
+                indice2 = indice(acteur.getX() + acteur.getLargeur() + acteur.getVitesse(), acteur.getY() + acteur.getHauteur());
+                if (!obstacle(indice1, indice2, obstacle, aBottesDeLevitation)) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    private boolean obstacle(int indice1, int indice2, int obstacle, boolean aBottesDeLevitation) {
+        int[] tableau = getEnvironnement().getMap().getTableau();
+
+        if (indice1 >= 0 && indice1 < tableau.length && indice2 >= 0 && indice2 < tableau.length) {
+            if ((tableau[indice1] == obstacle || tableau[indice2] == obstacle) && (obstacle != 316 || !aBottesDeLevitation)) {
+                return false;
+            }
+            return true;
+        }
+        return false;
     }
 
 /* *********************************************************************************************************************

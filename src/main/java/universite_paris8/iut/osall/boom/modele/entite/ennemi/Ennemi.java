@@ -26,7 +26,7 @@ public class Ennemi extends Acteur {
         do {
             x = rand.nextInt(getEnvironnement().getWidth());
             y = rand.nextInt(getEnvironnement().getHeight());
-        } while (getEnvironnement().getMap().estObstacle(getEnvironnement().getMap().indice(x, y)) || getEnvironnement().getMap().estNoSpawn(getEnvironnement().getMap().indice(x,y)));
+        } while (getEnvironnement().getMap().estObstacle(indice(x, y)) || getEnvironnement().getMap().estNoSpawn(indice(x,y)));
         this.setX(x);
         this.setY(y);
     }
@@ -110,7 +110,7 @@ public class Ennemi extends Acteur {
                 int x = newX + i;
                 int y = newY + j;
                 if (x >= 0 && x < environnement.getWidth() && y >= 0 && y < environnement.getHeight()) {
-                    int indice = map.indice(x, y);
+                    int indice = indice(x, y);
                     if (map.estObstacle(indice)) {
                         return false;
                     }

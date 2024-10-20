@@ -42,6 +42,12 @@ public abstract class Acteur {
 
     public abstract void attaque();
 
+    public int indice(int newX, int newY) {
+        int colonne = newX / environnement.getLargeurTuile();
+        int ligne = newY / environnement.getHauteurTuile();
+        return ligne * environnement.getInfoTuile()[1] + colonne;
+    }
+
 /* *********************************************************************************************************************
                                                 GETTER & SETTER
 ********************************************************************************************************************* */
