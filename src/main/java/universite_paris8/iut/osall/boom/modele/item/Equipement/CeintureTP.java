@@ -15,33 +15,27 @@ public class CeintureTP extends Equipement{
         seTeleporte(a);
     }
 
-    public void seTeleporte(Acteur a){
+    public void seTeleporte(Acteur a) {
         int rangeTP = 80;
-        int dx = 0;
-        int dy = 0;
+        int dx = 0, dy = 0;
 
-        if (a.direction.get().contains("haut")){
-            if (a.getY() - rangeTP > 0){
-                dy -= rangeTP;
-            }
+        String direction = a.direction.get();
+        int envHauteur = this.getEnvironnement().getHeight();
+        int envLargeur = this.getEnvironnement().getWidth();
+
+        if (direction.contains("haut") && a.getY() - rangeTP > 0) {
+            dy -= rangeTP;
+        } else if (direction.contains("bas") && a.getY() + 16 + rangeTP < envHauteur) {
+            dy += rangeTP;
+        } else if (direction.contains("gauche") && a.getX() - rangeTP > 0) {
+            dx -= rangeTP;
+        } else if (direction.contains("droite") && a.getX() + 16 + rangeTP < envLargeur) {
+            dx += rangeTP;
         }
-        if (a.direction.get().contains("bas")){
-            if (a.getY() + 16 + rangeTP < this.getEnvironnement().getHeight()){
-                dy += rangeTP;
-            }
-        }
-        if (a.direction.get().contains("gauche")){
-            if (a.getX() - rangeTP > 0){
-                dx -= rangeTP;
-            }
-        }
-        if (a.direction.get().contains("droite")){
-            if (a.getX() + 16 + rangeTP < this.getEnvironnement().getWidth()){
-                dx += rangeTP;
-            }
-        }
+
         a.setX(a.getX() + dx);
-        a.setY(getEnvironnement().getJoueur().getY() + dy);
+        a.setY(a.getY() + dy);
     }
+
 
 }
