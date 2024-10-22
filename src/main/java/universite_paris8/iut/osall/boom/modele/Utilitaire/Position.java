@@ -26,6 +26,14 @@ public class Position {
         return y.get();
     }
 
+    public IntegerProperty getXProperty() {
+        return x;
+    }
+
+    public IntegerProperty getYProperty() {
+        return y;
+    }
+
     public void setX(int x) {
       //  if (x < 0 || x > Map.getSizeMondeLargeur())
         //throw new PositionInvalideExeption("x hors map");

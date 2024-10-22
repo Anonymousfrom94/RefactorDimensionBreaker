@@ -31,7 +31,7 @@ public class Clavier implements EventHandler<KeyEvent> {
 
 
         String direction = "";
-
+//modif
         if (touchePress.contains(Z)){
             direction += "haut";
         }
@@ -44,7 +44,8 @@ public class Clavier implements EventHandler<KeyEvent> {
         if (touchePress.contains(D)){
             direction += "droite";
         }
-        this.joueur.setDirection(direction);
+
+        this.joueur.getDirection().setDirection(direction);
         
         if (touchePress.contains(J)){
             this.joueur.attaque();

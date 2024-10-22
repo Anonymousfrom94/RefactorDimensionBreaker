@@ -2,10 +2,10 @@ package universite_paris8.iut.osall.boom.modele.entite.ennemi;
 import universite_paris8.iut.osall.boom.modele.Environnement.Environnement;
 import universite_paris8.iut.osall.boom.modele.Environnement.Map;
 import universite_paris8.iut.osall.boom.modele.Utilitaire.Direction;
+import universite_paris8.iut.osall.boom.modele.Utilitaire.Hitbox;
+import universite_paris8.iut.osall.boom.modele.Utilitaire.Position;
 import universite_paris8.iut.osall.boom.modele.entite.Acteur;
 import universite_paris8.iut.osall.boom.modele.entite.Joueur;
-import universite_paris8.iut.osall.boom.modele.item.Arme.Arme;
-import universite_paris8.iut.osall.boom.modele.item.Arme.EpeEnBois;
 
 import java.util.Random;
 public class Ennemi extends Acteur {
@@ -15,11 +15,12 @@ public class Ennemi extends Acteur {
     private long derniereAttaque;
     private static final long intervalleAttack = 1000;
 
-    public Ennemi(Environnement environnement, , int hauteur, int vitesse, int pvMax) {
-    //    super(environnement, 0, Direction.BAS, largeur, hauteur, vitesse, pvMax);
+    public Ennemi(Environnement environnement, Position position, int vitesse, int pvMax) {
+        super(environnement, position, Direction.BAS, vitesse, pvMax, new Hitbox(20, 20));
 
         random();
     }
+
 
     private void random() {
         Random rand = new Random();

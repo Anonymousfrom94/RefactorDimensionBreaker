@@ -91,23 +91,23 @@ public class Controller implements Initializable {
     }
 
     public void allListener(){
-        environnement.getJoueur().getPropertyDirection().addListener(
+        environnement.getJoueur().getDirection().getDirectionProperty().addListener(
                 (obs,old,nouv) -> this.vueJoueur.changementImg()
         );
-        environnement.getJoueur().getXproperty().addListener(
+        environnement.getJoueur().getPosition().getXProperty().addListener(
                 (obs, old, nouv) -> this.vueJoueur.changementImg2()
         );
-        environnement.getJoueur().getYproperty().addListener(
+        environnement.getJoueur().getYProperty().addListener(
                 (obs, old, nouv) -> this.vueJoueur.changementImg2()
         );
-        this.environnement.getJoueur().getXproperty().addListener((observable, oldValue, newValue) -> {
-            this.pane.setTranslateX( pane.getPrefWidth() / 4 - environnement.getJoueur().getX()-(environnement.getJoueur().getHitbox().getLargeur())/2));
+        this.environnement.getJoueur().getXProperty().addListener((observable, oldValue, newValue) -> {
+            this.pane.setTranslateX( pane.getPrefWidth() / 4 - environnement.getJoueur().getX()- ((double) (environnement.getJoueur().getHitbox().getLargeur()) /2));
         });
-        this.environnement.getJoueur().getYproperty().addListener((observable, oldValue, newValue) -> {
-            this.pane.setTranslateY( pane.getPrefHeight() / 4 - environnement.getJoueur().getY()-(environnement.getJoueur().getHitbox().getHauteur()/2));
+        this.environnement.getJoueur().getYProperty().addListener((observable, oldValue, newValue) -> {
+            this.pane.setTranslateY( pane.getPrefHeight() / 4 - environnement.getJoueur().getY()-((double) environnement.getJoueur().getHitbox().getHauteur() /2));
         });
-        this.pane.setTranslateX(pane.getPrefWidth() / 4 - environnement.getJoueur().getX()-(environnement.getJoueur().getLargeur()/2));
-        this.pane.setTranslateY(pane.getPrefHeight() / 4 - environnement.getJoueur().getY()-(environnement.getJoueur().getHauteur()/2));
+        this.pane.setTranslateX(pane.getPrefWidth() / 4 - environnement.getJoueur().getX()-((double) environnement.getJoueur().getHitbox().getLargeur() /2));
+        this.pane.setTranslateY(pane.getPrefHeight() / 4 - environnement.getJoueur().getY()-((double) environnement.getJoueur().getHitbox().getHauteur() /2));
         // Ajout du listener au pv du joueur
         environnement.getJoueur().getPV().pvProperty().addListener(
                 (obs, old, nouv) -> VueJoueur.updateBarreDeVie(environnement.getJoueur(), equipementJoueur)

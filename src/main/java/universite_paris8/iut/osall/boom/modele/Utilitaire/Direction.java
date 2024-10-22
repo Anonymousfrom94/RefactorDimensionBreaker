@@ -12,6 +12,8 @@ public enum  Direction {
 
 
     private int x,y;
+
+
     private StringProperty nom;
     private Direction(int x,int y)
     {
@@ -19,8 +21,11 @@ public enum  Direction {
         this.y = y;
     }
 
-    public StringProperty getNom() { return nom; }
+    public StringProperty getDirectionProperty() { return nom; }
 
+    public void setDirection(String nom) {
+        this.nom.set(nom);
+    }
 
     public int getX() {
         return this.x;
@@ -30,8 +35,5 @@ public enum  Direction {
     {
         return this.y;
     }
-
-    public Direction
-
 
 }

@@ -3,8 +3,6 @@ package universite_paris8.iut.osall.boom.modele.Environnement;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import universite_paris8.iut.osall.boom.modele.Utilitaire.Direction;
-import universite_paris8.iut.osall.boom.modele.Utilitaire.Hitbox;
-import universite_paris8.iut.osall.boom.modele.Utilitaire.Position;
 import universite_paris8.iut.osall.boom.modele.entite.Acteur;
 import universite_paris8.iut.osall.boom.modele.entite.ennemi.Boss;
 import universite_paris8.iut.osall.boom.modele.entite.ennemi.Ennemi;
@@ -56,9 +54,6 @@ public class Environnement {
     }
 
     public void unTour(int temps) {
-
-//        joueur.ramasse();
-//        joueur.seDeplace();
 
         // Déplacement des acteurs (ennemis)
         for (int i = acteurs.size() - 1; i >= 0; i--) {
@@ -132,49 +127,6 @@ public class Environnement {
             System.exit(0);
         }
     }
-
-    //dans acteur
-    //public boolean peutSeDeplacer(Acteur acteur, boolean aBottesDeLevitation) {
-    //    collision(getJoueur());
-    //    return true;
-  //  }
-
-
-
-
-       /* for (int i = 0; i < environnement.getObstacles().size(); i++) {
-            obstacle = environnement.getObstacles().get(i);
-            if (acteur.getDirection().contains("haut")) {
-                indice1 = indice(acteur.getX(), acteur.getY() - acteur.getVitesse());
-                indice2 = indice(acteur.getX() + acteur.getLargeur(), acteur.getY() - acteur.getVitesse());
-                if (!obstacle(indice1, indice2, obstacle, aBottesDeLevitation)) {
-                    return false;
-                }
-            }
-            if (acteur.getDirection().contains("bas")) {
-                indice1 = indice(acteur.getX(), acteur.getY() + acteur.getHauteur() + acteur.getVitesse());
-                indice2 = indice(acteur.getX() + acteur.getLargeur(), acteur.getY() + acteur.getHauteur() + acteur.getVitesse());
-                if (!obstacle(indice1, indice2, obstacle, aBottesDeLevitation)) {
-                    return false;
-                }
-            }
-            if (acteur.getDirection().contains("gauche")) {
-                indice1 = indice(acteur.getX() - acteur.getVitesse(), acteur.getY());
-                indice2 = indice(acteur.getX() - acteur.getVitesse(), acteur.getY() + acteur.getHauteur());
-                if (!obstacle(indice1, indice2, obstacle, aBottesDeLevitation)) {
-                    return false;
-                }
-            }
-            if (acteur.getDirection().contains("droite")) {
-                indice1 = indice(acteur.getX() + acteur.getLargeur() + acteur.getVitesse(), acteur.getY());
-                indice2 = indice(acteur.getX() + acteur.getLargeur() + acteur.getVitesse(), acteur.getY() + acteur.getHauteur());
-                if (!obstacle(indice1, indice2, obstacle, aBottesDeLevitation)) {
-                    return false;
-                }
-            }
-        }
-        return true;
-*/
 
 /* *********************************************************************************************************************
                                              ADD
