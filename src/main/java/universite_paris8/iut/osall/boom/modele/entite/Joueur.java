@@ -57,7 +57,7 @@ public class Joueur extends Acteur {
             }
             setX(getX() + dx);
             setY(getY() + dy);
-            LOGGER.log(Level.INFO, "getX: {} et getY: {}", this.getX(), this.getY());
+            LOGGER.log(Level.DEBUG, "getX: {} et getY: {}", this.getX(), this.getY());
         }
     }
 
