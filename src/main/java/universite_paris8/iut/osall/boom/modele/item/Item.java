@@ -8,8 +8,9 @@ import universite_paris8.iut.osall.boom.modele.entite.Acteur;
 
 public abstract class Item {
     private String nom;
-    private IntegerProperty x;
-    private IntegerProperty y;
+    // changement
+    //private IntegerProperty x;
+    //private IntegerProperty y;
     private Environnement environnement;
     private Position position;
     private String id;
@@ -28,11 +29,17 @@ public abstract class Item {
 /* *********************************************************************************************************************
                                           GETTER & SETTER & BOOLEAN
 ********************************************************************************************************************* */
-    public int getX() {
+
+    // suprimer
+    /*public int getX() {
         return x.getValue();
+    }*/
+
+    public Position getPosition() {
+        return position;
     }
 
-    public IntegerProperty getXProperty() {
+    /*public IntegerProperty getXProperty() {
         return x;
     }
 
@@ -42,7 +49,7 @@ public abstract class Item {
 
     public IntegerProperty getYProperty() {
         return y;
-    }
+    }*/
 
     public String getId() {
         return id;

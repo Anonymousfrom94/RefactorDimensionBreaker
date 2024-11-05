@@ -154,20 +154,24 @@ public class Environnement {
         return inventaireEnvironnement;
     }
 
+    //deplacer
     public int getWidth() {
-        return width;
+        return 0;
     }
 
     public int getHeight() {
-        return height;
+       // return height;
+        return 0;
     }
 
     public int getLargeurTuile() {
-        return largeurTuile;
+   //     return largeurTuile;
+        return 0;
     }
 
     public int getHauteurTuile() {
-        return hauteurTuile;
+     //   return hauteurTuile;
+        return 0;
     }
 
     public Map getMap() {

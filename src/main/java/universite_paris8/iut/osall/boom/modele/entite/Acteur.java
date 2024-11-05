@@ -42,6 +42,8 @@ public abstract class Acteur {
         return position;
     }
 
+    public abstract void attaque();
+
     // Méthodes abstraites
     public abstract void agit();
 

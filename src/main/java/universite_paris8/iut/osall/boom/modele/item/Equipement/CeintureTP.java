@@ -26,7 +26,7 @@ public class CeintureTP extends Equipement{
             }
         }
         if (a.direction.get().contains("bas")){
-            if (a.getY() + 16 + rangeTP < this.getEnvironnement().getHeight()){
+            if (a.getY() + 16 + rangeTP < this.getEnvironnement().getMap().getHeight()){
                 dy += rangeTP;
             }
         }
@@ -36,7 +36,7 @@ public class CeintureTP extends Equipement{
             }
         }
         if (a.direction.get().contains("droite")){
-            if (a.getX() + 16 + rangeTP < this.getEnvironnement().getWidth()){
+            if (a.getX() + 16 + rangeTP < this.getEnvironnement().getMap().getWidth()){
                 dx += rangeTP;
             }
         }

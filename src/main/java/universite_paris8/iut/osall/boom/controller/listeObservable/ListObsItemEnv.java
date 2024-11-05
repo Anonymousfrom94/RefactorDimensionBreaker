@@ -78,7 +78,7 @@ public class ListObsItemEnv implements ListChangeListener<Item> {
 
         imageView.setId(item.getId());
         pane.getChildren().add(imageView);
-        imageView.translateXProperty().bind(item.getXProperty());
-        imageView.translateYProperty().bind(item.getYProperty());
+        imageView.translateXProperty().bind(item.getPosition().getXProperty());
+        imageView.translateYProperty().bind(item.getPosition().getYProperty());
     }
 }

@@ -19,8 +19,8 @@ public class Map {
     }
 
     public int indice(int newX, int newY) {
-        int colonne = newX / environnement.getLargeurTuile();
-        int ligne = newY / environnement.getHauteurTuile();
+        int colonne = newX / environnement.getMap().getLargeurTuile();
+        int ligne = newY / environnement.getMap().getHauteurTuile();
         return ligne * environnement.getInfoTuile()[1] + colonne;
     }
 
@@ -79,7 +79,26 @@ public class Map {
         return environnement.getLargeurTuile();
     }
 
-/* *********************************************************************************************************************
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public int getLargeurTuile() {
+        return largeurTuile;
+    }
+
+    public int getHauteurTuile() {
+        return hauteurTuile;
+    }
+
+
+    /* *********************************************************************************************************************
+
+
 
 ********************************************************************************************************************* */
 }

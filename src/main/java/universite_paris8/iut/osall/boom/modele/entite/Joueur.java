@@ -1,8 +1,6 @@
 package universite_paris8.iut.osall.boom.modele.entite;
-import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import org.apache.logging.log4j.Level;
 
 import universite_paris8.iut.osall.boom.modele.Environnement.Environnement;
 import universite_paris8.iut.osall.boom.modele.Utilitaire.Direction;
@@ -42,7 +40,7 @@ public class Joueur extends Acteur {
                 }
             }
             if (direction.equals(Direction.BAS)){
-                if (this.getPosition().getY() + 16 + super.getVitesse() < super.getEnvironnement().getHeight()){
+                if (this.getPosition().getY() + 16 + super.getVitesse() < super.getEnvironnement().getMap().getHeight()){
                     dy += vitesse;
                 }
             }
@@ -52,13 +50,18 @@ public class Joueur extends Acteur {
                 }
             }
             if (direction.equals(Direction.DROITE)){
-                if (this.getPosition().getX() + 16 + super.getVitesse() < super.getEnvironnement().getWidth()){
+                if (this.getPosition().getX() + 16 + super.getVitesse() < super.getEnvironnement().getMap().getWidth()){
                     dx += vitesse;
                 }
             }
             getPosition().setX(getPosition().getX() + dx);
             getPosition().setY(getPosition().getY() + dy);
         }
+    }
+
+    @Override
+    public boolean estDansHitbox() {
+        return false;
     }
 
 
@@ -91,7 +94,8 @@ public class Joueur extends Acteur {
         }
     }
 
-    public Item chercherItemRamassable(){
+    // a coder dans hitbox
+    /*public Item chercherItemRamassable(){
         for (Item item : this.getEnvironnement().getInventaireEnvironnement()){
             if (
                     (this.getX() - 10 <= item.getX() && this.getX() + 16 + 10 >= item.getX()) &&
@@ -103,6 +107,7 @@ public class Joueur extends Acteur {
         }
         return null;
     }
+    */
 
     public void ramasse() {
 
