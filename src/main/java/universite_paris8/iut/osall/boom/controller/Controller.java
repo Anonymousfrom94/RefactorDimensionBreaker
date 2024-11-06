@@ -99,13 +99,13 @@ public class Controller implements Initializable {
                 (obs, old, nouv) -> this.vueJoueur.changementImg2()
         );
         this.environnement.getJoueur().getPosition().getXProperty().addListener((observable, oldValue, newValue) -> {
-            this.pane.setTranslateX( pane.getPrefWidth() / 4 - environnement.getJoueur().getPosition().getX()- ((double) (environnement.getJoueur().getHitbox().getLargeur()) /2));
+            this.pane.setTranslateX( pane.getPrefWidth() / 4 - environnement.getJoueur().getPosition().getX()- ( (environnement.getJoueur().getHitbox().getLargeur()) /2));
         });
         this.environnement.getJoueur().getPosition().getYProperty().addListener((observable, oldValue, newValue) -> {
-            this.pane.setTranslateY( pane.getPrefHeight() / 4 - environnement.getJoueur().getPosition().getY()-((double) environnement.getJoueur().getHitbox().getHauteur() /2));
+            this.pane.setTranslateY( pane.getPrefHeight() / 4 - environnement.getJoueur().getPosition().getY()-( (environnement.getJoueur().getHitbox().getHauteur()) /2));
         });
-        this.pane.setTranslateX(pane.getPrefWidth() / 4 - environnement.getJoueur().getPosition().getX()-((double) environnement.getJoueur().getHitbox().getLargeur() /2));
-        this.pane.setTranslateY(pane.getPrefHeight() / 4 - environnement.getJoueur().getPosition().getY()-((double) environnement.getJoueur().getHitbox().getHauteur() /2));
+        this.pane.setTranslateX(pane.getPrefWidth() / 4 - environnement.getJoueur().getPosition().getX()-( (environnement.getJoueur().getHitbox().getLargeur()) /2));
+        this.pane.setTranslateY(pane.getPrefHeight() / 4 - environnement.getJoueur().getPosition().getY()-( (environnement.getJoueur().getHitbox().getHauteur()) /2));
         // Ajout du listener au pv du joueur
         environnement.getJoueur().getPV().pvProperty().addListener(
                 (obs, old, nouv) -> VueJoueur.updateBarreDeVie(environnement.getJoueur(), equipementJoueur)

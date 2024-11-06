@@ -40,7 +40,7 @@ public class Hitbox {
     }
 
     public int getPointLePlusADroite(Position centre) {
-        return centre.getX() + (largeur / 2);
+        return (centre.getX() + (largeur / 2));
     }
 
     public int getPointLePlusEnHaut(Position centre) {
@@ -48,6 +48,6 @@ public class Hitbox {
     }
 
     public int getPointLePlusEnBas(Position centre) {
-        return centre.getY() + (hauteur / 2);
+        return (centre.getY() + (hauteur / 2));
     }
 }

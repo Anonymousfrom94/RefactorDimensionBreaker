@@ -27,11 +27,12 @@ public abstract class Acteur {
     // Constructeur
     public Acteur(Environnement environnement, Position position, Direction direction, int vitesse, int pvMax, Hitbox hitbox) {
         this.environnement = environnement;
+        this.position = position;
+        this.direction = direction;
         this.vitesse = vitesse;
         this.pv = new PV(pvMax);
         this.id = "#" + compteur;
-        this.position = position;
-        this.direction = direction;
+
         compteur++;
         this.environnement.getActeurs().add(this);
         this.hitbox = hitbox;

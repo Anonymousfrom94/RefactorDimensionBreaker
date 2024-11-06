@@ -40,6 +40,15 @@ public class Map {
     }
 
 
+    public boolean positionLibre(int x, int y ){
+
+        int idTuile = tableau[indice(x, y)];
+
+
+        System.out.println("fzedzrfg"+ indice(x, y));
+        return estObstacle(idTuile);
+    }
+
 
 /* *********************************************************************************************************************
                                              GETTER & SETTER & BOOLEAN
