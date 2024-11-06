@@ -7,7 +7,6 @@ import universite_paris8.iut.osall.boom.modele.Utilitaire.Position;
 import universite_paris8.iut.osall.boom.modele.entite.Acteur;
 import universite_paris8.iut.osall.boom.modele.entite.Joueur;
 
-import java.util.Random;
 public class Ennemi extends Acteur {
 
     private static final int rangeEnnemmi = 200;
@@ -15,22 +14,10 @@ public class Ennemi extends Acteur {
     private long derniereAttaque;
     private static final long intervalleAttack = 1000;
 
-    public Ennemi(Environnement environnement, Position position, int vitesse, int pvMax) {
-        super(environnement, position, Direction.BAS, vitesse, pvMax, new Hitbox(20, 20));
-
-        random();
-    }
+    public Ennemi(Environnement environnement, Position position, int vitesse, int pvMax, Hitbox hitbox) {
+        super(environnement, position, Direction.BAS, vitesse, pvMax, hitbox);
 
 
-    private void random() {
-        Random rand = new Random();
-        int x, y;
-        do {
-            x = rand.nextInt(getEnvironnement().getMap().getWidth());
-            y = rand.nextInt(getEnvironnement().getMap().getHeight());
-        } while (getEnvironnement().getMap().estObstacle(getEnvironnement().getMap().indice(x, y)) || getEnvironnement().getMap().estNoSpawn(getEnvironnement().getMap().indice(x,y)));
-        this.setX(x);
-        this.setY(y);
     }
 
 
@@ -39,8 +26,8 @@ public class Ennemi extends Acteur {
         Environnement environnement = getEnvironnement();
         Joueur joueur = environnement.getJoueur();
 
-        int distanceEnX = joueur.getX() - getX();
-        int distanceEnY = joueur.getY() - getY();
+        int distanceEnX = joueur.getPosition().getX() - getPosition().getX();
+        int distanceEnY = joueur.getPosition().getY() - getPosition().getY();
         double distance = Math.sqrt(distanceEnX * distanceEnX + distanceEnY * distanceEnY);
 
         if (distance <= rangeEnnemmi) {
@@ -62,23 +49,23 @@ public class Ennemi extends Acteur {
                 dy = -1;
             }
 
-            int newX = getX() + dx * getVitesse();
-            int newY = getY() + dy * getVitesse();
+            int newX = getPosition().getX() + dx * getVitesse();
+            int newY = getPosition().getY() + dy * getVitesse();
 
             if (peutSeDeplacerVers(newX, newY)) {
-                setX(newX);
-                setY(newY);
+                getPosition().setX(newX);
+                getPosition().setY(newY);
             } else {
                 if (distanceEnX != 0) {
-                    newX = getX() + dx * getVitesse();
-                    if (peutSeDeplacerVers(newX, getY())) {
-                        setX(newX);
+                    newX = getPosition().getX() + dx * getVitesse();
+                    if (peutSeDeplacerVers(newX, getPosition().getY())) {
+                        getPosition().setX(newX);
                     }
                 }
                 if (distanceEnY != 0) {
-                    newY = getY() + dy * getVitesse();
-                    if (peutSeDeplacerVers(getX(), newY)) {
-                        setY(newY);
+                    newY = getPosition().getY() + dy * getVitesse();
+                    if (peutSeDeplacerVers(getPosition().getX(), newY)) {
+                        getPosition().setY(newY);
                     }
                 }
             }
@@ -113,7 +100,7 @@ public class Ennemi extends Acteur {
         Map map = environnement.getMap();
 
         for (int i = 0; i < environnement.getJoueur().getHitbox().getLargeur(); i++) {
-            for (int j = 0; j < getHauteur(); j++) {
+            for (int j = 0; j < getHitbox().getHauteur(); j++) {
                 int x = newX + i;
                 int y = newY + j;
                 if (x >= 0 && x < environnement.getMap().getWidth() && y >= 0 && y < environnement.getMap().getHeight()) {

@@ -75,14 +75,12 @@ public class Controller implements Initializable {
 
         KeyFrame kf = new KeyFrame(
                 // on définit le FPS (nbre de frame par seconde)
-                Duration.seconds(0.025 ),
+                Duration.seconds(0.025),
                 // on définit ce qui se passe à chaque frame
                 // c'est un eventHandler d'ou le lambda
                 (ev ->{
-//                    environnement.getJoueur().seDeplace();
-                    if (temps == 10){
-                        environnement.spawnItemEtEnnemie();
-                    }
+                    environnement.getJoueur().seDeplace();
+
                     environnement.unTour(temps);
                     temps++;
                 })
@@ -97,17 +95,17 @@ public class Controller implements Initializable {
         environnement.getJoueur().getPosition().getXProperty().addListener(
                 (obs, old, nouv) -> this.vueJoueur.changementImg2()
         );
-        environnement.getJoueur().getYProperty().addListener(
+        environnement.getJoueur().getPosition().getYProperty().addListener(
                 (obs, old, nouv) -> this.vueJoueur.changementImg2()
         );
-        this.environnement.getJoueur().getXProperty().addListener((observable, oldValue, newValue) -> {
-            this.pane.setTranslateX( pane.getPrefWidth() / 4 - environnement.getJoueur().getX()- ((double) (environnement.getJoueur().getHitbox().getLargeur()) /2));
+        this.environnement.getJoueur().getPosition().getXProperty().addListener((observable, oldValue, newValue) -> {
+            this.pane.setTranslateX( pane.getPrefWidth() / 4 - environnement.getJoueur().getPosition().getX()- ((double) (environnement.getJoueur().getHitbox().getLargeur()) /2));
         });
-        this.environnement.getJoueur().getYProperty().addListener((observable, oldValue, newValue) -> {
-            this.pane.setTranslateY( pane.getPrefHeight() / 4 - environnement.getJoueur().getY()-((double) environnement.getJoueur().getHitbox().getHauteur() /2));
+        this.environnement.getJoueur().getPosition().getYProperty().addListener((observable, oldValue, newValue) -> {
+            this.pane.setTranslateY( pane.getPrefHeight() / 4 - environnement.getJoueur().getPosition().getY()-((double) environnement.getJoueur().getHitbox().getHauteur() /2));
         });
-        this.pane.setTranslateX(pane.getPrefWidth() / 4 - environnement.getJoueur().getX()-((double) environnement.getJoueur().getHitbox().getLargeur() /2));
-        this.pane.setTranslateY(pane.getPrefHeight() / 4 - environnement.getJoueur().getY()-((double) environnement.getJoueur().getHitbox().getHauteur() /2));
+        this.pane.setTranslateX(pane.getPrefWidth() / 4 - environnement.getJoueur().getPosition().getX()-((double) environnement.getJoueur().getHitbox().getLargeur() /2));
+        this.pane.setTranslateY(pane.getPrefHeight() / 4 - environnement.getJoueur().getPosition().getY()-((double) environnement.getJoueur().getHitbox().getHauteur() /2));
         // Ajout du listener au pv du joueur
         environnement.getJoueur().getPV().pvProperty().addListener(
                 (obs, old, nouv) -> VueJoueur.updateBarreDeVie(environnement.getJoueur(), equipementJoueur)

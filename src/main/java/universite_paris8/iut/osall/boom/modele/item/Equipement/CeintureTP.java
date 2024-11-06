@@ -1,13 +1,15 @@
 package universite_paris8.iut.osall.boom.modele.item.Equipement;
 
 import universite_paris8.iut.osall.boom.modele.Environnement.Environnement;
+import universite_paris8.iut.osall.boom.modele.Utilitaire.Direction;
+import universite_paris8.iut.osall.boom.modele.Utilitaire.Position;
 import universite_paris8.iut.osall.boom.modele.entite.Acteur;
 import universite_paris8.iut.osall.boom.modele.entite.Joueur;
 
 public class CeintureTP extends Equipement{
 
-    public CeintureTP(Environnement environnement, int x, int y) {
-        super(environnement, "Ceinture de Téléportation", x, y);
+    public CeintureTP(Environnement environnement, Position position) {
+        super(environnement, "Ceinture de Téléportation", position);
     }
 
     @Override
@@ -20,28 +22,28 @@ public class CeintureTP extends Equipement{
         int dx = 0;
         int dy = 0;
 
-        if (a.direction.get().contains("haut")){
-            if (a.getY() - rangeTP > 0){
+        if (a.getDirection()==(Direction.DROITE)){
+            if (a.getPosition().getY() - rangeTP > 0){
                 dy -= rangeTP;
             }
         }
-        if (a.direction.get().contains("bas")){
-            if (a.getY() + 16 + rangeTP < this.getEnvironnement().getMap().getHeight()){
+        if (a.getDirection()==(Direction.BAS)){
+            if (a.getPosition().getY() + 16 + rangeTP < this.getEnvironnement().getMap().getHeight()){
                 dy += rangeTP;
             }
         }
-        if (a.direction.get().contains("gauche")){
-            if (a.getX() - rangeTP > 0){
+        if (a.getDirection()==(Direction.GAUCHE)){
+            if (a.getPosition().getX() - rangeTP > 0){
                 dx -= rangeTP;
             }
         }
-        if (a.direction.get().contains("droite")){
-            if (a.getX() + 16 + rangeTP < this.getEnvironnement().getMap().getWidth()){
+        if (a.getDirection()==(Direction.DROITE)){
+            if (a.getPosition().getX() + 16 + rangeTP < this.getEnvironnement().getMap().getWidth()){
                 dx += rangeTP;
             }
         }
-        a.setX(a.getX() + dx);
-        a.setY(getEnvironnement().getJoueur().getY() + dy);
+        a.getPosition().setX(a.getPosition().getX() + dx);
+        a.getPosition().setY(getEnvironnement().getJoueur().getPosition().getY() + dy);
     }
 
 }

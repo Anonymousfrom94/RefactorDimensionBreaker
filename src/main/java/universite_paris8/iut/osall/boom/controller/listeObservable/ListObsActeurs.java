@@ -55,10 +55,10 @@ public class ListObsActeurs implements ListChangeListener<Acteur> {
         vieBarre.setId("vieBarre_" + ennemi.getId());
         pane.getChildren().addAll(imageView, vieBarre);
 
-        imageView.translateXProperty().bind(ennemi.getXproperty());
-        imageView.translateYProperty().bind(ennemi.getYproperty());
-        vieBarre.translateXProperty().bind(ennemi.getXproperty());
-        vieBarre.translateYProperty().bind(ennemi.getYproperty().subtract(10)); // Placez la barre de vie au-dessus de l'image
+        imageView.translateXProperty().bind(ennemi.getPosition().getXProperty());
+        imageView.translateYProperty().bind(ennemi.getPosition().getYProperty());
+        vieBarre.translateXProperty().bind(ennemi.getPosition().getXProperty());
+        vieBarre.translateYProperty().bind(ennemi.getPosition().getYProperty().subtract(10)); // Placez la barre de vie au-dessus de l'image
     }
 
     public static void updateBarreDeVie(Acteur acteur, Pane pane) {

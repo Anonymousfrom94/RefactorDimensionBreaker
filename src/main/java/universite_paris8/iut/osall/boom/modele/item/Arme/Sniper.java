@@ -1,6 +1,7 @@
 package universite_paris8.iut.osall.boom.modele.item.Arme;
 
 import universite_paris8.iut.osall.boom.modele.Environnement.Environnement;
+import universite_paris8.iut.osall.boom.modele.Utilitaire.Position;
 import universite_paris8.iut.osall.boom.modele.entite.Acteur;
 import universite_paris8.iut.osall.boom.modele.entite.ennemi.Boss;
 import universite_paris8.iut.osall.boom.modele.entite.ennemi.Ennemi;
@@ -12,8 +13,8 @@ public class Sniper extends Arme{
     private Joueur joueur;
 
 
-    public Sniper(Environnement environnement, int x, int y) {
-        super(environnement, "Sniper", x, y, 999999, 64);
+    public Sniper(Environnement environnement, Position position) {
+        super(environnement, "Sniper", position, 999999, 64);
         this.joueur = environnement.getJoueur();
     }
 

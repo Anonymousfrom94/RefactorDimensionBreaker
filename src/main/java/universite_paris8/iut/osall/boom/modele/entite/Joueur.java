@@ -20,16 +20,22 @@ public class Joueur extends Acteur {
 
 
     public Joueur(Environnement environnement) {
-        super(environnement, new Position(10,10), Direction.BAS, 5,300, new Hitbox(14,14));
+        super(environnement, new Position(780,485), Direction.BAS, 5,300, new Hitbox(14,14));
+        setDirectionJoueur();
         this.inventaire = FXCollections.observableArrayList();
         inventaire.add(super.getArme());
         this.equipement = null;
     }
 
+    private void setDirectionJoueur() {
+        setDirection(Direction.BAS);
+        getDirection().setDirectionProperty("bas");
+    }
+
     @Override
     public void seDeplace() {
         Direction direction = this.getDirection();
-        if (peutSeDeplacer()) {
+        if (peutSeDeplacer(this)) {
             int dx = 0;
             int dy = 0;
             int vitesse = super.getVitesse();
@@ -69,7 +75,7 @@ public class Joueur extends Acteur {
         for(Acteur e : super.getEnvironnement().getActeurs()){
             if(e instanceof Ennemi){
                 if (
-                        (this.getPosition().getX() - super.getArme().getRange() <= e.getX() && this.getPosition().getX() + 16 + super.getArme().getRange() >= e.getX()) &&
+                        (this.getPosition().getX() - super.getArme().getRange() <= e.getPosition().getX() && this.getPosition().getX() + 16 + super.getArme().getRange() >= e.getPosition().getX()) &&
                                 (this.getPosition().getY() - super.getArme().getRange() <= e.getPosition().getY() && this.getPosition().getY() + 16 + super.getArme().getRange() >= e.getPosition().getY())
                 ){
                     System.out.println("ennemie proche");
@@ -95,6 +101,7 @@ public class Joueur extends Acteur {
     }
 
     // a coder dans hitbox
+    //c'est fait'
     /*public Item chercherItemRamassable(){
         for (Item item : this.getEnvironnement().getInventaireEnvironnement()){
             if (
@@ -106,8 +113,25 @@ public class Joueur extends Acteur {
 
         }
         return null;
+    }*/
+
+    public Item chercherItemRamassable() {
+        Hitbox hitbox = this.getHitbox();
+        Position centreJoueur = this.getPosition();
+
+        // Parcourt tous les items dans l'environnement
+        for (Item item : this.getEnvironnement().getInventaireEnvironnement()) {
+            Position positionItem = item.getPosition();
+
+            if (hitbox.contient(centreJoueur, positionItem)) {
+                return item;
+            }
+        }
+        return null;
     }
-    */
+
+
+
 
     public void ramasse() {
 
@@ -131,13 +155,53 @@ public class Joueur extends Acteur {
         return this.equipement instanceof BotteLevitation;
     }
 
-    public boolean peutSeDeplacer(){}
 
-    @Override
-    /*public boolean estDansHitbox() {
-        Hitbox hitbox = this.getHitbox();
-        if (Direction.DROITE && hitbox.getPointLePlusADroite());
-    }*/
+    public boolean peutSeDeplacer(Joueur joueur) {
+        // Vérifie s'il y a une collision dans la direction actuelle du joueur
+        return !collisionMap(this);  // Retourne vrai si collisionMap renvoie faux (pas de collision)
+    }
+
+
+    public boolean collisionMap(Acteur acteur) {
+        Position position = acteur.getPosition();
+        Direction direction = acteur.getDirection();
+        Hitbox hitbox = acteur.getHitbox();
+        int vitesse = acteur.getVitesse();
+
+        // Calculer la position cible en fonction de la direction et de la vitesse
+        int x = position.getX() + vitesse * direction.getX();
+        int y = position.getY() + vitesse * direction.getY();
+
+        double extremite1, extremite2;
+
+        // Déterminer les limites de la hitbox selon la direction
+        if (direction == Direction.BAS || direction == Direction.HAUT) {
+            extremite1 = hitbox.getPointLePlusAGauche(new Position(x, y));
+            extremite2 = hitbox.getPointLePlusADroite(new Position(x, y));
+        } else {
+            extremite1 = hitbox.getPointLePlusEnHaut(new Position(x, y));
+            extremite2 = hitbox.getPointLePlusEnBas(new Position(x, y));
+        }
+
+        boolean collision = false;
+        int cpt = (int) extremite1;
+
+        // Itérer sur la zone de collision potentielle de la hitbox
+        while (cpt <= extremite2 && !collision) {
+            if (direction == Direction.BAS) {
+                collision = getEnvironnement().getObstacles().get(hitbox.getPointLePlusEnBas(new Position(x,y))) != -1;
+            } else if (direction == Direction.HAUT) {
+                collision = getEnvironnement().getObstacles().get(hitbox.getPointLePlusEnHaut(new Position(x,y))) != -1;
+            } else if (direction == Direction.DROITE) {
+                collision = getEnvironnement().getObstacles().get(hitbox.getPointLePlusADroite(new Position(x,y))) != -1;
+            } else if (direction == Direction.GAUCHE) {
+                collision = getEnvironnement().getObstacles().get(hitbox.getPointLePlusAGauche(new Position(x,y))) != -1;
+            }
+            cpt++;
+        }
+
+        return collision;
+    }
 
 
 
@@ -163,9 +227,6 @@ public class Joueur extends Acteur {
         this.equipement = equipement;
     }
 
-    public Position getPosition() {
-        
-    }
 
     /* *********************************************************************************************************************
 
