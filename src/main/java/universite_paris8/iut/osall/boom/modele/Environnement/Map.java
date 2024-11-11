@@ -23,7 +23,7 @@ public class Map {
         int ligne = newY / environnement.getMap().getHauteurTuile();
         int ind = ligne * environnement.getInfoTuile()[1] + colonne;
 
-        System.out.println("Calcul indice: x=" + newX + " y=" + newY + " => ligne=" + ligne + " colonne=" + colonne + " => indice=" + ind);
+//        System.out.println("Calcul indice: x=" + newX + " y=" + newY + " => ligne=" + ligne + " colonne=" + colonne + " => indice=" + ind);
 
         return ind;
     }
@@ -53,6 +53,7 @@ public class Map {
         }
         int idTuile = tableau[indice];
         System.out.println("indice = "+ idTuile);
+
         return !estDevantObstacle(idTuile);
 
     }
@@ -62,11 +63,19 @@ public class Map {
                                              GETTER & SETTER & BOOLEAN
 ********************************************************************************************************************* */
     public boolean estDevantObstacle(int val) {
+
+
         for (int obstacle : environnement.getObstacles()) {
-            if (tableau[val] == obstacle) {
+            System.out.print(obstacle+" , ");
+            if (val== obstacle) {
+                System.out.println("val = "+ val);
+                System.out.println("obstacle = "+ obstacle);
+                System.out.println();
                 return true;
             }
+
         }
+        System.out.println();
         return false;
     }
 

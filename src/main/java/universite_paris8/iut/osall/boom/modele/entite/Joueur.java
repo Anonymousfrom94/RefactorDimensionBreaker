@@ -169,16 +169,13 @@ public class Joueur extends Acteur {
 
     public boolean collisionMap(Acteur acteur) {
 
-
         Hitbox hitbox = acteur.getHitbox();
+        boolean libre = true;
 
         // Calculer la position cible en fonction de la direction et de la vitesse
         // Position actuelle de l'objet
-        int pX = this.getPosition().getX();
-        int pY = this.getPosition().getY();
-        // Calcul de la nouvelle position en fonction de la vitesse et de la direction
-        pX += getVitesse() * getDirection().getX();
-        pY += getVitesse() * getDirection().getY();
+        int pX = this.getPosition().getX()+(getVitesse()*getDirection().getX());
+        int pY = this.getPosition().getY()+(getVitesse()*getDirection().getY());
 
 // Affichage pour débogage
 //        System.out.println("PX = " + pX + " PY = " + pY);
@@ -194,23 +191,23 @@ public class Joueur extends Acteur {
         int haut = hitbox.getPointLePlusEnHaut(new Position(pX, pY));
 
 // Vérification si les positions sont libres
+        boolean positionHautGaucheLibre = m.positionLibre(gauche, haut);
         boolean positionBasGaucheLibre = m.positionLibre(gauche, bas);
         boolean positionBasDroiteLibre = m.positionLibre(droite, bas);
         boolean positionHautDroiteLibre = m.positionLibre(droite, haut);
-        boolean positionHautGaucheLibre = m.positionLibre(gauche, haut);
-        //Connaitre si la position est libre ou non
 
+//Connaitre si la position est libre ou non
         System.out.println("BasGauche: " + positionBasGaucheLibre);
         System.out.println("BasDroite: " + positionBasDroiteLibre);
         System.out.println("HautDroite: " + positionHautDroiteLibre);
         System.out.println("HautGauche: " + positionHautGaucheLibre);
 
-// Si les positions sont libres, il n'y a pas de collision
-//        if (!positionBasGaucheLibre || !positionHautDroiteLibre || !positionHautGaucheLibre || !positionBasDroiteLibre) {
-//            libre = false;
-//        }
-        boolean libre = positionBasGaucheLibre && positionBasDroiteLibre && positionHautDroiteLibre && positionHautGaucheLibre;
 
+        if (!positionBasGaucheLibre || !positionBasDroiteLibre || !positionHautDroiteLibre || !positionHautGaucheLibre) {
+            libre = false;
+        }
+
+        System.out.println();
 
         return libre;
 
