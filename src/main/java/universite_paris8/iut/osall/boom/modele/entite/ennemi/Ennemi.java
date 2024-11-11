@@ -105,7 +105,7 @@ public class Ennemi extends Acteur {
                 int y = newY + j;
                 if (x >= 0 && x < environnement.getMap().getWidth() && y >= 0 && y < environnement.getMap().getHeight()) {
                     int indice = map.indice(x, y);
-                    if (map.estObstacle(indice)) {
+                    if (map.estDevantObstacle(indice)) {
                         return false;
                     }
                 } else {

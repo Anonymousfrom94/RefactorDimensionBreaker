@@ -59,7 +59,7 @@ public class Environnement {
         // Déplacement des acteurs (ennemis)
         for (int i = acteurs.size() - 1; i >= 0; i--) {
             Acteur acteur = acteurs.get(i);
-            acteur.agit();
+//            acteur.agit();
             if (!acteur.estVivant()) {
                 System.out.println("Mort de : " + acteur);
                 acteurs.remove(i);
@@ -69,10 +69,10 @@ public class Environnement {
 
                 System.out.println("Nombre d'ennemis tués : " + compteurKill);
             }
-            if (acteur instanceof Ennemi) {
-                //sedeplace attaque aussi
-                acteur.seDeplace();
-            }
+//            if (acteur instanceof Ennemi) {
+//                //sedeplace attaque aussi
+//                acteur.agit();
+//            }
 //            if (acteur instanceof Ennemi){
 //                acteur.seDeplace();
 //            }

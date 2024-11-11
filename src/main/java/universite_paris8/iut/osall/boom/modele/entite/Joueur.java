@@ -23,7 +23,7 @@ public class Joueur extends Acteur {
 
 
     public Joueur(Environnement environnement) {
-        super(environnement, new Position(200,200), Direction.BAS, 5,300, new Hitbox(50,50));
+        super(environnement, new Position(780,550), Direction.BAS, 5,300, new Hitbox(16,16));
         setDirectionJoueur();
         this.inventaire = FXCollections.observableArrayList();
         inventaire.add(super.getArme());
@@ -38,7 +38,7 @@ public class Joueur extends Acteur {
     @Override
     public void seDeplace() {
         Direction direction = this.getDirection();
-        if (peutSeDeplacer(this)) {
+        if (peutSeDeplacer(this) ) {
             int dx = 0;
             int dy = 0;
             int vitesse = super.getVitesse();
@@ -66,6 +66,7 @@ public class Joueur extends Acteur {
             getPosition().setX(getPosition().getX() + dx);
             getPosition().setY(getPosition().getY() + dy);
         }
+
     }
 
     @Override
@@ -168,82 +169,50 @@ public class Joueur extends Acteur {
 
     public boolean collisionMap(Acteur acteur) {
 
-        Position position = acteur.getPosition();
-        Direction direction = acteur.getDirection();
+
         Hitbox hitbox = acteur.getHitbox();
-        int vitesse = acteur.getVitesse();
 
         // Calculer la position cible en fonction de la direction et de la vitesse
-        int x = position.getX() + vitesse * direction.getX();
-        int y = position.getY() + vitesse * direction.getY();
-
-        int extremite1, extremite2;
-
-//        // Déterminer les limites de la hitbox selon la direction
-//        if (direction == Direction.BAS || direction == Direction.HAUT) {
-//            extremite1 = hitbox.getPointLePlusAGauche(new Position(x, y));
-//            extremite2 = hitbox.getPointLePlusADroite(new Position(x, y));
-////            System.out.println(extremite1);
-////            System.out.println(extremite2);
-//        } else {
-//            extremite1 = hitbox.getPointLePlusEnHaut(new Position(x, y));
-//            extremite2 = hitbox.getPointLePlusEnBas(new Position(x, y));
-////            System.out.println(extremite1);
-////            System.out.println(extremite2);
-//
-//        }
-
-//
-//        boolean collision = true;
-//
-//        int pX = this.getPosition().getX();
-//        int pY = this.getPosition().getY();
-//        pX+=getVitesse()*getDirection().getX();
-//        pY+=getVitesse()*getDirection().getY();
-//        System.out.println("PX = "+ pX + " PY = "+ pY);
-//        Environnement e = getEnvironnement();
-//        Map m = getEnvironnement().getMap();
-//        if ((m.positionLibre(hitbox.getPointLePlusEnBas(new Position(pX,pY)),hitbox.getPointLePlusAGauche(new Position(pX,pY))) &&
-//        m.positionLibre(hitbox.getPointLePlusEnHaut(new Position(pX,pY)), hitbox.getPointLePlusADroite(new Position(pX,pY))) )){
-//            collision = false;
-//        }
-//
-//
-//        return collision;
-
-        boolean collision = true;
-
-// Position actuelle de l'objet
+        // Position actuelle de l'objet
         int pX = this.getPosition().getX();
         int pY = this.getPosition().getY();
-
-// Calcul de la nouvelle position en fonction de la vitesse et de la direction
+        // Calcul de la nouvelle position en fonction de la vitesse et de la direction
         pX += getVitesse() * getDirection().getX();
         pY += getVitesse() * getDirection().getY();
 
 // Affichage pour débogage
-        System.out.println("PX = " + pX + " PY = " + pY);
+//        System.out.println("PX = " + pX + " PY = " + pY);
 
 // Récupération de l'environnement et de la carte
         Environnement e = getEnvironnement();
         Map m = e.getMap();
 
 // Calcul des coordonnées des coins du hitbox à la nouvelle position
-        int basGaucheX = hitbox.getPointLePlusEnBas(new Position(pX, pY));
-        int basGaucheY = hitbox.getPointLePlusAGauche(new Position(pX, pY));
-        int hautDroiteX = hitbox.getPointLePlusEnHaut(new Position(pX, pY));
-        int hautDroiteY = hitbox.getPointLePlusADroite(new Position(pX, pY));
+        int bas = hitbox.getPointLePlusEnBas(new Position(pX, pY));
+        int gauche = hitbox.getPointLePlusAGauche(new Position(pX, pY));
+        int droite = hitbox.getPointLePlusADroite(new Position(pX, pY));
+        int haut = hitbox.getPointLePlusEnHaut(new Position(pX, pY));
 
 // Vérification si les positions sont libres
-        boolean positionBasGaucheLibre = m.positionLibre(basGaucheX, basGaucheY);
-        boolean positionHautDroiteLibre = m.positionLibre(hautDroiteX, hautDroiteY);
+        boolean positionBasGaucheLibre = m.positionLibre(gauche, bas);
+        boolean positionBasDroiteLibre = m.positionLibre(droite, bas);
+        boolean positionHautDroiteLibre = m.positionLibre(droite, haut);
+        boolean positionHautGaucheLibre = m.positionLibre(gauche, haut);
+        //Connaitre si la position est libre ou non
 
-// Si les deux positions sont libres, il n'y a pas de collision
-        if (positionBasGaucheLibre && positionHautDroiteLibre) {
-            collision = false;
-        }
+        System.out.println("BasGauche: " + positionBasGaucheLibre);
+        System.out.println("BasDroite: " + positionBasDroiteLibre);
+        System.out.println("HautDroite: " + positionHautDroiteLibre);
+        System.out.println("HautGauche: " + positionHautGaucheLibre);
 
-        return collision;
+// Si les positions sont libres, il n'y a pas de collision
+//        if (!positionBasGaucheLibre || !positionHautDroiteLibre || !positionHautGaucheLibre || !positionBasDroiteLibre) {
+//            libre = false;
+//        }
+        boolean libre = positionBasGaucheLibre && positionBasDroiteLibre && positionHautDroiteLibre && positionHautGaucheLibre;
+
+
+        return libre;
 
     }
 

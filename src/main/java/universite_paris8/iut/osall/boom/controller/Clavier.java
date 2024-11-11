@@ -34,25 +34,49 @@ public class Clavier implements EventHandler<KeyEvent> {
         if (touchePress.contains(Z)){
             direction += "haut";
             joueur.setDirection(Direction.HAUT);
+            joueur.seDeplace();
         }
         if (touchePress.contains(S)){
             direction += "bas";
             joueur.setDirection(Direction.BAS);
+            joueur.seDeplace();
         }
         if (touchePress.contains(Q)){
             direction += "gauche";
             joueur.setDirection(Direction.GAUCHE);
+            joueur.seDeplace();
         }
         if (touchePress.contains(D)){
             direction += "droite";
             joueur.setDirection(Direction.DROITE);
+            joueur.seDeplace();
         }
+
 
         this.joueur.getDirection().setDirectionProperty(direction);
         
         if (touchePress.contains(J)){
             this.joueur.attaque();
             touchePress.clear();
+        }
+        if (touchePress.contains(T)){
+            for (int i=0;i<this.joueur.getEnvironnement().getMap().getTableau().length;i++) {
+                if (joueur.getEnvironnement().estObstacle(i)) {
+                    System.out.print(i + ", ");
+                }
+            }
+
+        }
+        if (touchePress.contains(A)){
+            System.out.println("ind joueur= "+joueur.getEnvironnement().getMap().indice(joueur.getPosition().getX(), joueur.getPosition().getY()));
+            System.out.println("ind case= "+joueur.getEnvironnement().getMap().getTableau()[joueur.getEnvironnement().getMap().indice(joueur.getPosition().getX(), joueur.getPosition().getY())]);
+            System.out.println(joueur.getEnvironnement().getMap().estDevantObstacle(joueur.getEnvironnement().getMap().getTableau()[joueur.getEnvironnement().getMap().indice(joueur.getPosition().getX(), joueur.getPosition().getY())]));
+            System.out.println(joueur.getEnvironnement().getMap().estDevantObstacle(joueur.getEnvironnement().getMap().getTableau()[joueur.getEnvironnement().getMap().indice(joueur.getPosition().getX()+joueur.getHitbox().getLargeur(), joueur.getPosition().getY())]));
+            System.out.println(joueur.getEnvironnement().getMap().estDevantObstacle(joueur.getEnvironnement().getMap().getTableau()[joueur.getEnvironnement().getMap().indice(joueur.getPosition().getX(), joueur.getPosition().getY()+joueur.getHitbox().getHauteur())]));
+            System.out.println(joueur.getEnvironnement().getMap().estDevantObstacle(joueur.getEnvironnement().getMap().getTableau()[joueur.getEnvironnement().getMap().indice(joueur.getPosition().getX()+joueur.getHitbox().getLargeur(), joueur.getPosition().getY()+joueur.getHitbox().getHauteur())]));
+
+
+
         }
 
         if (touchePress.contains(K) && joueur.getEquipement() != null){

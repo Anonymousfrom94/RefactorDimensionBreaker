@@ -21,7 +21,11 @@ public class Map {
     public int indice(int newX, int newY) {
         int colonne = newX / environnement.getMap().getLargeurTuile();
         int ligne = newY / environnement.getMap().getHauteurTuile();
-        return ligne * environnement.getInfoTuile()[1] + colonne;
+        int ind = ligne * environnement.getInfoTuile()[1] + colonne;
+
+        System.out.println("Calcul indice: x=" + newX + " y=" + newY + " => ligne=" + ligne + " colonne=" + colonne + " => indice=" + ind);
+
+        return ind;
     }
 
 
@@ -42,18 +46,22 @@ public class Map {
 
     public boolean positionLibre(int x, int y ){
 
-        int idTuile = tableau[indice(x, y)];
+        int indice = indice(x, y);
 
+        if (indice<0 || indice >= tableau.length) {
+            return false;
+        }
+        int idTuile = tableau[indice];
+        System.out.println("indice = "+ idTuile);
+        return !estDevantObstacle(idTuile);
 
-        System.out.println("fzedzrfg"+ indice(x, y));
-        return estObstacle(idTuile);
     }
 
 
 /* *********************************************************************************************************************
                                              GETTER & SETTER & BOOLEAN
 ********************************************************************************************************************* */
-    public boolean estObstacle(int val) {
+    public boolean estDevantObstacle(int val) {
         for (int obstacle : environnement.getObstacles()) {
             if (tableau[val] == obstacle) {
                 return true;
@@ -103,6 +111,8 @@ public class Map {
     public int getHauteurTuile() {
         return hauteurTuile;
     }
+
+
 
 
     /* *********************************************************************************************************************
