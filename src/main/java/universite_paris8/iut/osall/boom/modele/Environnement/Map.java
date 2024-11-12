@@ -18,6 +18,7 @@ public class Map {
         this.height = 100 * hauteurTuile;
     }
 
+    //Permet de connaitre l'indice du tableau a 1D a partir d'un x et y
     public int indice(int newX, int newY) {
         int colonne = newX / environnement.getMap().getLargeurTuile();
         int ligne = newY / environnement.getMap().getHauteurTuile();
@@ -66,16 +67,16 @@ public class Map {
 
 
         for (int obstacle : environnement.getObstacles()) {
-            System.out.print(obstacle+" , ");
+//            System.out.print(obstacle+" , ");
             if (val== obstacle) {
-                System.out.println("val = "+ val);
-                System.out.println("obstacle = "+ obstacle);
-                System.out.println();
+//                System.out.println("val = "+ val);
+//                System.out.println("obstacle = "+ obstacle);
+//                System.out.println();
                 return true;
             }
 
         }
-        System.out.println();
+//        System.out.println();
         return false;
     }
 

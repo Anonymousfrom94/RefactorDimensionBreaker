@@ -39,32 +39,8 @@ public class Joueur extends Acteur {
     public void seDeplace() {
         Direction direction = this.getDirection();
         if (peutSeDeplacer(this) ) {
-            int dx = 0;
-            int dy = 0;
-            int vitesse = super.getVitesse();
-
-            if (direction.equals(Direction.HAUT)){
-                if (this.getPosition().getY() - super.getVitesse() > 0){
-                    dy -= vitesse;
-                }
-            }
-            if (direction.equals(Direction.BAS)){
-                if (this.getPosition().getY() + 16 + super.getVitesse() < super.getEnvironnement().getMap().getHeight()){
-                    dy += vitesse;
-                }
-            }
-            if (direction.equals(Direction.GAUCHE)){
-                if (this.getPosition().getX() - super.getVitesse() > 0){
-                    dx -= vitesse;
-                }
-            }
-            if (direction.equals(Direction.DROITE)){
-                if (this.getPosition().getX() + 16 + super.getVitesse() < super.getEnvironnement().getMap().getWidth()){
-                    dx += vitesse;
-                }
-            }
-            getPosition().setX(getPosition().getX() + dx);
-            getPosition().setY(getPosition().getY() + dy);
+            this.getPosition().setX(getPosition().getX()+(getVitesse()*getDirection().getX()));
+            this.getPosition().setY(getPosition().getY()+(getVitesse()*getDirection().getY()));
         }
 
     }
@@ -133,8 +109,6 @@ public class Joueur extends Acteur {
         }
         return null;
     }
-
-
 
 
     public void ramasse() {

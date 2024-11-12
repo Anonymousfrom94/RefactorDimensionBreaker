@@ -14,7 +14,7 @@ public class BatonElectrique extends Arme{
 
     @Override
     public void utilise(Acteur a) {
-        attackDeZone((Ennemi) a);
+        attackDeZone(a);
     }
 
     @Override
@@ -24,7 +24,7 @@ public class BatonElectrique extends Arme{
 
     //a modifier
 
-    public void attackDeZone(Ennemi e){
+    public void attackDeZone(Acteur e){
         e.getPV().enleverPv(this.getDegat());
         int rangeConnexion = 80;
 
