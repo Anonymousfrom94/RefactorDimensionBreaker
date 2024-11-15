@@ -22,6 +22,7 @@ import universite_paris8.iut.osall.boom.modele.item.Item;
 import java.util.ArrayList;
 
 public class Environnement {
+    private static Environnement instance = null;
     private Map map;
     // private int width;
     // private int height;
@@ -37,7 +38,7 @@ public class Environnement {
     private int[] infoTuile;
 
 
-    public Environnement() {
+    private Environnement() {
 //        largeurTuile = 16;
 //        hauteurTuile = 16;
 //        this.width = 100 * largeurTuile;
@@ -52,6 +53,13 @@ public class Environnement {
         this.infoTuile[1] = 100; // Nombre de colonnes
         this.infoTuile[2] = 100; // Nombre de lignes
         init();
+    }
+
+    public static Environnement getInstance(){
+        if (instance == null){
+            instance = new Environnement();
+        }
+        return instance;
     }
 
     public void unTour(int temps) {

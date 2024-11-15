@@ -52,7 +52,7 @@ public class Controller implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resource) {
-        this.environnement = new Environnement();
+        this.environnement = Environnement.getInstance();
         this.vueMap = new VueMap(tilePane, environnement.getMap());
         this.vueJoueur = new VueJoueur(pane, environnement.getJoueur(), equipementJoueur);
         initAnimation();
