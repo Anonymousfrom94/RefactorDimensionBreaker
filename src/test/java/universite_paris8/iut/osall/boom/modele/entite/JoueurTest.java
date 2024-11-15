@@ -3,6 +3,9 @@ package universite_paris8.iut.osall.boom.modele.entite;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import universite_paris8.iut.osall.boom.modele.Environnement.Environnement;
+import universite_paris8.iut.osall.boom.modele.Utilitaire.Direction;
+import universite_paris8.iut.osall.boom.modele.Utilitaire.Hitbox;
+import universite_paris8.iut.osall.boom.modele.Utilitaire.Position;
 import universite_paris8.iut.osall.boom.modele.entite.ennemi.Ennemi;
 import universite_paris8.iut.osall.boom.modele.item.Equipement.BotteLevitation;
 
@@ -22,62 +25,62 @@ class JoueurTest {
     @Test
     void testSeDeplace() {
         // déplacement normaux
-        joueur.setDirection("haut");
-        int yInitial = joueur.getY();
+        joueur.setDirection(Direction.HAUT);
+        int yInitial = joueur.getPosition().getY();
         joueur.seDeplace();
-        assertEquals(yInitial - joueur.getVitesse(), joueur.getY());
+        assertEquals(yInitial - joueur.getVitesse(), joueur.getPosition().getY());
 
-        joueur.setDirection("bas");
-        int yAfterUp = joueur.getY();
+        joueur.setDirection(Direction.BAS);
+        int yAfterUp = joueur.getPosition().getY();
         joueur.seDeplace();
-        assertEquals(yAfterUp + joueur.getVitesse(), joueur.getY());
+        assertEquals(yAfterUp + joueur.getVitesse(), joueur.getPosition().getY());
 
-        joueur.setDirection("gauche");
-        int xInitial = joueur.getX();
+        joueur.setDirection(Direction.GAUCHE);
+        int xInitial = joueur.getPosition().getX();
         joueur.seDeplace();
-        assertEquals(xInitial - joueur.getVitesse(), joueur.getX());
+        assertEquals(xInitial - joueur.getVitesse(), joueur.getPosition().getX());
 
-        joueur.setDirection("droite");
-        int xAfterLeft = joueur.getX();
+        joueur.setDirection(Direction.DROITE);
+        int xAfterLeft = joueur.getPosition().getX();
         joueur.seDeplace();
-        assertEquals(xAfterLeft + joueur.getVitesse(), joueur.getX());
+        assertEquals(xAfterLeft + joueur.getVitesse(), joueur.getPosition().getX());
 
         //déplacement limite map
-        joueur.setX(0);
-        joueur.setY(0);
-        joueur.setDirection("haut");
+        joueur.getPosition().setX(0);
+        joueur.getPosition().setY(0);
+        joueur.setDirection(Direction.HAUT);
         joueur.seDeplace();
-        assertEquals(0, joueur.getY());
+        assertEquals(0, joueur.getPosition().getY());
 
-        joueur.setDirection("gauche");
+        joueur.setDirection(Direction.GAUCHE);
         joueur.seDeplace();
-        assertEquals(0, joueur.getX());
+        assertEquals(0, joueur.getPosition().getX());
 
-        joueur.setX(environnement.getMap().getWidth() - joueur.getHitbox().getLargeur());
-        joueur.setY(environnement.getMap().getHeight() - joueur.getHitbox().getHauteur());
-        joueur.setDirection("bas");
+        joueur.getPosition().setX(environnement.getMap().getWidth() - joueur.getHitbox().getLargeur());
+        joueur.getPosition().setY(environnement.getMap().getHeight() - joueur.getHitbox().getHauteur());
+        joueur.setDirection(Direction.BAS);
         joueur.seDeplace();
-        assertEquals(environnement.getMap().getHeight() - joueur.getHauteur(), joueur.getY());
+        assertEquals(environnement.getMap().getHeight() - joueur.getHitbox().getHauteur(), joueur.getPosition().getY());
 
-        joueur.setDirection("droite");
+        joueur.setDirection(Direction.DROITE);
         joueur.seDeplace();
-        assertEquals(environnement.getMap().getWidth() - joueur.getLargeur(), joueur.getX());
+        assertEquals(environnement.getMap().getWidth() - joueur.getHitbox().getLargeur(), joueur.getPosition().getX());
     }
 
     @Test
     void testEstAttaquable() {
         // ennemie a coté
-        Ennemi ennemie = new Ennemi(environnement,14, 3,1);
-        ennemie.setX(joueur.getX() + 10);
-        ennemie.setY(joueur.getY() + 10);
+        Ennemi ennemie = new Ennemi(environnement, new Position(100, 100), 3,1, new Hitbox(16, 16));
+        ennemie.getPosition().setX(joueur.getPosition().getX() + 10);
+        ennemie.getPosition().setY(joueur.getPosition().getY() + 10);
         environnement.getActeurs().add(ennemie);
 
         assertNotNull(joueur.chercherActeurAttaquable());
 
         //pas ennemies
         environnement.getActeurs().remove(ennemie);
-        ennemie.setX(joueur.getX() + 300);
-        ennemie.setY(joueur.getY() + 300);
+        ennemie.getPosition().setX(joueur.getPosition().getX() + 300);
+        ennemie.getPosition().setY(joueur.getPosition().getY() + 300);
         environnement.getActeurs().add(ennemie);
 
         assertNull(joueur.chercherActeurAttaquable());
@@ -86,9 +89,9 @@ class JoueurTest {
     @Test
     void testAttaque() {
         //attaque
-        Ennemi ennemie = new Ennemi(environnement,14, 3,1);
-        ennemie.setX(joueur.getX() + 10);
-        ennemie.setY(joueur.getY() + 10);
+        Ennemi ennemie = new Ennemi(environnement, new Position(100, 100), 3,1, new Hitbox(16, 16));
+        ennemie.getPosition().setX(joueur.getPosition().getX() + 10);
+        ennemie.getPosition().setY(joueur.getPosition().getY() + 10);
         environnement.getActeurs().add(ennemie);
 
         int pvInitial = ennemie.getPV().getPv();
@@ -97,8 +100,8 @@ class JoueurTest {
 
         //pas attaquer
         environnement.getActeurs().remove(ennemie);
-        ennemie.setX(joueur.getX() + 300);
-        ennemie.setY(joueur.getY() + 300);
+        ennemie.getPosition().setX(joueur.getPosition().getX() + 300);
+        ennemie.getPosition().setY(joueur.getPosition().getY() + 300);
         environnement.getActeurs().add(ennemie);
 
         pvInitial = ennemie.getPV().getPv();
@@ -109,15 +112,15 @@ class JoueurTest {
     @Test
     void testPeutRamasse() {
         //item proche
-//        Item item = new Item(environnement, "TestItem", joueur.getX() + 10, joueur.getY() + 10);
+//        Item item = new Item(environnement, "TestItem", joueur.getPosition().getX() + 10, joueur.getPosition().getY() + 10);
 //        environnement.getInventaireEnvironnement().add(item);
 //
 //        assertNotNull(joueur.peutRamasse());
 //
 //        //item loin
 //        environnement.getInventaireEnvironnement().remove(item);
-//        item.setX(joueur.getX() + 300);
-//        item.setY(joueur.getY() + 300);
+//        item.getPosition().setX(joueur.getPosition().getX() + 300);
+//        item.getPosition().setY(joueur.getPosition().getY() + 300);
 //        environnement.getInventaireEnvironnement().add(item);
 //
 //        assertNull(joueur.peutRamasse());
@@ -126,7 +129,7 @@ class JoueurTest {
     @Test
     void testRamasse() {
         //nouvel item dans l'inventaire
-//        Item item = new Item(environnement, "TestItem", joueur.getX() + 10, joueur.getY() + 10);
+//        Item item = new Item(environnement, "TestItem", joueur.getPosition().getX() + 10, joueur.getPosition().getY() + 10);
 //        environnement.getInventaireEnvironnement().add(item);
 //
 //        joueur.ramasse();
@@ -136,8 +139,8 @@ class JoueurTest {
 //        //aucun changement
 //        joueur.getInventaire().remove(item);
 //        environnement.getInventaireEnvironnement().add(item);
-//        item.setX(joueur.getX() + 300);
-//        item.setY(joueur.getY() + 300);
+//        item.getPosition().setX(joueur.getPosition().getX() + 300);
+//        item.getPosition().setY(joueur.getPosition().getY() + 300);
 //
 //        joueur.ramasse();
 //        assertFalse(joueur.getInventaire().contains(item));
@@ -149,7 +152,7 @@ class JoueurTest {
         //a des bottes
         assertFalse(joueur.aBottesDeLevitation());
 
-        BotteLevitation bottes = new BotteLevitation(environnement,595,670);
+        BotteLevitation bottes = new BotteLevitation(environnement,new Position(595,670));
         joueur.setEquipement(bottes);
 
         assertTrue(joueur.aBottesDeLevitation());

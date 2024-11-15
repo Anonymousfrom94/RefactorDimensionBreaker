@@ -9,8 +9,4 @@ public abstract class Consommable extends Item {
     public Consommable(Joueur joueur, String nom, Position position) {
         super(joueur.getEnvironnement(), nom, position);
     }
-
-//    public void retirerDeLInventaire() { //a voir plus tard
-//        joueur.getInventaire().remove(this);
-//    }
 }

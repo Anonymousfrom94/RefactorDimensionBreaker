@@ -19,7 +19,7 @@ public class Joueur extends Acteur {
 
     private final ObservableList<Item> inventaire;
     private Equipement equipement;
-    
+
 
 
     public Joueur(Environnement environnement) {
@@ -120,6 +120,10 @@ public class Joueur extends Acteur {
             getEnvironnement().getInventaireEnvironnement().remove(item);
         }
 
+    }
+
+    public void retirerDeInventaire(Item item){
+        this.inventaire.remove(item);
     }
 
     @Override
