@@ -4,8 +4,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import universite_paris8.iut.osall.boom.modele.Environnement.Environnement;
 import universite_paris8.iut.osall.boom.modele.entite.ennemi.Ennemi;
-import universite_paris8.iut.osall.boom.modele.item.Arme.Arme;
-import universite_paris8.iut.osall.boom.modele.item.Arme.EpeEnBois;
 import universite_paris8.iut.osall.boom.modele.item.Equipement.BotteLevitation;
 import universite_paris8.iut.osall.boom.modele.item.Equipement.Equipement;
 import universite_paris8.iut.osall.boom.modele.item.Item;
@@ -113,6 +111,10 @@ public class Joueur extends Acteur {
         seDeplace();
         ramasse();
 //        attaque();
+    }
+
+    public void retirerDeInventaire(Item item){
+        this.inventaire.remove(item);
     }
 
     public boolean aBottesDeLevitation() {
