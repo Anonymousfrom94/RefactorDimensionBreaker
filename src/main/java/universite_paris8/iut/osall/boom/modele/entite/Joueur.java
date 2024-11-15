@@ -23,7 +23,7 @@ public class Joueur extends Acteur {
 
 
     public Joueur(Environnement environnement) {
-        super(environnement, new Position(780,550), Direction.BAS, 5,300, new Hitbox(16,16));
+        super(environnement, new Position(780,550), Direction.ARRET, 5,300, new Hitbox(16,16));
         setDirectionJoueur();
         this.inventaire = FXCollections.observableArrayList();
         inventaire.add(super.getArme());
@@ -110,7 +110,6 @@ public class Joueur extends Acteur {
         return null;
     }
 
-
     public void ramasse() {
 
         Item item = chercherItemRamassable();
@@ -137,7 +136,6 @@ public class Joueur extends Acteur {
 //       Vérifie s'il y a une collision dans la direction actuelle du joueur
         return collisionMap(this);  // Retourne vrai si collisionMap renvoie faux (pas de collision)
 
-//        return true;
 
     }
 
