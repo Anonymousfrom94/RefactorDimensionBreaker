@@ -1,9 +1,6 @@
 package universite_paris8.iut.osall.boom.modele.entite;
 
 import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 import universite_paris8.iut.osall.boom.modele.Utilitaire.PV;
 import universite_paris8.iut.osall.boom.modele.Environnement.Environnement;
 import universite_paris8.iut.osall.boom.modele.Utilitaire.Direction;
