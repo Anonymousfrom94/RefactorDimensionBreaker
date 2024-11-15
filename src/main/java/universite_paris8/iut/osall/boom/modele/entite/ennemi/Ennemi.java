@@ -10,16 +10,12 @@ import universite_paris8.iut.osall.boom.modele.entite.Joueur;
 public class Ennemi extends Acteur {
 
     private static final int rangeEnnemmi = 200;
-
     private long derniereAttaque;
     private static final long intervalleAttack = 1000;
 
     public Ennemi(Environnement environnement, Position position, int vitesse, int pvMax, Hitbox hitbox) {
         super(environnement, position, Direction.BAS, vitesse, pvMax, hitbox);
-
-
     }
-
 
     @Override
     public void agit() {

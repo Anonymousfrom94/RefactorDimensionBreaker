@@ -89,47 +89,45 @@ public class Environnement {
 
         allAddObs();
         allAddNoSpawn();
-        spawnItemEtEnnemie();
     }
 
     public void spawnItemEtEnnemie() {
-
         for (int i = 0; i < 50; i++) {
-            //new Squelette();
-            // Rajouter les ennemis en fonction
+            //new Squelette(this, new Position(this));
+                // Rajouter les ennemis en fonction
         }
-            // Spawn des 4 totem de résurrection
-            this.getInventaireEnvironnement().add(new TotemResurrection(this.getJoueur(), new Position(200, 135)));
-            this.getInventaireEnvironnement().add(new TotemResurrection(this.getJoueur(), new Position(1300, 50)));
-            this.getInventaireEnvironnement().add(new TotemResurrection(this.getJoueur(), new Position(82, 1300)));
-            this.getInventaireEnvironnement().add(new TotemResurrection(this.getJoueur(), new Position(1400, 1300)));
+        // Spawn des 4 totem de résurrection
+        this.getInventaireEnvironnement().add(new TotemResurrection(this.getJoueur(), new Position(200, 135)));
+        this.getInventaireEnvironnement().add(new TotemResurrection(this.getJoueur(), new Position(1300, 50)));
+        this.getInventaireEnvironnement().add(new TotemResurrection(this.getJoueur(), new Position(82, 1300)));
+        this.getInventaireEnvironnement().add(new TotemResurrection(this.getJoueur(), new Position(1400, 1300)));
 
-            // Spawn des 12 PotionHeal
-            for (int i = 0; i < 3; i++) {
-                int ecart = i * 128;
-                this.getInventaireEnvironnement().add(new PotionHeal(this.getJoueur(), new Position(89, 78)));
-                this.getInventaireEnvironnement().add(new PotionHeal(this.getJoueur(), new Position(1100 + ecart, 50 + ecart)));
-                this.getInventaireEnvironnement().add(new PotionHeal(this.getJoueur(), new Position(50 + ecart, 1100 + ecart)));
-                this.getInventaireEnvironnement().add(new PotionHeal(this.getJoueur(), new Position(1300 + ecart, 1100 - ecart)));
-            }
-
-            // Spawn des équipements (Bottes, ceinture, Couronne)
-            this.getInventaireEnvironnement().add(new BotteLevitation(this, new Position(595, 670)));
-//            this.getInventaireEnvironnement().add(new CeintureTP(this, 110, 100));
-//            this.getInventaireEnvironnement().add(new CouronneTemporel(this, 1450, 150));
-
-            // Spawn des Armes (une arme par zone)
-            this.getInventaireEnvironnement().add(new Dague(this, new Position(150, 100)));
-            this.getInventaireEnvironnement().add(new Sniper(this, new Position(1200, 200)));
-            this.getInventaireEnvironnement().add(new BatonElectrique(this, new Position(800, 1500)));
+        // Spawn des 12 PotionHeal
+        for (int i = 0; i < 3; i++) {
+            int ecart = i * 128;
+            this.getInventaireEnvironnement().add(new PotionHeal(this.getJoueur(), new Position(89, 78)));
+            this.getInventaireEnvironnement().add(new PotionHeal(this.getJoueur(), new Position(1100 + ecart, 50 + ecart)));
+            this.getInventaireEnvironnement().add(new PotionHeal(this.getJoueur(), new Position(50 + ecart, 1100 + ecart)));
+            this.getInventaireEnvironnement().add(new PotionHeal(this.getJoueur(), new Position(1300 + ecart, 1100 - ecart)));
         }
 
-        // test fin de game
-        public void finDeGame ( int temps){
-            if (this.getActeurs().size() == 1 && temps > 10 || !joueur.estVivant()) {
-                System.exit(0);
-            }
+        // Spawn des équipements (Bottes, ceinture, Couronne)
+        this.getInventaireEnvironnement().add(new BotteLevitation(this, new Position(595, 670)));
+        this.getInventaireEnvironnement().add(new CeintureTP(this, new Position(110, 100)));
+        this.getInventaireEnvironnement().add(new CouronneTemporel(this, new Position(1450, 150)));
+
+        // Spawn des Armes (une arme par zone)
+        this.getInventaireEnvironnement().add(new Dague(this, new Position(150, 100)));
+        this.getInventaireEnvironnement().add(new Sniper(this, new Position(1200, 200)));
+        this.getInventaireEnvironnement().add(new BatonElectrique(this, new Position(800, 1500)));
+    }
+
+    // test fin de game
+    public void finDeGame ( int temps){
+        if (this.getActeurs().size() == 1 && temps > 10 || !joueur.estVivant()) {
+            System.exit(0);
         }
+    }
 
 
 /* *********************************************************************************************************************
@@ -213,7 +211,7 @@ public class Environnement {
          ********************************************************************************************************************* */
 
         public void allAddObs () {
-            ajouterObstacle(316);
+//            ajouterObstacle(316); //eau
             ajouterObstacle(319);
             ajouterObstacle(676);
             ajouterObstacle(677);
@@ -249,12 +247,38 @@ public class Environnement {
         }
 
         public void allAddNoSpawn () {
-            ajouterNoSpawn(316);
-            ajouterNoSpawn(376);
-            ajouterNoSpawn(527);
-            ajouterNoSpawn(1052);
-            ajouterNoSpawn(377);
-            ajouterNoSpawn(378);
+//            ajouterObstacle(316); //eau
+            ajouterObstacle(319);
+            ajouterObstacle(676);
+            ajouterObstacle(677);
+            ajouterObstacle(678);
+            ajouterObstacle(679);
+            ajouterObstacle(751);
+            ajouterObstacle(752);
+            ajouterObstacle(753);
+            ajouterObstacle(754);
+            ajouterObstacle(826);
+            ajouterObstacle(827);
+            ajouterObstacle(828);
+            ajouterObstacle(829);
+            ajouterObstacle(380);
+            ajouterObstacle(455);
+            ajouterObstacle(529);
+            ajouterObstacle(530);
+            ajouterObstacle(454);
+            ajouterObstacle(379);
+            ajouterObstacle(976);
+            ajouterObstacle(977);
+            ajouterObstacle(978);
+            ajouterObstacle(1051);
+            ajouterObstacle(1053);
+            ajouterObstacle(1126);
+            ajouterObstacle(1127);
+            ajouterObstacle(1128);
+            ajouterObstacle(465);
+            ajouterObstacle(396);
+            ajouterObstacle(546);
+            ajouterObstacle(471);
         }
     }
 
