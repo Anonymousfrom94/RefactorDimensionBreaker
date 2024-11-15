@@ -53,7 +53,7 @@ public class Map {
             return false;
         }
         int idTuile = tableau[indice];
-        System.out.println("indice = "+ idTuile);
+//        System.out.println("indice = "+ idTuile);
 
         return !estDevantObstacle(idTuile);
 
@@ -80,7 +80,7 @@ public class Map {
         return false;
     }
 
-    public boolean estNoSpawn(int val) {
+    public boolean peutPasSpawmIci(int val) {
         for (int obstacle : environnement.getBlocNoSpawn()) {
             if (tableau[val] == obstacle) {
                 return true;

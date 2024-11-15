@@ -171,10 +171,10 @@ public class Joueur extends Acteur {
         boolean positionHautDroiteLibre = m.positionLibre(droite, haut);
 
 //Connaitre si la position est libre ou non
-        System.out.println("BasGauche: " + positionBasGaucheLibre);
-        System.out.println("BasDroite: " + positionBasDroiteLibre);
-        System.out.println("HautDroite: " + positionHautDroiteLibre);
-        System.out.println("HautGauche: " + positionHautGaucheLibre);
+//        System.out.println("BasGauche: " + positionBasGaucheLibre);
+//        System.out.println("BasDroite: " + positionBasDroiteLibre);
+//        System.out.println("HautDroite: " + positionHautDroiteLibre);
+//        System.out.println("HautGauche: " + positionHautGaucheLibre);
 
 
         if (!positionBasGaucheLibre || !positionBasDroiteLibre || !positionHautDroiteLibre || !positionHautGaucheLibre) {
