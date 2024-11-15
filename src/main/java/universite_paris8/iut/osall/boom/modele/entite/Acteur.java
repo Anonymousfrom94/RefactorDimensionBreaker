@@ -24,11 +24,12 @@ public abstract class Acteur {
     // Constructeur
     public Acteur(Environnement environnement, Position position, Direction direction, int vitesse, int pvMax, Hitbox hitbox) {
         this.environnement = environnement;
+        this.position = position;
+        this.direction = direction;
         this.vitesse = vitesse;
         this.pv = new PV(pvMax);
         this.id = "#" + compteur;
-        this.position = position;
-        this.direction = direction;
+
         compteur++;
         this.environnement.getActeurs().add(this);
         this.hitbox = hitbox;
@@ -58,24 +59,7 @@ public abstract class Acteur {
     }
 
     // Accesseurs et mutateurs pour la position (coordonnées X et Y)
-    public int getX(){
-        return this.position.getX(); // Correction : c'était getY() à la place de getX()
-    }
-    public void setX(int x) {
-        this.position.setX(x);
-    }
-    public int getY(){
-        return this.position.getY();
-    }
-    public void setY(int y) {
-        this.position.setY(y);
-    }
-    public IntegerProperty getXProperty(){
-        return this.position.getXProperty();
-    }
-    public IntegerProperty getYProperty(){
-        return this.position.getYProperty();
-    }
+
 
     // Accesseur et mutateur pour la vitesse
     public int getVitesse() {
@@ -123,6 +107,7 @@ public abstract class Acteur {
     public Hitbox getHitbox() {
         return hitbox;
     }
+
 
     /* *********************************************************************************************************************
 

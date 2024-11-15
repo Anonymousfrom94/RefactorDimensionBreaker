@@ -3,7 +3,7 @@ package universite_paris8.iut.osall.boom.controller;
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import universite_paris8.iut.osall.boom.modele.entite.Acteur;
+import universite_paris8.iut.osall.boom.modele.Utilitaire.Direction;
 import universite_paris8.iut.osall.boom.modele.entite.Joueur;
 
 import java.util.HashSet;
@@ -29,27 +29,54 @@ public class Clavier implements EventHandler<KeyEvent> {
         else if (keyEvent.getEventType() == KeyEvent.KEY_RELEASED)
             this.touchePress.remove(keyEvent.getCode());
 
-
         String direction = "";
 //modif
         if (touchePress.contains(Z)){
             direction += "haut";
+            joueur.setDirection(Direction.HAUT);
+            joueur.seDeplace();
         }
         if (touchePress.contains(S)){
             direction += "bas";
+            joueur.setDirection(Direction.BAS);
+            joueur.seDeplace();
         }
         if (touchePress.contains(Q)){
             direction += "gauche";
+            joueur.setDirection(Direction.GAUCHE);
+            joueur.seDeplace();
         }
         if (touchePress.contains(D)){
             direction += "droite";
+            joueur.setDirection(Direction.DROITE);
+            joueur.seDeplace();
         }
 
-        this.joueur.getDirection().setDirection(direction);
+
+        this.joueur.getDirection().setDirectionProperty(direction);
         
         if (touchePress.contains(J)){
             this.joueur.attaque();
             touchePress.clear();
+        }
+        if (touchePress.contains(T)){
+            for (int i=0;i<this.joueur.getEnvironnement().getMap().getTableau().length;i++) {
+                if (joueur.getEnvironnement().estObstacle(i)) {
+                    System.out.print(i + ", ");
+                }
+            }
+
+        }
+        if (touchePress.contains(A)){
+            System.out.println("ind joueur= "+joueur.getEnvironnement().getMap().indice(joueur.getPosition().getX(), joueur.getPosition().getY()));
+            System.out.println("ind case= "+joueur.getEnvironnement().getMap().getTableau()[joueur.getEnvironnement().getMap().indice(joueur.getPosition().getX(), joueur.getPosition().getY())]);
+            System.out.println(joueur.getEnvironnement().getMap().estDevantObstacle(joueur.getEnvironnement().getMap().getTableau()[joueur.getEnvironnement().getMap().indice(joueur.getPosition().getX(), joueur.getPosition().getY())]));
+            System.out.println(joueur.getEnvironnement().getMap().estDevantObstacle(joueur.getEnvironnement().getMap().getTableau()[joueur.getEnvironnement().getMap().indice(joueur.getPosition().getX()+joueur.getHitbox().getLargeur(), joueur.getPosition().getY())]));
+            System.out.println(joueur.getEnvironnement().getMap().estDevantObstacle(joueur.getEnvironnement().getMap().getTableau()[joueur.getEnvironnement().getMap().indice(joueur.getPosition().getX(), joueur.getPosition().getY()+joueur.getHitbox().getHauteur())]));
+            System.out.println(joueur.getEnvironnement().getMap().estDevantObstacle(joueur.getEnvironnement().getMap().getTableau()[joueur.getEnvironnement().getMap().indice(joueur.getPosition().getX()+joueur.getHitbox().getLargeur(), joueur.getPosition().getY()+joueur.getHitbox().getHauteur())]));
+
+
+
         }
 
         if (touchePress.contains(K) && joueur.getEquipement() != null){

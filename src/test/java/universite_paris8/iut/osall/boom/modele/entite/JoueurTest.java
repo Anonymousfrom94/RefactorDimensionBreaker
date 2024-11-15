@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 import universite_paris8.iut.osall.boom.modele.Environnement.Environnement;
 import universite_paris8.iut.osall.boom.modele.entite.ennemi.Ennemi;
 import universite_paris8.iut.osall.boom.modele.item.Equipement.BotteLevitation;
-import universite_paris8.iut.osall.boom.modele.item.Item;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -54,21 +53,21 @@ class JoueurTest {
         joueur.seDeplace();
         assertEquals(0, joueur.getX());
 
-        joueur.setX(environnement.getWidth() - joueur.getHitbox().getLargeur());
-        joueur.setY(environnement.getHeight() - joueur.getHitbox().getHauteur());
+        joueur.setX(environnement.getMap().getWidth() - joueur.getHitbox().getLargeur());
+        joueur.setY(environnement.getMap().getHeight() - joueur.getHitbox().getHauteur());
         joueur.setDirection("bas");
         joueur.seDeplace();
-        assertEquals(environnement.getHeight() - joueur.getHauteur(), joueur.getY());
+        assertEquals(environnement.getMap().getHeight() - joueur.getHauteur(), joueur.getY());
 
         joueur.setDirection("droite");
         joueur.seDeplace();
-        assertEquals(environnement.getWidth() - joueur.getLargeur(), joueur.getX());
+        assertEquals(environnement.getMap().getWidth() - joueur.getLargeur(), joueur.getX());
     }
 
     @Test
     void testEstAttaquable() {
         // ennemie a coté
-        Ennemi ennemie = new Ennemi(environnement,14,14,3,1);
+        Ennemi ennemie = new Ennemi(environnement,14, 3,1);
         ennemie.setX(joueur.getX() + 10);
         ennemie.setY(joueur.getY() + 10);
         environnement.getActeurs().add(ennemie);
@@ -87,7 +86,7 @@ class JoueurTest {
     @Test
     void testAttaque() {
         //attaque
-        Ennemi ennemie = new Ennemi(environnement,14,14,3,1);
+        Ennemi ennemie = new Ennemi(environnement,14, 3,1);
         ennemie.setX(joueur.getX() + 10);
         ennemie.setY(joueur.getY() + 10);
         environnement.getActeurs().add(ennemie);

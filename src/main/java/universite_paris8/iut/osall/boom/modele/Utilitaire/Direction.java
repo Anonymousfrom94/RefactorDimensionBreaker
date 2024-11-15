@@ -1,5 +1,6 @@
 package universite_paris8.iut.osall.boom.modele.Utilitaire;
 
+import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 public enum  Direction {
@@ -13,17 +14,18 @@ public enum  Direction {
 
     private int x,y;
 
-
     private StringProperty nom;
+
     private Direction(int x,int y)
     {
         this.x = x;
         this.y = y;
+        this.nom = new SimpleStringProperty("bas");
     }
 
     public StringProperty getDirectionProperty() { return nom; }
 
-    public void setDirection(String nom) {
+    public void setDirectionProperty(String nom) {
         this.nom.set(nom);
     }
 

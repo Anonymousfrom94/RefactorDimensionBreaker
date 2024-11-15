@@ -3,6 +3,7 @@ package universite_paris8.iut.osall.boom.modele.Environnement;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import universite_paris8.iut.osall.boom.modele.Utilitaire.Direction;
+import universite_paris8.iut.osall.boom.modele.Utilitaire.Position;
 import universite_paris8.iut.osall.boom.modele.entite.Acteur;
 import universite_paris8.iut.osall.boom.modele.entite.ennemi.Boss;
 import universite_paris8.iut.osall.boom.modele.entite.ennemi.Ennemi;
@@ -22,14 +23,14 @@ import java.util.ArrayList;
 
 public class Environnement {
     private Map map;
-   // private int width;
-   // private int height;
+    // private int width;
+    // private int height;
     private Joueur joueur;
     //joueur dans la liste
     private ObservableList<Acteur> acteurs;
     private ObservableList<Item> inventaireEnvironnement;
-//    private int largeurTuile;
- //   private int hauteurTuile;
+    //    private int largeurTuile;
+    //   private int hauteurTuile;
     private ArrayList<Integer> obstacles;
     private ArrayList<Integer> blocNoSpawn;
     private int compteurKill;
@@ -58,7 +59,7 @@ public class Environnement {
         // Déplacement des acteurs (ennemis)
         for (int i = acteurs.size() - 1; i >= 0; i--) {
             Acteur acteur = acteurs.get(i);
-            acteur.agit();
+//            acteur.agit();
             if (!acteur.estVivant()) {
                 System.out.println("Mort de : " + acteur);
                 acteurs.remove(i);
@@ -68,15 +69,15 @@ public class Environnement {
 
                 System.out.println("Nombre d'ennemis tués : " + compteurKill);
             }
-            if (acteur instanceof Ennemi){
-                //sedeplace attaque aussi
-                acteur.seDeplace();
-            }
+//            if (acteur instanceof Ennemi) {
+//                //sedeplace attaque aussi
+//                acteur.agit();
+//            }
 //            if (acteur instanceof Ennemi){
 //                acteur.seDeplace();
 //            }
         }
-        if (acteurs.size() == 1 && compteurKill == 50){
+        if (acteurs.size() == 1 && compteurKill == 50) {
             new Boss(this);
         }
 //        finDeGame(temps);
@@ -88,165 +89,174 @@ public class Environnement {
 
         allAddObs();
         allAddNoSpawn();
+        spawnItemEtEnnemie();
     }
 
-    public void spawnItemEtEnnemie(){
-        for (int i = 0; i < 50; i++){
-            new Squelette(this);
-            // Rajouter les ennemis en fonction
+    public void spawnItemEtEnnemie() {
+       return;
+       /* //for (int i = 0; i < 50; i++) {
+            //new Squelette();
+                // Rajouter les ennemis en fonction
+        //    }
+            // Spawn des 4 totem de résurrection
+            this.getInventaireEnvironnement().add(new TotemResurrection(this.getJoueur(), 200, 135));
+            this.getInventaireEnvironnement().add(new TotemResurrection(this.getJoueur(), 1300, 50));
+            this.getInventaireEnvironnement().add(new TotemResurrection(this.getJoueur(), 82, 1300));
+            this.getInventaireEnvironnement().add(new TotemResurrection(this.getJoueur(), 1400, 1300));
+
+            // Spawn des 12 PotionHeal
+            for (int i = 0; i < 3; i++) {
+                int ecart = i * 128;
+                this.getInventaireEnvironnement().add(new PotionHeal(this.getJoueur(), 89, 78));
+                this.getInventaireEnvironnement().add(new PotionHeal(this.getJoueur(), 1100 + ecart, 50 + ecart));
+                this.getInventaireEnvironnement().add(new PotionHeal(this.getJoueur(), 50 + ecart, 1100 + ecart));
+                this.getInventaireEnvironnement().add(new PotionHeal(this.getJoueur(), 1300 + ecart, 1100 - ecart));
+            }
+
+            // Spawn des équipements (Bottes, ceinture, Couronne)
+            this.getInventaireEnvironnement().add(new BotteLevitation(this, 595, 670));
+            this.getInventaireEnvironnement().add(new CeintureTP(this, 110, 100));
+            this.getInventaireEnvironnement().add(new CouronneTemporel(this, 1450, 150));
+
+            // Spawn des Armes (une arme par zone)
+            this.getInventaireEnvironnement().add(new Dague(this, 150, 100));
+            this.getInventaireEnvironnement().add(new Sniper(this, 1200, 200));
+            this.getInventaireEnvironnement().add(new BatonElectrique(this, 800, 1500));*/
         }
-        // Spawn des 4 totem de résurrection
-        this.getInventaireEnvironnement().add(new TotemResurrection(this.getJoueur(), 200, 135));
-        this.getInventaireEnvironnement().add(new TotemResurrection(this.getJoueur(), 1300, 50));
-        this.getInventaireEnvironnement().add(new TotemResurrection(this.getJoueur(), 82, 1300));
-        this.getInventaireEnvironnement().add(new TotemResurrection(this.getJoueur(), 1400, 1300));
 
-        // Spawn des 12 PotionHeal
-        for (int i = 0; i < 3; i++){
-            int ecart = i*128;
-            this.getInventaireEnvironnement().add(new PotionHeal(this.getJoueur(), 89, 78));
-            this.getInventaireEnvironnement().add(new PotionHeal(this.getJoueur(), 1100 + ecart, 50 + ecart));
-            this.getInventaireEnvironnement().add(new PotionHeal(this.getJoueur(), 50 + ecart, 1100 + ecart));
-            this.getInventaireEnvironnement().add(new PotionHeal(this.getJoueur(), 1300 + ecart, 1100 - ecart));
+        // test fin de game
+        public void finDeGame ( int temps){
+            if (this.getActeurs().size() == 1 && temps > 10 || !joueur.estVivant()) {
+                System.exit(0);
+            }
         }
 
-        // Spawn des équipements (Bottes, ceinture, Couronne)
-        this.getInventaireEnvironnement().add(new BotteLevitation(this,595,670));
-        this.getInventaireEnvironnement().add(new CeintureTP(this, 110, 100));
-        this.getInventaireEnvironnement().add(new CouronneTemporel(this, 1450, 150));
-
-        // Spawn des Armes (une arme par zone)
-        this.getInventaireEnvironnement().add(new Dague(this, 150, 100));
-        this.getInventaireEnvironnement().add(new Sniper(this, 1200, 200));
-        this.getInventaireEnvironnement().add(new BatonElectrique(this, 800, 1500));
-    }
-
-    // test fin de game
-    public void finDeGame(int temps){
-        if (this.getActeurs().size() == 1 && temps > 10 || !joueur.estVivant()){
-            System.exit(0);
-        }
-    }
 
 /* *********************************************************************************************************************
                                              ADD
 ********************************************************************************************************************* */
-    public void ajouterActeur(Acteur acteur) {
-        acteurs.add(acteur);
-    }
+        public void ajouterActeur (Acteur acteur){
+            acteurs.add(acteur);
+        }
 
-    public void ajouterObstacle(int obstacle) {
-        obstacles.add(obstacle);
-    }
+        public void ajouterObstacle ( int obstacle){
+            obstacles.add(obstacle);
+        }
 
-    public void ajouterNoSpawn(int obstacle) {
-        blocNoSpawn.add(obstacle);
-    }
+        public void ajouterNoSpawn ( int obstacle){
+            blocNoSpawn.add(obstacle);
+        }
+
+
 
 /* *********************************************************************************************************************
                                            GETTER & SETTER & BOOLEAN
 ********************************************************************************************************************* */
-    public ObservableList<Acteur> getActeurs() {
-        return acteurs;
+        public ObservableList<Acteur> getActeurs () {
+            return acteurs;
+        }
+
+        public ObservableList<Item> getInventaireEnvironnement () {
+            return inventaireEnvironnement;
+        }
+
+        //deplacer
+        public int getWidth () {
+            return 0;
+        }
+
+        public int getHeight () {
+            // return height;
+            return 0;
+        }
+
+        public int getLargeurTuile () {
+            //     return largeurTuile;
+            return 0;
+        }
+
+        public int getHauteurTuile () {
+            //   return hauteurTuile;
+            return 0;
+        }
+
+        public Map getMap () {
+            return map;
+        }
+
+        public Joueur getJoueur () {
+            return joueur;
+        }
+
+        public int[] getInfoTuile () {
+            return this.infoTuile;
+        }
+
+        public ArrayList<Integer> getObstacles () {
+            return obstacles;
+        }
+
+        public ArrayList<Integer> getBlocNoSpawn () {
+            return blocNoSpawn;
+        }
+
+        public boolean estObstacle ( int obstacle){
+            return obstacles.contains(obstacle);
+        }
+
+        public boolean estNoSpawn ( int obstacle){
+            return blocNoSpawn.contains(obstacle);
+        }
+
+        /* *********************************************************************************************************************
+
+         ********************************************************************************************************************* */
+
+        public void allAddObs () {
+            ajouterObstacle(316);
+            ajouterObstacle(319);
+            ajouterObstacle(676);
+            ajouterObstacle(677);
+            ajouterObstacle(678);
+            ajouterObstacle(679);
+            ajouterObstacle(751);
+            ajouterObstacle(752);
+            ajouterObstacle(753);
+            ajouterObstacle(754);
+            ajouterObstacle(826);
+            ajouterObstacle(827);
+            ajouterObstacle(828);
+            ajouterObstacle(829);
+            ajouterObstacle(380);
+            ajouterObstacle(455);
+            ajouterObstacle(529);
+            ajouterObstacle(530);
+            ajouterObstacle(454);
+            ajouterObstacle(379);
+            ajouterObstacle(976);
+            ajouterObstacle(977);
+            ajouterObstacle(978);
+            ajouterObstacle(1051);
+            ajouterObstacle(1053);
+            ajouterObstacle(1126);
+            ajouterObstacle(1127);
+            ajouterObstacle(1128);
+            ajouterObstacle(465);
+            ajouterObstacle(396);
+            ajouterObstacle(546);
+            ajouterObstacle(471);
+
+        }
+
+        public void allAddNoSpawn () {
+            ajouterNoSpawn(316);
+            ajouterNoSpawn(376);
+            ajouterNoSpawn(527);
+            ajouterNoSpawn(1052);
+            ajouterNoSpawn(377);
+            ajouterNoSpawn(378);
+        }
     }
 
-    public ObservableList<Item> getInventaireEnvironnement() {
-        return inventaireEnvironnement;
-    }
 
-    //deplacer
-    public int getWidth() {
-        return 0;
-    }
 
-    public int getHeight() {
-       // return height;
-        return 0;
-    }
-
-    public int getLargeurTuile() {
-   //     return largeurTuile;
-        return 0;
-    }
-
-    public int getHauteurTuile() {
-     //   return hauteurTuile;
-        return 0;
-    }
-
-    public Map getMap() {
-        return map;
-    }
-
-    public Joueur getJoueur() {
-        return joueur;
-    }
-
-    public int[] getInfoTuile() {
-        return this.infoTuile;
-    }
-
-    public ArrayList<Integer> getObstacles() {
-        return obstacles;
-    }
-
-    public ArrayList<Integer> getBlocNoSpawn() {
-        return blocNoSpawn;
-    }
-
-    public boolean estObstacle(int obstacle) {
-        return obstacles.contains(obstacle);
-    }
-
-    public boolean estNoSpawn(int obstacle) {
-        return blocNoSpawn.contains(obstacle);
-    }
-
-/* *********************************************************************************************************************
-
-********************************************************************************************************************* */
-    public void allAddObs(){
-        ajouterObstacle(316);
-        ajouterObstacle(319);
-        ajouterObstacle(676);
-        ajouterObstacle(677);
-        ajouterObstacle(678);
-        ajouterObstacle(679);
-        ajouterObstacle(751);
-        ajouterObstacle(752);
-        ajouterObstacle(753);
-        ajouterObstacle(754);
-        ajouterObstacle(826);
-        ajouterObstacle(827);
-        ajouterObstacle(828);
-        ajouterObstacle(829);
-        ajouterObstacle(380);
-        ajouterObstacle(455);
-        ajouterObstacle(529);
-        ajouterObstacle(530);
-        ajouterObstacle(454);
-        ajouterObstacle(379);
-        ajouterObstacle(976);
-        ajouterObstacle(977);
-        ajouterObstacle(978);
-        ajouterObstacle(1051);
-        ajouterObstacle(1053);
-        ajouterObstacle(1126);
-        ajouterObstacle(1127);
-        ajouterObstacle(1128);
-        ajouterObstacle(465);
-        ajouterObstacle(396);
-        ajouterObstacle(546);
-        ajouterObstacle(471);
-
-    }
-
-    public void allAddNoSpawn(){
-        ajouterNoSpawn(316);
-        ajouterNoSpawn(376);
-        ajouterNoSpawn(527);
-        ajouterNoSpawn(1052);
-        ajouterNoSpawn(377);
-        ajouterNoSpawn(378);
-    }
-}

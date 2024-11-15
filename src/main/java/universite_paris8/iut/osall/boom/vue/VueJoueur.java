@@ -50,13 +50,13 @@ public class VueJoueur {
         this.d2 = new Image("file:src/main/resources/universite_paris8/iut/osall/boom/imgPerso/joueur_droite_2.png");
 
         imageView.setImage(s1);
-        imageView.setTranslateX(joueur.getX());
-        imageView.setTranslateY(joueur.getY());
+        imageView.setTranslateX(joueur.getPosition().getX());
+        imageView.setTranslateY(joueur.getPosition().getY());
         pane.getChildren().add(imageView);
         Clavier x  = new Clavier(joueur);
         pane.addEventFilter(KeyEvent.KEY_PRESSED, x);
-        imageView.translateXProperty().bind(joueur.getXproperty());
-        imageView.translateYProperty().bind(joueur.getYproperty());
+        imageView.translateXProperty().bind(joueur.getPosition().getXProperty());
+        imageView.translateYProperty().bind(joueur.getPosition().getYProperty());
 
         vieBarre.setTranslateX(46);
         vieBarre.setTranslateY(26);

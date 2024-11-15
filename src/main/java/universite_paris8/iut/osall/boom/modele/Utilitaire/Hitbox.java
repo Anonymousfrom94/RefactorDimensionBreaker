@@ -1,7 +1,6 @@
 package universite_paris8.iut.osall.boom.modele.Utilitaire;
 
 public class Hitbox {
-
     private int hauteur;
     private int largeur;
 
@@ -9,34 +8,48 @@ public class Hitbox {
         setHitbox(hauteur, largeur);
     }
 
-    //Methode créer en dehors du constructeur pour gerer les exception (sera coder plus tard)
+    // Méthode pour définir la hauteur et la largeur de la hitbox
     private void setHitbox(int hauteur, int largeur) {
         this.hauteur = hauteur;
         this.largeur = largeur;
     }
 
-
-
-    public int getHauteur(){
+    // Getters pour la hauteur et la largeur
+    public int getHauteur() {
         return hauteur;
     }
-    public int getLargeur(){
+
+    public int getLargeur() {
         return largeur;
     }
 
-    public double getPointLePlusAGauche(Position centre) {
-        return centre.getX()-((double) largeur /2);
+    // Méthode pour vérifier si un point donné (x, y) est contenu dans cette hitbox
+    public boolean contient(Position centre, Position cible) {
+        int limiteGauche = getPointLePlusAGauche(centre);
+        int limiteDroite = getPointLePlusADroite(centre);
+        int limiteHaut = getPointLePlusEnHaut(centre);
+        int limiteBas = getPointLePlusEnBas(centre);
+
+        // Vérifie si la position cible est dans les limites de la hitbox
+        return (cible.getX() >= limiteGauche && cible.getX() <= limiteDroite &&
+                cible.getY() >= limiteHaut && cible.getY() <= limiteBas);
     }
 
-    public double getPointLePlusADroite(Position centre) {
-        return centre.getX()+((double) largeur /2);
+    public int getPointLePlusAGauche(Position centre) {
+        return (centre.getX()+3) - ( largeur / 2);
     }
 
-    public double getPointLePlusEnHaut(Position centre) {
-        return centre.getY()-((double) hauteur /2);
+    public int getPointLePlusADroite(Position centre) {
+        return (centre.getX()-3) + (largeur / 2);
+
     }
 
-    public double getPointLePlusEnBas(Position centre) {
-        return centre.getY()+((double) hauteur /2);
+    public int getPointLePlusEnHaut(Position centre) {
+        return (centre.getY()+5) - ( hauteur / 2);
+
+    }
+
+    public int getPointLePlusEnBas(Position centre) {
+        return (centre.getY()-5) + (hauteur / 2);
     }
 }
