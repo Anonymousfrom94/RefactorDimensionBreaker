@@ -77,10 +77,6 @@ public class Ennemi extends Acteur {
 
     }
 
-    @Override
-    public boolean estDansHitbox() {
-        return false;
-    }
 
     private boolean peutAttaquer() {
 //        double distance = Math.sqrt(getX() * getX() + getY() * getY());

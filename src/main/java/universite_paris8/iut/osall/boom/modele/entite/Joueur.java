@@ -45,26 +45,27 @@ public class Joueur extends Acteur {
 
     }
 
-    @Override
-    public boolean estDansHitbox() {
-        return false;
-    }
 
 
     public Acteur chercherActeurAttaquable(){
+        Hitbox hitbox = this.getHitbox();
+        Position centreJoueur = this.getPosition();
+
         for(Acteur e : super.getEnvironnement().getActeurs()){
             if(e instanceof Ennemi){
-                if (
-                        (this.getPosition().getX() - super.getArme().getRange() <= e.getPosition().getX() && this.getPosition().getX() + 16 + super.getArme().getRange() >= e.getPosition().getX()) &&
-                                (this.getPosition().getY() - super.getArme().getRange() <= e.getPosition().getY() && this.getPosition().getY() + 16 + super.getArme().getRange() >= e.getPosition().getY())
-                ){
-                    System.out.println("ennemie proche");
-                    return e;
+
+                for (Acteur ennemi : this.getEnvironnement().getActeurs()) {
+                Position positionEnnemi = ennemi.getPosition();
+
+                    if (hitbox.estAProximité(centreJoueur, positionEnnemi)) {
+                        System.out.println("Oh un ennemi !");
+                        return ennemi;
+                    }
                 }
 
             }
         }
-        System.out.println("Pas d'ennemie");
+//        System.out.println("Pas d'ennemie");
         return null;
     }
 
@@ -80,30 +81,15 @@ public class Joueur extends Acteur {
         }
     }
 
-    // a coder dans hitbox
-    //c'est fait'
-    /*public Item chercherItemRamassable(){
-        for (Item item : this.getEnvironnement().getInventaireEnvironnement()){
-            if (
-                    (this.getX() - 10 <= item.getX() && this.getX() + 16 + 10 >= item.getX()) &&
-                            (this.getPosition().getY() - 10 <= item.getPosition().getYProperty() && this.getPosition().getY() + 16 + 10 >= item.getPosition().getYProperty())
-            ){
-                return item;
-            }
-
-        }
-        return null;
-    }*/
-
     public Item chercherItemRamassable() {
         Hitbox hitbox = this.getHitbox();
         Position centreJoueur = this.getPosition();
 
-        // Parcourt tous les items dans l'environnement
+
         for (Item item : this.getEnvironnement().getInventaireEnvironnement()) {
             Position positionItem = item.getPosition();
 
-            if (hitbox.contient(centreJoueur, positionItem)) {
+            if (hitbox.estAProximité(centreJoueur, positionItem)) {
                 return item;
             }
         }
@@ -146,8 +132,8 @@ public class Joueur extends Acteur {
 
         // Calculer la position cible en fonction de la direction et de la vitesse
         // Position actuelle de l'objet
-        int pX = this.getPosition().getX()+(getVitesse()*getDirection().getX());
-        int pY = this.getPosition().getY()+(getVitesse()*getDirection().getY());
+        int pX = acteur.getPosition().getX()+(getVitesse()*getDirection().getX());
+        int pY = acteur.getPosition().getY()+(getVitesse()*getDirection().getY());
 
 // Affichage pour débogage
 //        System.out.println("PX = " + pX + " PY = " + pY);

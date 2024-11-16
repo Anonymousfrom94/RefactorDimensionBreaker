@@ -47,7 +47,6 @@ public abstract class Acteur {
 
     public abstract void seDeplace();
 
-    public abstract boolean estDansHitbox();
 
 /* *********************************************************************************************************************
                                                 ACCESSEURS & MUTATEURS

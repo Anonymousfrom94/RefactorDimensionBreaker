@@ -21,11 +21,11 @@ public class ListObsActeurs implements ListChangeListener<Acteur> {
 
     @Override
     public void onChanged(Change<? extends Acteur> change) {
-        System.out.println("Changement");
+//        System.out.println("Changement");
         while (change.next()){
-            System.out.println("est-ce des ajouts ? " + change.wasAdded());
-            System.out.println("est-ce des suppressions ? " + change.wasRemoved());
-            System.out.println("les ajouts : " + change.getAddedSubList());
+//            System.out.println("est-ce des ajouts ? " + change.wasAdded());
+//            System.out.println("est-ce des suppressions ? " + change.wasRemoved());
+//            System.out.println("les ajouts : " + change.getAddedSubList());
             for (Acteur a : change.getAddedSubList()) {
                 creerSpriteEnnemie(pane, (Ennemi) a);
                 //Ajout des listener à chaque ennemi après qu'ils soient créer
@@ -65,7 +65,7 @@ public class ListObsActeurs implements ListChangeListener<Acteur> {
         int largeurBarre = 16;
         double pourcentageVieRestante = (double) acteur.getPV().getPv() / acteur.getPV().getPvMax();
         Rectangle vieBarre = (Rectangle) pane.lookup("#vieBarre_" + acteur.getId());
-        System.out.println("Pourcentage de vie " + pourcentageVieRestante);
+//        System.out.println("Pourcentage de vie " + pourcentageVieRestante);
 
         if (vieBarre != null) {
 
