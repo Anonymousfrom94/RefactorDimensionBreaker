@@ -19,8 +19,8 @@ public class Position {
     public Position(Environnement environnement) {
         this.x = new SimpleIntegerProperty();
         this.y = new SimpleIntegerProperty();
-        int x = 0;
-        int y = 0;
+        int x;
+        int y;
         do {
             x = (int) (Math.random() * 1500);
             y = (int) (Math.random() * 1500);

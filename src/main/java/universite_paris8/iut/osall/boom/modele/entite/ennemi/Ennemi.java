@@ -77,7 +77,6 @@ public class Ennemi extends Acteur {
 
     }
 
-
     private boolean peutAttaquer() {
 //        double distance = Math.sqrt(getX() * getX() + getY() * getY());
 //        if (super.getArme() != null && distance <= super.getArme().getRange()) {
@@ -105,7 +104,6 @@ public class Ennemi extends Acteur {
                 }
             }
         }
-
 
         return true; // Aucun obstacle trouvé, mouvement possible
     }

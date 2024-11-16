@@ -93,7 +93,7 @@ public class Environnement {
 
     public void spawnItemEtEnnemie() {
         for (int i = 0; i < 50; i++) {
-            //new Squelette(this, new Position(this));
+            new Squelette(this, new Position(this));
                 // Rajouter les ennemis en fonction
         }
         // Spawn des 4 totem de résurrection
@@ -158,25 +158,6 @@ public class Environnement {
             return inventaireEnvironnement;
         }
 
-        //deplacer
-        public int getWidth () {
-            return 0;
-        }
-
-        public int getHeight () {
-            // return height;
-            return 0;
-        }
-
-        public int getLargeurTuile () {
-            //     return largeurTuile;
-            return 0;
-        }
-
-        public int getHauteurTuile () {
-            //   return hauteurTuile;
-            return 0;
-        }
 
         public Map getMap () {
             return map;
@@ -210,76 +191,51 @@ public class Environnement {
 
          ********************************************************************************************************************* */
 
-        public void allAddObs () {
+    public void allAddObs () {
 //            ajouterObstacle(316); //eau
-            ajouterObstacle(319);
-            ajouterObstacle(676);
-            ajouterObstacle(677);
-            ajouterObstacle(678);
-            ajouterObstacle(679);
-            ajouterObstacle(751);
-            ajouterObstacle(752);
-            ajouterObstacle(753);
-            ajouterObstacle(754);
-            ajouterObstacle(826);
-            ajouterObstacle(827);
-            ajouterObstacle(828);
-            ajouterObstacle(829);
-            ajouterObstacle(380);
-            ajouterObstacle(455);
-            ajouterObstacle(529);
-            ajouterObstacle(530);
-            ajouterObstacle(454);
-            ajouterObstacle(379);
-            ajouterObstacle(976);
-            ajouterObstacle(977);
-            ajouterObstacle(978);
-            ajouterObstacle(1051);
-            ajouterObstacle(1053);
-            ajouterObstacle(1126);
-            ajouterObstacle(1127);
-            ajouterObstacle(1128);
-            ajouterObstacle(465);
-            ajouterObstacle(396);
-            ajouterObstacle(546);
-            ajouterObstacle(471);
+        ajouterObstacle(319);
+        ajouterObstacle(676);
+        ajouterObstacle(677);
+        ajouterObstacle(678);
+        ajouterObstacle(679);
+        ajouterObstacle(751);
+        ajouterObstacle(752);
+        ajouterObstacle(753);
+        ajouterObstacle(754);
+        ajouterObstacle(826);
+        ajouterObstacle(827);
+        ajouterObstacle(828);
+        ajouterObstacle(829);
+        ajouterObstacle(380);
+        ajouterObstacle(455);
+        ajouterObstacle(529);
+        ajouterObstacle(530);
+        ajouterObstacle(454);
+        ajouterObstacle(379);
+        ajouterObstacle(976);
+        ajouterObstacle(977);
+        ajouterObstacle(978);
+        ajouterObstacle(1051);
+        ajouterObstacle(1053);
+        ajouterObstacle(1126);
+        ajouterObstacle(1127);
+        ajouterObstacle(1128);
+        ajouterObstacle(465);
+        ajouterObstacle(396);
+        ajouterObstacle(546);
+        ajouterObstacle(471);
 
-        }
+    }
 
-        public void allAddNoSpawn () {
-//            ajouterObstacle(316); //eau
-            ajouterObstacle(319);
-            ajouterObstacle(676);
-            ajouterObstacle(677);
-            ajouterObstacle(678);
-            ajouterObstacle(679);
-            ajouterObstacle(751);
-            ajouterObstacle(752);
-            ajouterObstacle(753);
-            ajouterObstacle(754);
-            ajouterObstacle(826);
-            ajouterObstacle(827);
-            ajouterObstacle(828);
-            ajouterObstacle(829);
-            ajouterObstacle(380);
-            ajouterObstacle(455);
-            ajouterObstacle(529);
-            ajouterObstacle(530);
-            ajouterObstacle(454);
-            ajouterObstacle(379);
-            ajouterObstacle(976);
-            ajouterObstacle(977);
-            ajouterObstacle(978);
-            ajouterObstacle(1051);
-            ajouterObstacle(1053);
-            ajouterObstacle(1126);
-            ajouterObstacle(1127);
-            ajouterObstacle(1128);
-            ajouterObstacle(465);
-            ajouterObstacle(396);
-            ajouterObstacle(546);
-            ajouterObstacle(471);
-        }
+    public void allAddNoSpawn () {
+        ajouterNoSpawn(316);
+        ajouterNoSpawn(319);
+        ajouterNoSpawn(376);
+        ajouterNoSpawn(527);
+        ajouterNoSpawn(1052);
+        ajouterNoSpawn(377);
+        ajouterNoSpawn(378);
+    }
     }
 
 
