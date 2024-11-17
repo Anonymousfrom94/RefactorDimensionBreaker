@@ -1,5 +1,7 @@
 package universite_paris8.iut.osall.boom.modele.Environnement;
 
+import java.util.ArrayList;
+
 public class Map {
 
     private int[] tableau;
@@ -32,20 +34,20 @@ public class Map {
 
 
 //A supprimer mais Barou vas surement s'en inspiré'
-    private boolean obstacle(int indice1, int indice2, int obstacle, boolean aBottesDeLevitation) {
-        int[] tableau = getTableau();
+//    private boolean obstacle(int indice1, int indice2, int obstacle, boolean aBottesDeLevitation) {
+//        int[] tableau = getTableau();
+//
+//        if (indice1 >= 0 && indice1 < tableau.length && indice2 >= 0 && indice2 < tableau.length) {
+//            if ((tableau[indice1] == obstacle || tableau[indice2] == obstacle) && (obstacle != 316 || !aBottesDeLevitation)) {
+//                return false;
+//            }
+//            return true;
+//        }
+//        return false;
+//    }
 
-        if (indice1 >= 0 && indice1 < tableau.length && indice2 >= 0 && indice2 < tableau.length) {
-            if ((tableau[indice1] == obstacle || tableau[indice2] == obstacle) && (obstacle != 316 || !aBottesDeLevitation)) {
-                return false;
-            }
-            return true;
-        }
-        return false;
-    }
 
-
-    public boolean positionLibre(int x, int y ){
+    public boolean positionLibre(int x, int y, ArrayList<Integer> obstacles){
 
         int indice = indice(x, y);
 
@@ -54,7 +56,7 @@ public class Map {
         }
         int idTuile = tableau[indice];
 
-        return !estDevantObstacle(idTuile);
+        return !estDevantObstacle(idTuile, obstacles);
 
     }
 
@@ -63,9 +65,9 @@ public class Map {
                                              GETTER & SETTER & BOOLEAN
 ********************************************************************************************************************* */
 
-    public boolean estDevantObstacle(int val) {
+    public boolean estDevantObstacle(int val, ArrayList<Integer> obstacles) {
 
-        for (int obstacle : environnement.getObstacles()) {
+        for (int obstacle : obstacles) {
 
             if (val== obstacle) {
 

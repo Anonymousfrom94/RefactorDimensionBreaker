@@ -7,6 +7,8 @@ import universite_paris8.iut.osall.boom.modele.Utilitaire.Hitbox;
 import universite_paris8.iut.osall.boom.modele.Utilitaire.Position;
 import universite_paris8.iut.osall.boom.modele.entite.Acteur;
 
+import java.util.ArrayList;
+
 public class DeplacementSimple implements DeplacementStrategie{
 
     private Acteur acteur;
@@ -24,13 +26,8 @@ public class DeplacementSimple implements DeplacementStrategie{
         }
     }
 
+    @Override
     public boolean peutSeDeplacer() {
-//       Vérifie s'il y a une collision dans la direction actuelle du joueur
-        return collisionMap();  // Retourne vrai si collisionMap renvoie faux (pas de collision)
-
-    }
-
-    public boolean collisionMap() {
 
         Hitbox hitbox = acteur.getHitbox();
         boolean libre = true;
@@ -54,12 +51,12 @@ public class DeplacementSimple implements DeplacementStrategie{
         if (gauche < 0 || droite >= m.getWidth() || haut < 0 || bas >= m.getHeight()) {
             return false;
         }
-
+        ArrayList<Integer> obstacles = acteur.getEnvironnement().getObstacles();
         // Vérification si les positions sont libres
-        boolean positionHautGaucheLibre = m.positionLibre(gauche, haut);
-        boolean positionBasGaucheLibre = m.positionLibre(gauche, bas);
-        boolean positionBasDroiteLibre = m.positionLibre(droite, bas);
-        boolean positionHautDroiteLibre = m.positionLibre(droite, haut);
+        boolean positionHautGaucheLibre = m.positionLibre(gauche, haut,obstacles);
+        boolean positionBasGaucheLibre = m.positionLibre(gauche, bas,obstacles);
+        boolean positionBasDroiteLibre = m.positionLibre(droite, bas,obstacles);
+        boolean positionHautDroiteLibre = m.positionLibre(droite, haut,obstacles);
 
         if (!positionBasGaucheLibre || !positionBasDroiteLibre || !positionHautDroiteLibre || !positionHautGaucheLibre) {
             libre = false;

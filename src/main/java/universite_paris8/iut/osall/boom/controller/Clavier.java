@@ -54,14 +54,17 @@ public class Clavier implements EventHandler<KeyEvent> {
 //            joueur.seDeplace();
         }
 
-
         this.joueur.getDirection().setDirectionProperty(direction);
         
         if (touchePress.contains(J)){
             this.joueur.attaque();
             touchePress.clear();
+        }if (touchePress.contains(A)){
+            System.out.println(joueur.getEnvironnement().getObstacles().get(0));
         }
 
         if (touchePress.contains(K) && joueur.getEquipement() != null){
-            joueur.getEquipement().utilise(joueur);}}
+            joueur.getEquipement().utilise(joueur);
+        }
+    }
 }

@@ -190,6 +190,7 @@ public class Joueur extends Acteur {
         return equipement;
     }
     public void setEquipement(Equipement equipement) {
+        this.setDeplacementStrategie(new DeplacementSimple(this));
         this.equipement = equipement;
     }
 

@@ -6,4 +6,9 @@ public class DeplacementTéleporté implements DeplacementStrategie{
     public void deplacement() {
 
     }
+
+    @Override
+    public boolean peutSeDeplacer() {
+        return false;
+    }
 }

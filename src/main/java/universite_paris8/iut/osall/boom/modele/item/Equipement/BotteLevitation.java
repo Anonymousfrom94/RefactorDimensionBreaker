@@ -18,7 +18,7 @@ public class BotteLevitation extends Equipement{
 
     @Override
     public void utilise(Acteur a) {
-        a.setDeplacementStrategie(new DeplacementLevitation());
+        a.setDeplacementStrategie(new DeplacementLevitation(a));
     }
 
 }

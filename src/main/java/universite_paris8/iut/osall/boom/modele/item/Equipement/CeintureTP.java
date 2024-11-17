@@ -22,7 +22,7 @@ public class CeintureTP extends Equipement{
         int dx = 0;
         int dy = 0;
 
-        if (a.getDirection()==(Direction.DROITE)){
+        if (a.getDirection()==(Direction.HAUT)){
             if (a.getPosition().getY() - rangeTP > 0){
                 dy -= rangeTP;
             }
@@ -43,7 +43,7 @@ public class CeintureTP extends Equipement{
             }
         }
         a.getPosition().setX(a.getPosition().getX() + dx);
-        a.getPosition().setY(getEnvironnement().getJoueur().getPosition().getY() + dy);
+        a.getPosition().setY(a.getPosition().getY() + dy);
     }
 
 }

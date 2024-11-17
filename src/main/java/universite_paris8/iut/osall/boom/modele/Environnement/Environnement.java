@@ -200,7 +200,7 @@ public class Environnement {
          ********************************************************************************************************************* */
 
     public void allAddObs () {
-//        ajouterObstacle(316); //eau
+        ajouterObstacle(316); //eau
         ajouterObstacle(319);
         ajouterObstacle(676);
         ajouterObstacle(677);
