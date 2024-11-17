@@ -9,12 +9,13 @@ public class Boss extends Ennemi{
     public Boss(Environnement environnement) {
         super(environnement, new Position(700, 1150), 5, 150, new Hitbox(20,20));
         this.setArme(new BatonElectrique(getEnvironnement(), this.getPosition()));
-        invoque();
+        invoque(environnement);
     }
 
-    public void invoque(){
-        for (int i = 0; i < 49; i++){
-            new Squelette(getEnvironnement(),getPosition());
+    public void invoque(Environnement environnement) {
+        for (int i = 0; i < 49 ; i++) {
+            new Squelette(getEnvironnement(), new Position(environnement));
+            // Rajouter les ennemis en fonction
         }
     }
 }

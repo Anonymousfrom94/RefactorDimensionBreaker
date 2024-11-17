@@ -54,13 +54,13 @@ public class Joueur extends Acteur {
         for(Acteur e : super.getEnvironnement().getActeurs()){
             if(e instanceof Ennemi){
 
-                for (Acteur ennemi : this.getEnvironnement().getActeurs()) {
-                Position positionEnnemi = ennemi.getPosition();
+
+                Position positionEnnemi = e.getPosition();
 
                     if (hitbox.estAProximité(centreJoueur, positionEnnemi)) {
-//                        System.out.println("Oh un ennemi !");
-                        return ennemi;
-                    }
+                        System.out.println("Oh un ennemi !");
+                        return e;
+
                 }
 
             }
