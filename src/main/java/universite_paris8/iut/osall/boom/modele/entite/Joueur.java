@@ -23,8 +23,8 @@ public class Joueur extends Acteur {
 
 
     public Joueur(Environnement environnement) {
-        super(environnement, new Position(780,550), Direction.BAS, 5,300, new Hitbox(16,16));
-        setDirectionJoueur();
+        super(environnement, new Position(780,550), Direction.ARRET, 5,300, new Hitbox(16,16));
+//        setDirectionJoueur();
         this.inventaire = FXCollections.observableArrayList();
         inventaire.add(super.getArme());
         this.equipement = null;
@@ -38,33 +38,34 @@ public class Joueur extends Acteur {
     @Override
     public void seDeplace() {
         Direction direction = this.getDirection();
-        if (peutSeDeplacer(this) ) {
+        if (peutSeDeplacer() ) {
             this.getPosition().setX(getPosition().getX()+(getVitesse()*getDirection().getX()));
             this.getPosition().setY(getPosition().getY()+(getVitesse()*getDirection().getY()));
         }
 
     }
 
-    @Override
-    public boolean estDansHitbox() {
-        return false;
-    }
 
 
     public Acteur chercherActeurAttaquable(){
+        Hitbox hitbox = this.getHitbox();
+        Position centreJoueur = this.getPosition();
+
         for(Acteur e : super.getEnvironnement().getActeurs()){
             if(e instanceof Ennemi){
-                if (
-                        (this.getPosition().getX() - super.getArme().getRange() <= e.getPosition().getX() && this.getPosition().getX() + 16 + super.getArme().getRange() >= e.getPosition().getX()) &&
-                                (this.getPosition().getY() - super.getArme().getRange() <= e.getPosition().getY() && this.getPosition().getY() + 16 + super.getArme().getRange() >= e.getPosition().getY())
-                ){
-                    System.out.println("ennemie proche");
-                    return e;
+
+                for (Acteur ennemi : this.getEnvironnement().getActeurs()) {
+                Position positionEnnemi = ennemi.getPosition();
+
+                    if (hitbox.estAProximité(centreJoueur, positionEnnemi)) {
+//                        System.out.println("Oh un ennemi !");
+                        return ennemi;
+                    }
                 }
 
             }
         }
-        System.out.println("Pas d'ennemie");
+//        System.out.println("Pas d'ennemie");
         return null;
     }
 
@@ -80,36 +81,20 @@ public class Joueur extends Acteur {
         }
     }
 
-    // a coder dans hitbox
-    //c'est fait'
-    /*public Item chercherItemRamassable(){
-        for (Item item : this.getEnvironnement().getInventaireEnvironnement()){
-            if (
-                    (this.getX() - 10 <= item.getX() && this.getX() + 16 + 10 >= item.getX()) &&
-                            (this.getPosition().getY() - 10 <= item.getPosition().getYProperty() && this.getPosition().getY() + 16 + 10 >= item.getPosition().getYProperty())
-            ){
-                return item;
-            }
-
-        }
-        return null;
-    }*/
-
     public Item chercherItemRamassable() {
         Hitbox hitbox = this.getHitbox();
         Position centreJoueur = this.getPosition();
 
-        // Parcourt tous les items dans l'environnement
+
         for (Item item : this.getEnvironnement().getInventaireEnvironnement()) {
             Position positionItem = item.getPosition();
 
-            if (hitbox.contient(centreJoueur, positionItem)) {
+            if (hitbox.estAProximité(centreJoueur, positionItem)) {
                 return item;
             }
         }
         return null;
     }
-
 
     public void ramasse() {
 
@@ -130,62 +115,53 @@ public class Joueur extends Acteur {
     public void agit() {
         seDeplace();
         ramasse();
-//        attaque();
+        attaque();
     }
 
     public boolean aBottesDeLevitation() {
         return this.equipement instanceof BotteLevitation;
     }
 
-    public boolean peutSeDeplacer(Joueur joueur) {
+    public boolean peutSeDeplacer() {
 //       Vérifie s'il y a une collision dans la direction actuelle du joueur
-        return collisionMap(this);  // Retourne vrai si collisionMap renvoie faux (pas de collision)
-
-//        return true;
+        return collisionMap();  // Retourne vrai si collisionMap renvoie faux (pas de collision)
 
     }
 
-    public boolean collisionMap(Acteur acteur) {
+    public boolean collisionMap() {
 
-        Hitbox hitbox = acteur.getHitbox();
+        Hitbox hitbox = this.getHitbox();
         boolean libre = true;
 
-        // Calculer la position cible en fonction de la direction et de la vitesse
-        // Position actuelle de l'objet
+    // Calculer la position cible en fonction de la direction et de la vitesse
+    // Position actuelle de l'objet
         int pX = this.getPosition().getX()+(getVitesse()*getDirection().getX());
         int pY = this.getPosition().getY()+(getVitesse()*getDirection().getY());
 
-// Affichage pour débogage
-//        System.out.println("PX = " + pX + " PY = " + pY);
-
-// Récupération de l'environnement et de la carte
+    // Récupération de l'environnement et de la carte
         Environnement e = getEnvironnement();
         Map m = e.getMap();
 
-// Calcul des coordonnées des coins du hitbox à la nouvelle position
+    // Calcul des coordonnées des coins du hitbox à la nouvelle position
         int bas = hitbox.getPointLePlusEnBas(new Position(pX, pY));
         int gauche = hitbox.getPointLePlusAGauche(new Position(pX, pY));
         int droite = hitbox.getPointLePlusADroite(new Position(pX, pY));
         int haut = hitbox.getPointLePlusEnHaut(new Position(pX, pY));
 
-// Vérification si les positions sont libres
+    //Limite de la map
+        if (gauche < 0 || droite >= m.getWidth() || haut < 0 || bas >= m.getHeight()) {
+            return false;
+        }
+
+    // Vérification si les positions sont libres
         boolean positionHautGaucheLibre = m.positionLibre(gauche, haut);
         boolean positionBasGaucheLibre = m.positionLibre(gauche, bas);
         boolean positionBasDroiteLibre = m.positionLibre(droite, bas);
         boolean positionHautDroiteLibre = m.positionLibre(droite, haut);
 
-//Connaitre si la position est libre ou non
-        System.out.println("BasGauche: " + positionBasGaucheLibre);
-        System.out.println("BasDroite: " + positionBasDroiteLibre);
-        System.out.println("HautDroite: " + positionHautDroiteLibre);
-        System.out.println("HautGauche: " + positionHautGaucheLibre);
-
-
         if (!positionBasGaucheLibre || !positionBasDroiteLibre || !positionHautDroiteLibre || !positionHautGaucheLibre) {
             libre = false;
         }
-
-        System.out.println();
 
         return libre;
 

@@ -53,7 +53,6 @@ public class Map {
             return false;
         }
         int idTuile = tableau[indice];
-        System.out.println("indice = "+ idTuile);
 
         return !estDevantObstacle(idTuile);
 
@@ -63,32 +62,31 @@ public class Map {
 /* *********************************************************************************************************************
                                              GETTER & SETTER & BOOLEAN
 ********************************************************************************************************************* */
+
     public boolean estDevantObstacle(int val) {
 
-
         for (int obstacle : environnement.getObstacles()) {
-//            System.out.print(obstacle+" , ");
+
             if (val== obstacle) {
-//                System.out.println("val = "+ val);
-//                System.out.println("obstacle = "+ obstacle);
-//                System.out.println();
+
                 return true;
             }
 
         }
-//        System.out.println();
+
         return false;
     }
 
-    public boolean estNoSpawn(int val) {
+    public boolean peutPasSpawmIci(int val) {
+        boolean peutPasSpawn = false;
+
         for (int obstacle : environnement.getBlocNoSpawn()) {
             if (tableau[val] == obstacle) {
-                return true;
+                peutPasSpawn= true;
             }
         }
-        return false;
+        return peutPasSpawn;
     }
-
 
     public int[] getTableau() {
         return tableau;
@@ -100,10 +98,6 @@ public class Map {
 
     public Environnement getEnvironnement() {
         return environnement;
-    }
-
-    public int getLargeurMonde(){
-        return environnement.getLargeurTuile();
     }
 
     public int getWidth() {
@@ -123,11 +117,7 @@ public class Map {
     }
 
 
-
-
     /* *********************************************************************************************************************
-
-
 
 ********************************************************************************************************************* */
 }

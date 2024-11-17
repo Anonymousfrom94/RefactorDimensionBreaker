@@ -2,7 +2,7 @@ package universite_paris8.iut.osall.boom.modele.Utilitaire;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
-import universite_paris8.iut.osall.boom.modele.entite.Acteur;
+import universite_paris8.iut.osall.boom.modele.Environnement.Environnement;
 
 
 public class Position {
@@ -15,6 +15,22 @@ public class Position {
         setX(x);
         setY(y);
     }
+
+    public Position(Environnement environnement) {
+        this.x = new SimpleIntegerProperty();
+        this.y = new SimpleIntegerProperty();
+        int x;
+        int y;
+        do {
+            x = (int) (Math.random() * 1500);
+            y = (int) (Math.random() * 1500);
+        }
+        while(environnement.getMap().peutPasSpawmIci(environnement.getMap().indice(x, y)));
+        setX(x);
+        setY(y);
+    }
+
+
 
 
 

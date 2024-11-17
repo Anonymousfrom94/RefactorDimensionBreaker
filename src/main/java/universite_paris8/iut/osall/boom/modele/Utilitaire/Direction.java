@@ -5,7 +5,7 @@ import javafx.beans.property.StringProperty;
 
 public enum  Direction {
 
-
+    ARRET(0,0),
     GAUCHE(-1,0),
     DROITE(1,0),
     HAUT(0,-1),

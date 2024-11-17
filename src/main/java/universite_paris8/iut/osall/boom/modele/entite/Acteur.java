@@ -35,10 +35,6 @@ public abstract class Acteur {
         this.hitbox = hitbox;
     }
 
-    // Accesseur pour la position
-    public Position getPosition(){
-        return position;
-    }
 
     public abstract void attaque();
 
@@ -47,7 +43,6 @@ public abstract class Acteur {
 
     public abstract void seDeplace();
 
-    public abstract boolean estDansHitbox();
 
 /* *********************************************************************************************************************
                                                 ACCESSEURS & MUTATEURS
@@ -58,8 +53,10 @@ public abstract class Acteur {
         return id;
     }
 
-    // Accesseurs et mutateurs pour la position (coordonnées X et Y)
-
+    // Accesseur pour la position x et y de l'Acteur
+    public Position getPosition(){
+        return position;
+    }
 
     // Accesseur et mutateur pour la vitesse
     public int getVitesse() {

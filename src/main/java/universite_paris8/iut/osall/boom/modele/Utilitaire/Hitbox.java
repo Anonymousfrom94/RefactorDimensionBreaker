@@ -24,32 +24,74 @@ public class Hitbox {
     }
 
     // Méthode pour vérifier si un point donné (x, y) est contenu dans cette hitbox
-    public boolean contient(Position centre, Position cible) {
-        int limiteGauche = getPointLePlusAGauche(centre);
-        int limiteDroite = getPointLePlusADroite(centre);
-        int limiteHaut = getPointLePlusEnHaut(centre);
-        int limiteBas = getPointLePlusEnBas(centre);
+//    public boolean contient(Position centre, Position cible) {
+//
+//        int limiteGauche = getPointLePlusAGauche(centre);
+//        int limiteDroite = getPointLePlusADroite(centre);
+//
+//        int limiteHaut = getPointLePlusEnHaut(centre);
+//        int limiteBas = getPointLePlusEnBas(centre);
+//
+//        // Vérifie si la position cible est dans les limites de la hitbox
+//        return (cible.getX() >= limiteGauche && cible.getX() <= limiteDroite &&
+//                cible.getY() >= limiteHaut && cible.getY() <= limiteBas);
+//    }
 
-        // Vérifie si la position cible est dans les limites de la hitbox
-        return (cible.getX() >= limiteGauche && cible.getX() <= limiteDroite &&
-                cible.getY() >= limiteHaut && cible.getY() <= limiteBas);
+    public boolean estAProximité(Position Acteurdepart, Position cible) {
+        // 4 coins de l'Acteur de depart
+        int limiteGaucheDepart = getPointLePlusAGauche(Acteurdepart);
+        int limiteDroiteDepart = getPointLePlusADroite(Acteurdepart);
+        int limiteHautDepart = getPointLePlusEnHaut(Acteurdepart);
+        int limiteBasDepart = getPointLePlusEnBas(Acteurdepart);
+
+        // 4 coins de la cibles
+        int limiteGaucheCible = getPointLePlusAGauche(cible);
+        int limiteDroiteCible = getPointLePlusADroite(cible);
+        int limiteHautCible = getPointLePlusEnHaut(cible);
+        int limiteBasCible = getPointLePlusEnBas(cible);
+
+        // Vérifier si l'un des 4 coins de la cible est dans la hitbox de l'item
+        boolean coinGaucheHautDansHitbox = estDansHitbox(limiteGaucheDepart, limiteDroiteDepart, limiteHautDepart, limiteBasDepart, limiteGaucheCible, limiteHautCible);
+        boolean coinDroitHautDansHitbox = estDansHitbox(limiteGaucheDepart, limiteDroiteDepart, limiteHautDepart, limiteBasDepart, limiteDroiteCible, limiteHautCible);
+        boolean coinGaucheBasDansHitbox = estDansHitbox(limiteGaucheDepart, limiteDroiteDepart, limiteHautDepart, limiteBasDepart, limiteGaucheCible, limiteBasCible);
+        boolean coinDroitBasDansHitbox = estDansHitbox(limiteGaucheDepart, limiteDroiteDepart, limiteHautDepart, limiteBasDepart, limiteDroiteCible, limiteBasCible);
+
+        // Si un des coins de la cible est dans la hitbox de l'item, ramasser l'item
+        return (coinGaucheHautDansHitbox || coinDroitHautDansHitbox || coinGaucheBasDansHitbox || coinDroitBasDansHitbox);
+    }
+
+    private boolean estDansHitbox(int limiteGauche, int limiteDroite, int limiteHaut, int limiteBas, int xCoinCible, int yCoinCible) {
+        // Vérifie si les coordonnées du coin de la cible sont dans les limites de la hitbox de l'item
+        return (xCoinCible >= limiteGauche && xCoinCible <= limiteDroite) &&
+                (yCoinCible >= limiteHaut && yCoinCible <= limiteBas);
     }
 
     public int getPointLePlusAGauche(Position centre) {
-        return (centre.getX()+3) - ( largeur / 2);
+        return centre.getX()+3;
+        //return (centre.getX()+3) - ( largeur / 2);
     }
 
     public int getPointLePlusADroite(Position centre) {
-        return (centre.getX()-3) + (largeur / 2);
+        return centre.getX()-3+largeur;
+        //return (centre.getX()-3) + (largeur / 2);
 
     }
 
     public int getPointLePlusEnHaut(Position centre) {
-        return (centre.getY()+5) - ( hauteur / 2);
+        return centre.getY();
+        //return (centre.getY()+5) - ( hauteur / 2);
 
     }
 
     public int getPointLePlusEnBas(Position centre) {
-        return (centre.getY()-5) + (hauteur / 2);
+        return centre.getY()+hauteur;
+        //return (centre.getY()-5) + (hauteur / 2);
+    }
+
+    public int getXCentre(Position centre) {
+        return centre.getX()+largeur/2;
+    }
+    public int getYCentre(Position centre) {
+        return centre.getY()+hauteur/2;
     }
 }

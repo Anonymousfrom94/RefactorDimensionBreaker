@@ -79,7 +79,9 @@ public class Controller implements Initializable {
                 // on définit ce qui se passe à chaque frame
                 // c'est un eventHandler d'ou le lambda
                 (ev ->{
-
+                    if (temps == 10){
+                        environnement.spawnItemEtEnnemie();
+                    }
 
                     environnement.unTour(temps);
                     temps++;
@@ -242,7 +244,6 @@ public class Controller implements Initializable {
     void clickOnSniper(ActionEvent event) {
         unlockArme();
         for (Item i : environnement.getJoueur().getInventaire()){
-            System.out.println("bds<livgbvmo<ivbofib vterc_qtgibufdyubfogqvbiusssssssfqinfqgdhhghhqdhtqht");
             if (i instanceof Sniper){
                 ((Sniper) i).equip(environnement.getJoueur());
                 etatSniper.setText("équipé");
