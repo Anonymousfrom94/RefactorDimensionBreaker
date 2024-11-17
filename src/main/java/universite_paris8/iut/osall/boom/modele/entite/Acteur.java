@@ -10,6 +10,7 @@ import universite_paris8.iut.osall.boom.modele.Utilitaire.Direction;
 import universite_paris8.iut.osall.boom.modele.Utilitaire.Hitbox;
 import universite_paris8.iut.osall.boom.modele.Utilitaire.Position;
 import universite_paris8.iut.osall.boom.modele.item.Arme.Arme;
+import universite_paris8.iut.osall.boom.modele.item.Arme.EpeEnBois;
 
 public abstract class Acteur {
 
@@ -32,7 +33,8 @@ public abstract class Acteur {
         this.vitesse = vitesse;
         this.pv = new PV(pvMax);
         this.id = "#" + compteur;
-
+        this.arme = null;
+        setArme(new EpeEnBois(environnement, getPosition()));
         compteur++;
         this.environnement.getActeurs().add(this);
         this.hitbox = hitbox;
