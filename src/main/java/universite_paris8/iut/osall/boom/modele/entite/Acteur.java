@@ -39,7 +39,6 @@ public abstract class Acteur {
     }
 
 
-
     public abstract void attaque();
 
     // Méthodes abstraites
