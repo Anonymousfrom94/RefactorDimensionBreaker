@@ -1,33 +1,32 @@
 package universite_paris8.iut.osall.boom.modele.item.Arme;
 
 import universite_paris8.iut.osall.boom.modele.Environnement.Environnement;
+import universite_paris8.iut.osall.boom.modele.StrategieAttaque.StrategieAttaque;
 import universite_paris8.iut.osall.boom.modele.Utilitaire.Position;
 import universite_paris8.iut.osall.boom.modele.entite.Acteur;
-import universite_paris8.iut.osall.boom.modele.entite.ennemi.Ennemi;
 import universite_paris8.iut.osall.boom.modele.entite.Joueur;
 import universite_paris8.iut.osall.boom.modele.item.Item;
 
-public abstract class Arme extends Item {
+public class Arme extends Item {
 
     private int degat;
     private int range;
+    private StrategieAttaque strategieAttaque;
 
-    public Arme(Environnement environnement, String nom, Position position, int degat, int range) {
+    public Arme(Environnement environnement, String nom, Position position, int degat, int range, StrategieAttaque strategieAttaque) {
         super(environnement, nom, position);
         this.degat = degat;
         this.range = range;
+        this.strategieAttaque = strategieAttaque;
     }
-
-//    public Arme(Environnement environnement, String nom, int degat, int range) {
-//        super(environnement, nom);
-//        this.degat = degat;
-//        this.range = range;
-//    }
-
-    public abstract void utilise(Acteur e);
 
     public void equip(Joueur joueur){
         joueur.setArme(this);
+    }
+
+    @Override
+    public void utilise(Acteur cible) {
+        strategieAttaque.attaque(cible);
     }
 
 /* *********************************************************************************************************************
@@ -45,7 +44,11 @@ public abstract class Arme extends Item {
         return range;
     }
 
-/* *********************************************************************************************************************
+    public void setStrategie(StrategieAttaque strategieAttaque) {
+        this.strategieAttaque = strategieAttaque;
+    }
+
+    /* *********************************************************************************************************************
 
 ********************************************************************************************************************* */
 }
