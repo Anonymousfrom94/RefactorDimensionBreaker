@@ -158,6 +158,7 @@ public class Environnement {
 /* *********************************************************************************************************************
                                            GETTER & SETTER & BOOLEAN
 ********************************************************************************************************************* */
+
         public ObservableList<Acteur> getActeurs () {
             return acteurs;
         }
@@ -165,7 +166,6 @@ public class Environnement {
         public ObservableList<Item> getInventaireEnvironnement () {
             return inventaireEnvironnement;
         }
-
 
         public Map getMap () {
             return map;
@@ -200,7 +200,7 @@ public class Environnement {
          ********************************************************************************************************************* */
 
     public void allAddObs () {
-//            ajouterObstacle(316); //eau
+//        ajouterObstacle(316); //eau
         ajouterObstacle(319);
         ajouterObstacle(676);
         ajouterObstacle(677);

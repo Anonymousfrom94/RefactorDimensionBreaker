@@ -1,6 +1,7 @@
 package universite_paris8.iut.osall.boom.modele.entite;
 
 import javafx.beans.property.IntegerProperty;
+import universite_paris8.iut.osall.boom.modele.DeplacementStrategie.DeplacementStrategie;
 import universite_paris8.iut.osall.boom.modele.Utilitaire.PV;
 import universite_paris8.iut.osall.boom.modele.Environnement.Environnement;
 import universite_paris8.iut.osall.boom.modele.Utilitaire.Direction;
@@ -21,6 +22,7 @@ public abstract class Acteur {
     private Hitbox hitbox;
     private PV pv;
     private Arme arme;
+    private DeplacementStrategie deplacementStrategie;
 
     // Constructeur
     public Acteur(Environnement environnement, Position position, Direction direction, int vitesse, int pvMax, Hitbox hitbox) {
@@ -105,6 +107,15 @@ public abstract class Acteur {
     // Accesseur pour la hitbox
     public Hitbox getHitbox() {
         return hitbox;
+    }
+
+    //Accesseur et mutateur de deplacement
+    public DeplacementStrategie getDeplacementStrategie(){
+        return deplacementStrategie;
+    }
+
+    public void setDeplacementStrategie(DeplacementStrategie deplacementStrategie){
+       this.deplacementStrategie = deplacementStrategie;
     }
 
 

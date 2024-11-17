@@ -31,7 +31,7 @@ public class Map {
 
 
 
-
+//A supprimer mais Barou vas surement s'en inspiré'
     private boolean obstacle(int indice1, int indice2, int obstacle, boolean aBottesDeLevitation) {
         int[] tableau = getTableau();
 

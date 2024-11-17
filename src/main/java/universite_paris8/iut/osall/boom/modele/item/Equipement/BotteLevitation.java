@@ -1,5 +1,6 @@
 package universite_paris8.iut.osall.boom.modele.item.Equipement;
 
+import universite_paris8.iut.osall.boom.modele.DeplacementStrategie.DeplacementLevitation;
 import universite_paris8.iut.osall.boom.modele.Environnement.Environnement;
 import universite_paris8.iut.osall.boom.modele.Utilitaire.Position;
 import universite_paris8.iut.osall.boom.modele.entite.Acteur;
@@ -17,7 +18,7 @@ public class BotteLevitation extends Equipement{
 
     @Override
     public void utilise(Acteur a) {
-
+        a.setDeplacementStrategie(new DeplacementLevitation());
     }
 
 }
