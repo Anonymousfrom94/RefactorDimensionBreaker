@@ -1,6 +1,7 @@
 package universite_paris8.iut.osall.boom.modele.item.Consommable;
 
 import universite_paris8.iut.osall.boom.modele.Utilitaire.Position;
+import universite_paris8.iut.osall.boom.modele.entite.Acteur;
 import universite_paris8.iut.osall.boom.modele.entite.Joueur;
 import universite_paris8.iut.osall.boom.modele.item.Item;
 
@@ -10,7 +11,10 @@ public abstract class Consommable extends Item {
         super(joueur.getEnvironnement(), nom, position);
     }
 
-//    public void retirerDeLInventaire() { //a voir plus tard
-//        joueur.getInventaire().remove(this);
-//    }
+    public abstract int soin();
+
+    public void utilise(Acteur a){
+        a.getPV().rajouterPv(soin());
+    }
+
 }

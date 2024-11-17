@@ -30,6 +30,7 @@ public class Joueur extends Acteur {
         this.equipement = null;
     }
 
+    //controller
     private void setDirectionJoueur() {
         setDirection(Direction.BAS);
         getDirection().setDirectionProperty("bas");

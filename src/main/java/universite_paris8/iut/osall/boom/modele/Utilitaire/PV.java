@@ -36,5 +36,8 @@ public class PV {
         if (this.getPv() + pv <= this.pvMax){
             this.pv.setValue(this.pv.getValue() + pv);
         }
+        else {
+            this.pv.setValue(pvMax);
+        }
     }
 }
