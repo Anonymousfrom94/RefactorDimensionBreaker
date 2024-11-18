@@ -39,10 +39,11 @@ public abstract class Acteur {
         this.deplacementStrategie=null;
     }
 
-    public abstract void attaque();
+
 
     // Méthodes abstraites
     public abstract void agit();
+    public abstract void attaque();
 
     public void seDeplace(){
         getDeplacementStrategie().deplacement();

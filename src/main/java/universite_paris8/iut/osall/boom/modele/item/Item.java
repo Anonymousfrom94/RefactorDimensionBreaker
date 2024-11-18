@@ -1,16 +1,12 @@
 package universite_paris8.iut.osall.boom.modele.item;
 
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 import universite_paris8.iut.osall.boom.modele.Environnement.Environnement;
 import universite_paris8.iut.osall.boom.modele.Utilitaire.Position;
 import universite_paris8.iut.osall.boom.modele.entite.Acteur;
 
 public abstract class Item {
     private String nom;
-    // changement
-    //private IntegerProperty x;
-    //private IntegerProperty y;
+
     private Environnement environnement;
     private Position position;
     private String id;
@@ -30,26 +26,12 @@ public abstract class Item {
                                           GETTER & SETTER & BOOLEAN
 ********************************************************************************************************************* */
 
-    // suprimer
-    /*public int getX() {
-        return x.getValue();
-    }*/
+
 
     public Position getPosition() {
         return position;
     }
 
-    /*public IntegerProperty getXProperty() {
-        return x;
-    }
-
-    public int getY() {
-        return y.getValue();
-    }
-
-    public IntegerProperty getYProperty() {
-        return y;
-    }*/
 
     public String getId() {
         return id;

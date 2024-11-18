@@ -26,17 +26,12 @@ public class Joueur extends Acteur {
 
     public Joueur(Environnement environnement) {
         super(environnement, new Position(780,550), Direction.ARRET, 5,300, new Hitbox(16,16));
-//        setDirectionJoueur();
         this.inventaire = FXCollections.observableArrayList();
         inventaire.add(super.getArme());
         this.equipement = null;
         setDeplacementStrategie(new DeplacementSimple(this));
     }
 
-    private void setDirectionJoueur() {
-        setDirection(Direction.BAS);
-        getDirection().setDirectionProperty("bas");
-    }
 
     @Override
     public void seDeplace() {

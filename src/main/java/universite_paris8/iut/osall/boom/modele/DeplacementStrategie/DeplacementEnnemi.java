@@ -19,7 +19,7 @@ public class DeplacementEnnemi implements DeplacementStrategie{
     }
     @Override
     public void deplacement() {
-        Environnement environnement = ennemi.getEnvironnement();
+
         Joueur joueur = ennemi.getEnvironnement().getJoueur();
 
         int distanceEnX = joueur.getHitbox().getXCentre(joueur.getPosition()) - ennemi.getHitbox().getXCentre(ennemi.getPosition());

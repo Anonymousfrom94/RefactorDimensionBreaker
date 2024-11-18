@@ -26,25 +26,11 @@ public class Map {
         int ligne = newY / environnement.getMap().getHauteurTuile();
         int ind = ligne * environnement.getInfoTuile()[1] + colonne;
 
-//        System.out.println("Calcul indice: x=" + newX + " y=" + newY + " => ligne=" + ligne + " colonne=" + colonne + " => indice=" + ind);
 
         return ind;
     }
 
 
-
-//A supprimer mais Barou vas surement s'en inspiré'
-//    private boolean obstacle(int indice1, int indice2, int obstacle, boolean aBottesDeLevitation) {
-//        int[] tableau = getTableau();
-//
-//        if (indice1 >= 0 && indice1 < tableau.length && indice2 >= 0 && indice2 < tableau.length) {
-//            if ((tableau[indice1] == obstacle || tableau[indice2] == obstacle) && (obstacle != 316 || !aBottesDeLevitation)) {
-//                return false;
-//            }
-//            return true;
-//        }
-//        return false;
-//    }
 
 
     public boolean positionLibre(int x, int y, ArrayList<Integer> obstacles){
@@ -68,14 +54,10 @@ public class Map {
     public boolean estDevantObstacle(int val, ArrayList<Integer> obstacles) {
 
         for (int obstacle : obstacles) {
-
             if (val== obstacle) {
-
                 return true;
             }
-
         }
-
         return false;
     }
 
