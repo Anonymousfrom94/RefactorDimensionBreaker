@@ -75,7 +75,7 @@ public class Controller implements Initializable {
 
         KeyFrame kf = new KeyFrame(
                 // on définit le FPS (nbre de frame par seconde)
-                Duration.seconds(0.025),
+                Duration.seconds(0.035),
                 // on définit ce qui se passe à chaque frame
                 // c'est un eventHandler d'ou le lambda
                 (ev ->{
@@ -173,6 +173,7 @@ public class Controller implements Initializable {
         for (Item i : environnement.getJoueur().getInventaire()){
             if (i instanceof BotteLevitation){
                 ((BotteLevitation) i).equip(environnement.getJoueur());
+                i.utilise(environnement.getJoueur());
                 etatBottes.setText("équipé");
             }
         }
@@ -185,6 +186,7 @@ public class Controller implements Initializable {
         for (Item i : environnement.getJoueur().getInventaire()){
             if (i instanceof CeintureTP){
                 ((CeintureTP) i).equip(environnement.getJoueur());
+                i.utilise(environnement.getJoueur());
                 etatCeinture.setText("équipé");
             }
         }
@@ -197,6 +199,7 @@ public class Controller implements Initializable {
         for (Item i : environnement.getJoueur().getInventaire()){
             if (i instanceof CouronneTemporel){
                 ((CouronneTemporel) i).equip(environnement.getJoueur());
+                i.utilise(environnement.getJoueur());
                 etatCouronne.setText("équipé");
             }
         }
