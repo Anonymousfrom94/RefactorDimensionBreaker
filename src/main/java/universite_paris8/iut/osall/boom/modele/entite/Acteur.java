@@ -31,7 +31,6 @@ public abstract class Acteur {
         this.pv = new PV(pvMax);
         this.id = "#" + compteur;
         this.arme = null;
-        setArme(new EpeEnBois(environnement, getPosition()));
         compteur++;
         this.environnement.getActeurs().add(this);
         this.hitbox = hitbox;

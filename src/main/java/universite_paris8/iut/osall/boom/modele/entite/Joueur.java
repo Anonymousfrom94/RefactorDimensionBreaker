@@ -8,6 +8,7 @@ import universite_paris8.iut.osall.boom.modele.Utilitaire.Direction;
 import universite_paris8.iut.osall.boom.modele.Utilitaire.Hitbox;
 import universite_paris8.iut.osall.boom.modele.Utilitaire.Position;
 import universite_paris8.iut.osall.boom.modele.entite.ennemi.Ennemi;
+import universite_paris8.iut.osall.boom.modele.item.Arme.EpeEnBois;
 import universite_paris8.iut.osall.boom.modele.item.Equipement.BotteLevitation;
 import universite_paris8.iut.osall.boom.modele.item.Equipement.Equipement;
 import universite_paris8.iut.osall.boom.modele.item.Item;
@@ -71,14 +72,20 @@ public class Joueur extends Acteur {
 
     @Override
     public void attaque() {
-
         Acteur e = chercherActeurAttaquable();
-
-        if (e != null && e!=this) {
+        if (super.getArme() == null) {
+            System.out.println("Vous n'avez pas d'arme équipée !");
+            return;
+        }
+        else if (e != null && e!=this) {
 
             super.getArme().utilise(e);
 
         }
+
+
+
+
     }
 
     public Item chercherItemRamassable() {
