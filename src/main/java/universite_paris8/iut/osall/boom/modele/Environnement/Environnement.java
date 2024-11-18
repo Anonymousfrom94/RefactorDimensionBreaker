@@ -208,7 +208,7 @@ public class Environnement {
         }
 
         public ArrayList<Acteur> getCible(StrategieRechercheCible str){
-            return str.getCible(getActeurs());
+            return str.getCible(getActeurs(), joueur);
         }
 
         /* *********************************************************************************************************************
