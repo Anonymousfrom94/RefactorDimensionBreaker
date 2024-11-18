@@ -2,7 +2,6 @@ package universite_paris8.iut.osall.boom.modele.Environnement;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import universite_paris8.iut.osall.boom.modele.Utilitaire.Direction;
 import universite_paris8.iut.osall.boom.modele.Utilitaire.Position;
 import universite_paris8.iut.osall.boom.modele.Utilitaire.StrategieRechercheCible;
 import universite_paris8.iut.osall.boom.modele.entite.Acteur;
@@ -12,7 +11,7 @@ import universite_paris8.iut.osall.boom.modele.entite.Joueur;
 import universite_paris8.iut.osall.boom.modele.entite.ennemi.Squelette;
 import universite_paris8.iut.osall.boom.modele.item.Arme.BatonElectrique;
 import universite_paris8.iut.osall.boom.modele.item.Arme.Dague;
-import universite_paris8.iut.osall.boom.modele.item.Arme.EpeEnBois;
+import universite_paris8.iut.osall.boom.modele.item.Arme.EpeeEnBois;
 import universite_paris8.iut.osall.boom.modele.item.Arme.Sniper;
 import universite_paris8.iut.osall.boom.modele.item.Consommable.PotionHeal;
 import universite_paris8.iut.osall.boom.modele.item.Consommable.TotemResurrection;
@@ -127,7 +126,7 @@ public class Environnement {
         this.getInventaireEnvironnement().add(new CouronneTemporel(this, new Position(1450, 150)));
 
         // Spawn des Armes (une arme par zone)
-        this.getInventaireEnvironnement().add(new EpeEnBois(this, new Position(790, 550)));
+        this.getInventaireEnvironnement().add(new EpeeEnBois(this, new Position(790, 550), null));
         this.getInventaireEnvironnement().add(new Dague(this, new Position(150, 100)));
         this.getInventaireEnvironnement().add(new Sniper(this, new Position(1200, 200)));
         this.getInventaireEnvironnement().add(new BatonElectrique(this, new Position(800, 1500)));

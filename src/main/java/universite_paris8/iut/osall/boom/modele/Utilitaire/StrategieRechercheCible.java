@@ -8,6 +8,6 @@ import java.util.ArrayList;
 
 public abstract class StrategieRechercheCible {
 
-    public abstract ArrayList<Acteur> getCible(ObservableList<Acteur> acteurs, Joueur joueur);
+    public abstract ArrayList<Acteur> getCible(ObservableList<Acteur> acteurs, Acteur utilisateur);
 
 }

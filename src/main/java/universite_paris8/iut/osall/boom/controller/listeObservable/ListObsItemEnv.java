@@ -62,7 +62,7 @@ public class ListObsItemEnv implements ListChangeListener<Item> {
         }
 
         if (item instanceof Arme){
-            if (item instanceof EpeEnBois){
+            if (item instanceof EpeeEnBois){
                 imageView.setImage(new Image("file:src/main/resources/universite_paris8/iut/osall/boom/imgArme/epeeBois.png"));
             }
             if (item instanceof Dague){

@@ -134,7 +134,7 @@ public class Controller implements Initializable {
         if (arme instanceof Dague){
             etatDague.setText("Unlock");
         }
-        if (arme instanceof EpeEnBois){
+        if (arme instanceof EpeeEnBois){
             etatEpee.setText("Unlock");
         }
         if (arme instanceof Sniper){
@@ -222,8 +222,8 @@ public class Controller implements Initializable {
     void clickOnEpee(ActionEvent event) {
         unlockArme();
         for (Item i : environnement.getJoueur().getInventaire()){
-            if (i instanceof EpeEnBois){
-                ((EpeEnBois) i).equip(environnement.getJoueur());
+            if (i instanceof EpeeEnBois){
+                ((EpeeEnBois) i).equip(environnement.getJoueur());
                 etatEpee.setText("équipé");
             }
         }

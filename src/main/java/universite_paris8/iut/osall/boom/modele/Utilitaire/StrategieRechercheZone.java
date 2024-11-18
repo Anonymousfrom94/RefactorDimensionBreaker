@@ -1,6 +1,7 @@
 package universite_paris8.iut.osall.boom.modele.Utilitaire;
 
 import javafx.collections.ObservableList;
+import universite_paris8.iut.osall.boom.modele.Environnement.Environnement;
 import universite_paris8.iut.osall.boom.modele.entite.Acteur;
 import universite_paris8.iut.osall.boom.modele.entite.Joueur;
 import universite_paris8.iut.osall.boom.modele.entite.ennemi.Ennemi;
@@ -16,12 +17,12 @@ public class StrategieRechercheZone extends StrategieRechercheCible {
     }
 
     @Override
-    public ArrayList<Acteur> getCible(ObservableList<Acteur> acteurs, Joueur joueur) {
+    public ArrayList<Acteur> getCible(ObservableList<Acteur> acteurs, Acteur joueur) {
         ArrayList<Acteur> result = new ArrayList<>();
 
         for (Acteur acteur : acteurs) {
             if (acteur instanceof Ennemi) { // Vérifie si c'est un ennemi
-                if (dansRayon(joueur, acteur)) {
+                if (dansRayon(Environnement.getInstance().getJoueur() ,acteur)) {
                     result.add(acteur);
                 }
             }
@@ -30,7 +31,6 @@ public class StrategieRechercheZone extends StrategieRechercheCible {
     }
 
     private boolean dansRayon(Joueur source, Acteur cible) {
-        // Calcul de la distance entre deux acteurs
         int dx = Math.abs(cible.getPosition().getX() - source.getPosition().getX());
         int dy = Math.abs(cible.getPosition().getY() - source.getPosition().getY());
         return Math.sqrt(dx * dx + dy * dy) <= rayon;

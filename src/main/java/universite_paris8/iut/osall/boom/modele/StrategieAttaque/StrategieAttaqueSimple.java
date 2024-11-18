@@ -21,9 +21,11 @@ public class StrategieAttaqueSimple implements StrategieAttaque {
     @Override
     public void attaque() {
         ArrayList<Acteur> cible = Environnement.getInstance().getCible(strategieRechercheCible);
-        if (!cible.isEmpty()) {
+        if (cible != null && !cible.isEmpty()) {
             cible.get(0).getPV().enleverPv(arme.getDegat());
+        } else {
+            // Gestion d'une absence de cible
+            System.out.println("Aucune cible trouvée.");
         }
-
     }
 }

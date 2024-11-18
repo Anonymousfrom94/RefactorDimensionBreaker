@@ -4,13 +4,10 @@ import javafx.collections.ObservableList;
 
 import universite_paris8.iut.osall.boom.modele.DeplacementStrategie.DeplacementSimple;
 import universite_paris8.iut.osall.boom.modele.Environnement.Environnement;
-import universite_paris8.iut.osall.boom.modele.Environnement.Map;
 import universite_paris8.iut.osall.boom.modele.Utilitaire.Direction;
 import universite_paris8.iut.osall.boom.modele.Utilitaire.Hitbox;
 import universite_paris8.iut.osall.boom.modele.Utilitaire.Position;
 import universite_paris8.iut.osall.boom.modele.entite.ennemi.Ennemi;
-import universite_paris8.iut.osall.boom.modele.item.Arme.EpeEnBois;
-import universite_paris8.iut.osall.boom.modele.item.Equipement.BotteLevitation;
 import universite_paris8.iut.osall.boom.modele.item.Equipement.Equipement;
 import universite_paris8.iut.osall.boom.modele.item.Item;
 

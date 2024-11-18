@@ -1,6 +1,5 @@
 package universite_paris8.iut.osall.boom.modele.entite;
 
-import javafx.beans.property.IntegerProperty;
 import universite_paris8.iut.osall.boom.modele.DeplacementStrategie.DeplacementStrategie;
 import universite_paris8.iut.osall.boom.modele.Utilitaire.PV;
 import universite_paris8.iut.osall.boom.modele.Environnement.Environnement;
@@ -8,7 +7,6 @@ import universite_paris8.iut.osall.boom.modele.Utilitaire.Direction;
 import universite_paris8.iut.osall.boom.modele.Utilitaire.Hitbox;
 import universite_paris8.iut.osall.boom.modele.Utilitaire.Position;
 import universite_paris8.iut.osall.boom.modele.item.Arme.Arme;
-import universite_paris8.iut.osall.boom.modele.item.Arme.EpeEnBois;
 
 public abstract class Acteur {
 

@@ -4,7 +4,7 @@ import javafx.collections.ListChangeListener;
 import javafx.scene.layout.Pane;
 import universite_paris8.iut.osall.boom.modele.item.Arme.BatonElectrique;
 import universite_paris8.iut.osall.boom.modele.item.Arme.Dague;
-import universite_paris8.iut.osall.boom.modele.item.Arme.EpeEnBois;
+import universite_paris8.iut.osall.boom.modele.item.Arme.EpeeEnBois;
 import universite_paris8.iut.osall.boom.modele.item.Arme.Sniper;
 import universite_paris8.iut.osall.boom.modele.item.Consommable.Consommable;
 import universite_paris8.iut.osall.boom.modele.item.Consommable.PotionHeal;
@@ -12,7 +12,6 @@ import universite_paris8.iut.osall.boom.modele.item.Consommable.TotemResurrectio
 import universite_paris8.iut.osall.boom.modele.item.Equipement.BotteLevitation;
 import universite_paris8.iut.osall.boom.modele.item.Equipement.CeintureTP;
 import universite_paris8.iut.osall.boom.modele.item.Equipement.CouronneTemporel;
-import universite_paris8.iut.osall.boom.modele.item.Equipement.Equipement;
 import universite_paris8.iut.osall.boom.modele.item.Item;
 import javafx.scene.control.Label;
 
@@ -79,7 +78,7 @@ public class ListObsItemJoueur implements ListChangeListener<Item> {
                 if (i instanceof Dague){
                     etatDague.setText("Unlock");
                 }
-                if (i instanceof EpeEnBois){
+                if (i instanceof EpeeEnBois){
                     etatEpee.setText("Unlock");
                 }
                 if (i instanceof Sniper){
