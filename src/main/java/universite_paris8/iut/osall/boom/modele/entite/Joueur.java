@@ -9,6 +9,7 @@ import universite_paris8.iut.osall.boom.modele.Utilitaire.Direction;
 import universite_paris8.iut.osall.boom.modele.Utilitaire.Hitbox;
 import universite_paris8.iut.osall.boom.modele.Utilitaire.Position;
 import universite_paris8.iut.osall.boom.modele.entite.ennemi.Ennemi;
+import universite_paris8.iut.osall.boom.modele.item.Arme.EpeEnBois;
 import universite_paris8.iut.osall.boom.modele.item.Equipement.BotteLevitation;
 import universite_paris8.iut.osall.boom.modele.item.Equipement.Equipement;
 import universite_paris8.iut.osall.boom.modele.item.Item;
@@ -43,39 +44,50 @@ public class Joueur extends Acteur {
         getDeplacementStrategie().deplacement();
     }
 
-    public Acteur chercherActeurAttaquable(){
-        Hitbox hitbox = this.getHitbox();
+    public Acteur chercherActeurAttaquable() {
+
         Position centreJoueur = this.getPosition();
+        int range = super.getArme().getRange();
 
-        for(Acteur e : super.getEnvironnement().getActeurs()){
-            if(e instanceof Ennemi){
+        if (super.getArme() == null) {
+            return null;
+        }
 
-
-                Position positionEnnemi = e.getPosition();
-
-                if (hitbox.estAProximité(centreJoueur, positionEnnemi)) {
-                    System.out.println("Oh un ennemi !");
-                    return e;
-
+        for (Acteur cible : super.getEnvironnement().getActeurs()) {
+            if (cible instanceof Ennemi && cible != this) {
+                Position positionEnnemi = cible.getPosition();
+                if (estDansLaPortee(centreJoueur, positionEnnemi, range)) {
+                    System.out.println("Un ennemi est à portée");
+                    return cible;
                 }
-
             }
         }
-//        System.out.println("Pas d'ennemie");
         return null;
     }
 
+    public boolean estDansLaPortee(Position joueurPosition, Position ennemiPosition, int range) {
+        int distanceX = joueurPosition.getX() - ennemiPosition.getX();
+        int distanceY = joueurPosition.getY() - ennemiPosition.getY();
+        return (distanceX * distanceX + distanceY * distanceY) <= (range * range);
+    }
+
+
     @Override
     public void attaque() {
+        if (super.getArme() == null) {
+            System.out.println("Vous n'avez pas d'arme équipée !");
+            return;
+        }
 
-        Acteur e = chercherActeurAttaquable();
-
-        if (e != null && e!=this) {
-
-            super.getArme().utilise(e);
-
+        Acteur cible = chercherActeurAttaquable();
+        if (cible != null) {
+            super.getArme().utilise(cible);
+            System.out.println("Vous avez attaqué un ennemi !");
+        } else {
+            System.out.println("Aucun ennemi à portée !");
         }
     }
+
 
     public Item chercherItemRamassable() {
         Hitbox hitbox = this.getHitbox();

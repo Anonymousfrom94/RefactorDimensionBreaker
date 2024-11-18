@@ -1,6 +1,7 @@
 package universite_paris8.iut.osall.boom.modele.item.Arme;
 
 import universite_paris8.iut.osall.boom.modele.Environnement.Environnement;
+import universite_paris8.iut.osall.boom.modele.StrategieAttaque.StrategieAttaqueSuicidaire;
 import universite_paris8.iut.osall.boom.modele.Utilitaire.Position;
 import universite_paris8.iut.osall.boom.modele.entite.Acteur;
 import universite_paris8.iut.osall.boom.modele.entite.ennemi.Boss;
@@ -12,23 +13,15 @@ public class Sniper extends Arme{
 
     private Joueur joueur;
 
-
     public Sniper(Environnement environnement, Position position) {
-        super(environnement, "Sniper", position, 999999, 64);
+        super(environnement, "Sniper", position, 999999, 128, new StrategieAttaqueSuicidaire(null, null));
         this.joueur = environnement.getJoueur();
-    }
-
-    @Override
-    public void utilise(Acteur a) {
-        if (a instanceof Squelette){
-            a.getPV().enleverPv(this.getDegat());
-            joueur.getPV().setPv(joueur.getPV().getPv()-10);
-        }
+        this.setStrategie(new StrategieAttaqueSuicidaire(this, this.joueur));
     }
 
     @Override
     public void equip(Joueur joueur) {
-
+        joueur.setArme(this);
     }
 
 }
