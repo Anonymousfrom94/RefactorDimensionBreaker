@@ -14,9 +14,5 @@ public class BatonElectrique extends Arme{
         this.setStrategie(new StrategieAttaqueZone(this, 80));
     }
 
-    @Override
-    public void equip(Joueur joueur) {
-        joueur.setArme(this);
-    }
 
 }

@@ -25,16 +25,11 @@ public class Ennemi extends Acteur {
         attaque();
     }
 
-
-
-
-
     private boolean peutAttaquer() {
 
         long tempsActuel = System.currentTimeMillis();
         return (tempsActuel - derniereAttaque) >= intervalleAttack;
     }
-
 
     @Override
     public void attaque() {
@@ -52,10 +47,8 @@ public class Ennemi extends Acteur {
         }
     }
 
-
     public int getRangeEnnemmi(){
         return rangeEnnemmi;
     }
-
 
 }
