@@ -1,29 +1,28 @@
 package universite_paris8.iut.osall.boom.modele.StrategieAttaque;
 
 import universite_paris8.iut.osall.boom.modele.Environnement.Environnement;
-import universite_paris8.iut.osall.boom.modele.Utilitaire.StrategiePremiereCible;
 import universite_paris8.iut.osall.boom.modele.Utilitaire.StrategieRechercheCible;
+import universite_paris8.iut.osall.boom.modele.Utilitaire.StrategieRechercheZone;
 import universite_paris8.iut.osall.boom.modele.entite.Acteur;
 import universite_paris8.iut.osall.boom.modele.item.Arme.Arme;
 
 import java.util.ArrayList;
 
-public class StrategieAttaqueSimple implements StrategieAttaque {
+public class StrategieAttaquePlusieurCibles implements StrategieAttaque {
 
     private Arme arme;
     private StrategieRechercheCible strategieRechercheCible;
 
-    public StrategieAttaqueSimple(Arme arme) {
+    public StrategieAttaquePlusieurCibles(Arme arme) {
         this.arme = arme;
-        this.strategieRechercheCible = new StrategiePremiereCible();
+        this.strategieRechercheCible = new StrategieRechercheZone(80);
     }
 
     @Override
     public void attaque() {
         ArrayList<Acteur> cible = Environnement.getInstance().getCible(strategieRechercheCible);
-        if (!cible.isEmpty()) {
-            cible.get(0).getPV().enleverPv(arme.getDegat());
+        for (Acteur acteur : cible) {
+            acteur.getPV().enleverPv(arme.getDegat());
         }
-
     }
 }

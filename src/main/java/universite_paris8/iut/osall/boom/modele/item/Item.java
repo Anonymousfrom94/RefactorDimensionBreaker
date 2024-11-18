@@ -30,10 +30,6 @@ public abstract class Item {
                                           GETTER & SETTER & BOOLEAN
 ********************************************************************************************************************* */
 
-    // suprimer
-    /*public int getX() {
-        return x.getValue();
-    }*/
 
     public Position getPosition() {
         return position;

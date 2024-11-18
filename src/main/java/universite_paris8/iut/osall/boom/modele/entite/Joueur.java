@@ -33,6 +33,7 @@ public class Joueur extends Acteur {
         setDeplacementStrategie(new DeplacementSimple(this));
     }
 
+    //controller
     private void setDirectionJoueur() {
         setDirection(Direction.BAS);
         getDirection().setDirectionProperty("bas");
