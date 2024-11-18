@@ -12,7 +12,6 @@ import java.util.ArrayList;
 public class DeplacementSimple implements DeplacementStrategie{
 
     private Acteur acteur;
-
     public DeplacementSimple(Acteur a){
         this.acteur = a;
     }

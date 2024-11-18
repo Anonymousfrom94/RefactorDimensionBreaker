@@ -3,6 +3,7 @@ package universite_paris8.iut.osall.boom.modele.Utilitaire;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import universite_paris8.iut.osall.boom.modele.Environnement.Environnement;
+import universite_paris8.iut.osall.boom.modele.entite.Acteur;
 
 
 public class Position {

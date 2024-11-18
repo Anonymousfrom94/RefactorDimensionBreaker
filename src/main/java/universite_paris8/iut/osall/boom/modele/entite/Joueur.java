@@ -39,15 +39,9 @@ public class Joueur extends Acteur {
 
     @Override
     public void seDeplace() {
-//        Direction direction = this.getDirection();
-//        if (peutSeDeplacer() ) {
-//            this.getPosition().setX(getPosition().getX()+(getVitesse()*getDirection().getX()));
-//            this.getPosition().setY(getPosition().getY()+(getVitesse()*getDirection().getY()));
-//        }
+
         getDeplacementStrategie().deplacement();
     }
-
-
 
     public Acteur chercherActeurAttaquable(){
         Hitbox hitbox = this.getHitbox();
@@ -59,9 +53,9 @@ public class Joueur extends Acteur {
 
                 Position positionEnnemi = e.getPosition();
 
-                    if (hitbox.estAProximité(centreJoueur, positionEnnemi)) {
-                        System.out.println("Oh un ennemi !");
-                        return e;
+                if (hitbox.estAProximité(centreJoueur, positionEnnemi)) {
+                    System.out.println("Oh un ennemi !");
+                    return e;
 
                 }
 
@@ -120,54 +114,6 @@ public class Joueur extends Acteur {
 //        attaque();
     }
 
-//    public boolean aBottesDeLevitation() {
-//        return this.equipement instanceof BotteLevitation;
-//    }
-
-//    public boolean peutSeDeplacer() {
-////       Vérifie s'il y a une collision dans la direction actuelle du joueur
-//        return collisionMap();  // Retourne vrai si collisionMap renvoie faux (pas de collision)
-//
-//    }
-//
-//    public boolean collisionMap() {
-//
-//        Hitbox hitbox = this.getHitbox();
-//        boolean libre = true;
-//
-//    // Calculer la position cible en fonction de la direction et de la vitesse
-//    // Position actuelle de l'objet
-//        int pX = this.getPosition().getX()+(getVitesse()*getDirection().getX());
-//        int pY = this.getPosition().getY()+(getVitesse()*getDirection().getY());
-//
-//    // Récupération de l'environnement et de la carte
-//        Environnement e = getEnvironnement();
-//        Map m = e.getMap();
-//
-//    // Calcul des coordonnées des coins du hitbox à la nouvelle position
-//        int bas = hitbox.getPointLePlusEnBas(new Position(pX, pY));
-//        int gauche = hitbox.getPointLePlusAGauche(new Position(pX, pY));
-//        int droite = hitbox.getPointLePlusADroite(new Position(pX, pY));
-//        int haut = hitbox.getPointLePlusEnHaut(new Position(pX, pY));
-//
-//    //Limite de la map
-//        if (gauche < 0 || droite >= m.getWidth() || haut < 0 || bas >= m.getHeight()) {
-//            return false;
-//        }
-//
-//    // Vérification si les positions sont libres
-//        boolean positionHautGaucheLibre = m.positionLibre(gauche, haut);
-//        boolean positionBasGaucheLibre = m.positionLibre(gauche, bas);
-//        boolean positionBasDroiteLibre = m.positionLibre(droite, bas);
-//        boolean positionHautDroiteLibre = m.positionLibre(droite, haut);
-//
-//        if (!positionBasGaucheLibre || !positionBasDroiteLibre || !positionHautDroiteLibre || !positionHautGaucheLibre) {
-//            libre = false;
-//        }
-//
-//        return libre;
-//
-//    }
 
 
 
