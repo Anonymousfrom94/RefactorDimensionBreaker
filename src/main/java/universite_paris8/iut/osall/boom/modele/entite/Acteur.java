@@ -36,6 +36,7 @@ public abstract class Acteur {
         compteur++;
         this.environnement.getActeurs().add(this);
         this.hitbox = hitbox;
+        this.deplacementStrategie=null;
     }
 
 
@@ -44,8 +45,9 @@ public abstract class Acteur {
     // Méthodes abstraites
     public abstract void agit();
 
-    public abstract void seDeplace();
-
+    public void seDeplace(){
+        getDeplacementStrategie().deplacement();
+    }
 
 /* *********************************************************************************************************************
                                                 ACCESSEURS & MUTATEURS
@@ -55,6 +57,7 @@ public abstract class Acteur {
     public String getId() {
         return id;
     }
+
 
     // Accesseur pour la position x et y de l'Acteur
     public Position getPosition(){

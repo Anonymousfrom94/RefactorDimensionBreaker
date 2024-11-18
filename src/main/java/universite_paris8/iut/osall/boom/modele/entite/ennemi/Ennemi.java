@@ -25,11 +25,6 @@ public class Ennemi extends Acteur {
         attaque();
     }
 
-    @Override
-    public void seDeplace() {
-        getDeplacementStrategie().deplacement();
-
-    }
 
 
 
