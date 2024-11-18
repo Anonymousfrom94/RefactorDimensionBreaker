@@ -10,7 +10,7 @@ import universite_paris8.iut.osall.boom.modele.entite.Joueur;
 public class BatonElectrique extends Arme{
 
     public BatonElectrique(Environnement environnement, Position position) {
-        super(environnement, "Baton Electrique",position, 8, 32, new StrategieAttaqueZone(null, 80));
+        super(environnement, "Baton Electrique",position, 8, 64, new StrategieAttaqueZone(null, 80));
         this.setStrategie(new StrategieAttaqueZone(this, 80));
     }
 

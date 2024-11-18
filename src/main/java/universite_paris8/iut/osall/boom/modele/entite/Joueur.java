@@ -46,52 +46,54 @@ public class Joueur extends Acteur {
 
     }
 
+    public Acteur chercherActeurAttaquable() {
 
-
-    public Acteur chercherActeurAttaquable(){
-        Hitbox hitbox = this.getHitbox();
         Position centreJoueur = this.getPosition();
+        int range = super.getArme().getRange();
 
-        for(Acteur e : super.getEnvironnement().getActeurs()){
-            if(e instanceof Ennemi){
+        if (super.getArme() == null) {
+            return null;
+        }
 
-
-                Position positionEnnemi = e.getPosition();
-
-                    if (hitbox.estAProximité(centreJoueur, positionEnnemi)) {
-                        System.out.println("Oh un ennemi !");
-                        return e;
-
+        for (Acteur cible : super.getEnvironnement().getActeurs()) {
+            if (cible instanceof Ennemi && cible != this) {
+                Position positionEnnemi = cible.getPosition();
+                if (estDansLaPortee(centreJoueur, positionEnnemi, range)) {
+                    System.out.println("Un ennemi est à portée");
+                    return cible;
                 }
-
             }
         }
-//        System.out.println("Pas d'ennemie");
         return null;
     }
 
+    public boolean estDansLaPortee(Position joueurPosition, Position ennemiPosition, int range) {
+        int distanceX = joueurPosition.getX() - ennemiPosition.getX();
+        int distanceY = joueurPosition.getY() - ennemiPosition.getY();
+        return (distanceX * distanceX + distanceY * distanceY) <= (range * range);
+    }
+
+
     @Override
     public void attaque() {
-        Acteur e = chercherActeurAttaquable();
         if (super.getArme() == null) {
             System.out.println("Vous n'avez pas d'arme équipée !");
             return;
         }
-        else if (e != null && e!=this) {
 
-            super.getArme().utilise(e);
-
+        Acteur cible = chercherActeurAttaquable();
+        if (cible != null) {
+            super.getArme().utilise(cible);
+            System.out.println("Vous avez attaqué un ennemi !");
+        } else {
+            System.out.println("Aucun ennemi à portée !");
         }
-
-
-
-
     }
+
 
     public Item chercherItemRamassable() {
         Hitbox hitbox = this.getHitbox();
         Position centreJoueur = this.getPosition();
-
 
         for (Item item : this.getEnvironnement().getInventaireEnvironnement()) {
             Position positionItem = item.getPosition();
