@@ -19,7 +19,7 @@ public class DeplacementEnnemi implements DeplacementStrategie{
     }
     @Override
     public void deplacement() {
-        Environnement environnement = ennemi.getEnvironnement();
+
         Joueur joueur = ennemi.getEnvironnement().getJoueur();
 
         int distanceEnX = joueur.getHitbox().getXCentre(joueur.getPosition()) - ennemi.getHitbox().getXCentre(ennemi.getPosition());
@@ -28,7 +28,6 @@ public class DeplacementEnnemi implements DeplacementStrategie{
 
         if (distance <= ennemi.getRangeEnnemmi()) {
 
-            int dx;
             if (distanceEnX == 0) {
                 ennemi.setDirection(Direction.ARRET);
             } else if (distanceEnX > 0) {
@@ -40,7 +39,6 @@ public class DeplacementEnnemi implements DeplacementStrategie{
                 ennemi.getPosition().setX(ennemi.getPosition().getX() + ennemi.getDirection().getX() * ennemi.getVitesse());
             }
 
-            int dy;
             if (distanceEnY == 0) {
                 ennemi.setDirection(Direction.ARRET);
             } else if (distanceEnY > 0) {
@@ -51,6 +49,7 @@ public class DeplacementEnnemi implements DeplacementStrategie{
             if (peutSeDeplacer()) {
                 ennemi.getPosition().setY(ennemi.getPosition().getY() + ennemi.getDirection().getY() * ennemi.getVitesse());
             }
+
         }
     }
 
@@ -79,6 +78,7 @@ public class DeplacementEnnemi implements DeplacementStrategie{
         if (gauche < 0 || droite >= m.getWidth() || haut < 0 || bas >= m.getHeight()) {
             return false;
         }
+
         ArrayList<Integer> obstacles = ennemi.getEnvironnement().getObstacles();
         // Vérification si les positions sont libres
         boolean positionHautGaucheLibre = m.positionLibre(gauche, haut,obstacles);

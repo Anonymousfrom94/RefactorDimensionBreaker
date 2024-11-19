@@ -13,6 +13,5 @@ public class BatonElectrique extends Arme {
         super(environnement, "Baton Electrique", position, 8, 80);
         this.setStrategie(new StrategieAttaquePlusieurCibles(this));
 
-    }
 
 }

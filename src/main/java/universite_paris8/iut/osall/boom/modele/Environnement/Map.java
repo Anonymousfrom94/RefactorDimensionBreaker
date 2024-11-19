@@ -26,7 +26,6 @@ public class Map {
         int ligne = newY / environnement.getMap().getHauteurTuile();
         int ind = ligne * environnement.getInfoTuile()[1] + colonne;
 
-//        System.out.println("Calcul indice: x=" + newX + " y=" + newY + " => ligne=" + ligne + " colonne=" + colonne + " => indice=" + ind);
 
         return ind;
     }

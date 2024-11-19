@@ -38,10 +38,10 @@ public abstract class Acteur {
     }
 
 
-    public abstract void attaque();
 
     // Méthodes abstraites
     public abstract void agit();
+    public abstract void attaque();
 
     public void seDeplace(){
         getDeplacementStrategie().deplacement();
@@ -55,7 +55,6 @@ public abstract class Acteur {
     public String getId() {
         return id;
     }
-
 
     // Accesseur pour la position x et y de l'Acteur
     public Position getPosition(){

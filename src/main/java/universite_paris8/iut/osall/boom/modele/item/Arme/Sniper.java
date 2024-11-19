@@ -19,10 +19,6 @@ public class Sniper extends Arme{
         this.strategieAttaque = new DecorateurAttaqueSuicidaire(this.joueur, new StrategieAttaqueSimple(this));
     }
 
-    @Override
-    public void equip(Joueur joueur) {
-        joueur.setArme(this);
-    }
 
 
 

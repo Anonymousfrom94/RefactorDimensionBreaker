@@ -25,14 +25,9 @@ import java.util.ArrayList;
 public class Environnement {
     private static Environnement instance = null;
     private Map map;
-    // private int width;
-    // private int height;
     private Joueur joueur;
-    //joueur dans la liste
     private ObservableList<Acteur> acteurs;
     private ObservableList<Item> inventaireEnvironnement;
-    //    private int largeurTuile;
-    //   private int hauteurTuile;
     private ArrayList<Integer> obstacles;
     private ArrayList<Integer> blocNoSpawn;
     private int compteurKill;
@@ -40,10 +35,7 @@ public class Environnement {
 
 
     private Environnement() {
-//        largeurTuile = 16;
-//        hauteurTuile = 16;
-//        this.width = 100 * largeurTuile;
-//        this.height = 100 * hauteurTuile;
+
         this.acteurs = FXCollections.observableArrayList();
         this.inventaireEnvironnement = FXCollections.observableArrayList();
         this.obstacles = new ArrayList<>();
@@ -78,18 +70,12 @@ public class Environnement {
 
                 System.out.println("Nombre d'ennemis tués : " + compteurKill);
             }
-//            if (acteur instanceof Ennemi) {
-//                //sedeplace attaque aussi
-//                acteur.agit();
-//            }
-//            if (acteur instanceof Ennemi){
-//                acteur.seDeplace();
-//            }
+
         }
         if (acteurs.size() == 1 && compteurKill == 50) {
             new Boss(this);
         }
-//        finDeGame(temps);
+
     }
 
     public void init() {
@@ -103,7 +89,7 @@ public class Environnement {
     public void spawnItemEtEnnemie() {
         for (int i = 0; i < 50; i++) {
             new Squelette(this, new Position(this));
-                // Rajouter les ennemis en fonction
+
         }
         // Spawn des 4 totem de résurrection
         this.getInventaireEnvironnement().add(new TotemResurrection(this.getJoueur(), new Position(200, 135)));

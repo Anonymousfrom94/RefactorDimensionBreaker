@@ -21,9 +21,6 @@ public class Dague extends Arme {
         this.strategieRechercheCible = new StrategiePremiereCible();
     }
 
-    @Override
-    public void equip(Joueur joueur) {
-        joueur.setArme(this);
-    }
+
 
 }

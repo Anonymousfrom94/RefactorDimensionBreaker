@@ -11,10 +11,7 @@ public class BotteLevitation extends Equipement{
         super(environnement, "Botte de Lévitation", position);
     }
 
-    @Override
-    public void equip(Joueur joueur) {
-        joueur.setEquipement(this);
-    }
+
 
     @Override
     public void utilise(Acteur a) {

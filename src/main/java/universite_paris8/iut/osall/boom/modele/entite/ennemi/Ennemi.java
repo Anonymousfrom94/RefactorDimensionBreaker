@@ -31,7 +31,6 @@ public class Ennemi extends Acteur {
         return (tempsActuel - derniereAttaque) >= intervalleAttack;
     }
 
-
     @Override
     public void attaque() {
         Environnement environnement = getEnvironnement();
@@ -48,10 +47,8 @@ public class Ennemi extends Acteur {
         }
     }
 
-
     public int getRangeEnnemmi(){
         return rangeEnnemmi;
     }
-
 
 }
