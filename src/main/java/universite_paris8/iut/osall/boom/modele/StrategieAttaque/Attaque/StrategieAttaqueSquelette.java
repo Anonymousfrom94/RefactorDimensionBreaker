@@ -21,8 +21,9 @@ public class StrategieAttaqueSquelette implements StrategieAttaque {
 
         if (joueur != null) {
             if (utilisateur.estDansLaPortee(utilisateur.getPosition(), joueur.getPosition(), arme.getRange())) {
-                arme.utilise(joueur);
+                joueur.getPV().enleverPv(arme.getDegat());
             }
         }
     }
+
 }

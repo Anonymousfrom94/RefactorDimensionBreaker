@@ -25,13 +25,16 @@ public abstract class Arme extends Item {
     }
 
     @Override
-    public void utilise(Acteur cible){
-        strategieAttaque.attaque();
+    public void utilise(Acteur cible) {
+        if (strategieAttaque != null) {
+            strategieAttaque.attaque();
+        }
     }
-    
 
 
-/* *********************************************************************************************************************
+
+
+    /* *********************************************************************************************************************
                                           GETTER & SETTER & BOOLEAN
 ********************************************************************************************************************* */
     public int getDegat() {

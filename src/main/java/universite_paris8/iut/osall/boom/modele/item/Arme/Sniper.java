@@ -15,7 +15,7 @@ public class Sniper extends Arme{
     public Sniper(Environnement environnement, Position position) {
         super(environnement, "Sniper", position, 999999, 128);
         this.joueur = environnement.getJoueur();
-        this.strategieAttaque = new DecorateurAttaqueSuicidaire(this.joueur, new StrategieAttaqueSimple(this));
+        this.setStrategie(new DecorateurAttaqueSuicidaire(this.joueur, new StrategieAttaqueSimple(this)));
     }
 
 

@@ -114,7 +114,6 @@ public class Joueur extends Acteur {
     public void agit() {
         seDeplace();
         ramasse();
-        attaque();
     }
 
 

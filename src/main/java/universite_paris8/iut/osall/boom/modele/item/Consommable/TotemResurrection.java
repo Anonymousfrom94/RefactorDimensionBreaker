@@ -12,7 +12,7 @@ public class TotemResurrection extends Consommable {
 
     @Override
     public int soin() {
-        return Integer.MAX_VALUE;
+        return super.getEnvironnement().getJoueur().getPV().getPvMax();
     }
 
 }
