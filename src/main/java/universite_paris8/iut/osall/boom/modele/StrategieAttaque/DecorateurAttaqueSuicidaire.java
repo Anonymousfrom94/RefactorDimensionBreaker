@@ -18,3 +18,6 @@ public class DecorateurAttaqueSuicidaire implements StrategieAttaque {
         joueur.getPV().setPv(joueur.getPV().getPv()-10);
     }
 }
+
+//rajouter la caracterisque que le joeur subit degat
+//ça evite la repetition

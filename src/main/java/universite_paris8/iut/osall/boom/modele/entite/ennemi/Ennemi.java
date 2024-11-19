@@ -25,10 +25,6 @@ public class Ennemi extends Acteur {
         attaque();
     }
 
-
-
-
-
     private boolean peutAttaquer() {
 
         long tempsActuel = System.currentTimeMillis();
