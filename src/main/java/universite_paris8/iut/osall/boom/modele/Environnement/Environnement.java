@@ -3,7 +3,7 @@ package universite_paris8.iut.osall.boom.modele.Environnement;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import universite_paris8.iut.osall.boom.modele.Utilitaire.Position;
-import universite_paris8.iut.osall.boom.modele.Utilitaire.StrategieRechercheCible;
+import universite_paris8.iut.osall.boom.modele.StrategieAttaque.Cible.StrategieRechercheCible;
 import universite_paris8.iut.osall.boom.modele.entite.Acteur;
 import universite_paris8.iut.osall.boom.modele.entite.ennemi.Boss;
 import universite_paris8.iut.osall.boom.modele.entite.ennemi.Ennemi;
@@ -129,9 +129,6 @@ public class Environnement {
 /* *********************************************************************************************************************
                                              ADD
 ********************************************************************************************************************* */
-        public void ajouterActeur (Acteur acteur){
-            acteurs.add(acteur);
-        }
 
         public void ajouterObstacle ( int obstacle){
             obstacles.add(obstacle);
@@ -173,14 +170,6 @@ public class Environnement {
 
         public ArrayList<Integer> getBlocNoSpawn () {
             return blocNoSpawn;
-        }
-
-        public boolean estObstacle ( int obstacle){
-            return obstacles.contains(obstacle);
-        }
-
-        public boolean estNoSpawn ( int obstacle){
-            return blocNoSpawn.contains(obstacle);
         }
 
         public ArrayList<Acteur> getCible(StrategieRechercheCible str){

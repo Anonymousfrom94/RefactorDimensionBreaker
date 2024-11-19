@@ -15,7 +15,6 @@ public class Boss extends Ennemi{
     public void invoque(Environnement environnement) {
         for (int i = 0; i < 49 ; i++) {
             new Squelette(getEnvironnement(), new Position(environnement));
-            // Rajouter les ennemis en fonction
         }
     }
 }

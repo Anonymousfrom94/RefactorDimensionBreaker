@@ -23,19 +23,6 @@ public class Hitbox {
         return largeur;
     }
 
-    // Méthode pour vérifier si un point donné (x, y) est contenu dans cette hitbox
-//    public boolean contient(Position centre, Position cible) {
-//
-//        int limiteGauche = getPointLePlusAGauche(centre);
-//        int limiteDroite = getPointLePlusADroite(centre);
-//
-//        int limiteHaut = getPointLePlusEnHaut(centre);
-//        int limiteBas = getPointLePlusEnBas(centre);
-//
-//        // Vérifie si la position cible est dans les limites de la hitbox
-//        return (cible.getX() >= limiteGauche && cible.getX() <= limiteDroite &&
-//                cible.getY() >= limiteHaut && cible.getY() <= limiteBas);
-//    }
 
     public boolean estAProximité(Position Acteurdepart, Position cible) {
         // 4 coins de l'Acteur de depart
@@ -68,24 +55,20 @@ public class Hitbox {
 
     public int getPointLePlusAGauche(Position centre) {
         return centre.getX()+3;
-        //return (centre.getX()+3) - ( largeur / 2);
     }
 
     public int getPointLePlusADroite(Position centre) {
         return centre.getX()-3+largeur;
-        //return (centre.getX()-3) + (largeur / 2);
 
     }
 
     public int getPointLePlusEnHaut(Position centre) {
         return centre.getY();
-        //return (centre.getY()+5) - ( hauteur / 2);
 
     }
 
     public int getPointLePlusEnBas(Position centre) {
         return centre.getY()+hauteur;
-        //return (centre.getY()-5) + (hauteur / 2);
     }
 
     public int getXCentre(Position centre) {

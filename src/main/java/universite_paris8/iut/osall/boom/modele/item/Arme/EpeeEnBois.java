@@ -1,26 +1,24 @@
 package universite_paris8.iut.osall.boom.modele.item.Arme;
 
 import universite_paris8.iut.osall.boom.modele.Environnement.Environnement;
-import universite_paris8.iut.osall.boom.modele.StrategieAttaque.StrategieAttaqueSimple;
+import universite_paris8.iut.osall.boom.modele.StrategieAttaque.Attaque.StrategieAttaqueSimple;
 import universite_paris8.iut.osall.boom.modele.Utilitaire.Position;
-import universite_paris8.iut.osall.boom.modele.Utilitaire.StrategieAttaqueSquelette;
+import universite_paris8.iut.osall.boom.modele.StrategieAttaque.Attaque.StrategieAttaqueSquelette;
 import universite_paris8.iut.osall.boom.modele.entite.Acteur;
 import universite_paris8.iut.osall.boom.modele.entite.Joueur;
-import universite_paris8.iut.osall.boom.modele.entite.ennemi.Squelette;
+import universite_paris8.iut.osall.boom.modele.entite.ennemi.Ennemi;
 
 public class EpeeEnBois extends Arme {
 
-    public EpeeEnBois(Environnement environnement, Position position, Acteur acteur) {
+    public EpeeEnBois(Environnement environnement, Position position, Acteur utilisateur) {
         super(environnement, "Epée en Bois", position, 10, 15);
 
-        if (acteur instanceof Joueur) {
+        if (utilisateur instanceof Joueur) {
             this.setStrategie(new StrategieAttaqueSimple(this));
-        } else if (acteur instanceof Squelette) {
-            this.setStrategie(new StrategieAttaqueSquelette(this));
+        } else if (utilisateur instanceof Ennemi) {
+            this.setStrategie(new StrategieAttaqueSquelette(this, utilisateur));
         } else {
-            System.out.println("Acteur inconnu, stratégie d'attaque par défaut appliquée.");
             this.setStrategie(new StrategieAttaqueSimple(this));
         }
-
     }
 }

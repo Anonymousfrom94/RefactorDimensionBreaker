@@ -38,9 +38,6 @@ public abstract class Item {
         return id;
     }
 
-    public String getNom() {
-        return nom;
-    }
 
     public Environnement getEnvironnement() {
         return environnement;

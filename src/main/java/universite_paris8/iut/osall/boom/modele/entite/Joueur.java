@@ -11,7 +11,6 @@ import universite_paris8.iut.osall.boom.modele.entite.ennemi.Ennemi;
 import universite_paris8.iut.osall.boom.modele.item.Equipement.Equipement;
 import universite_paris8.iut.osall.boom.modele.item.Item;
 
-import static java.lang.Thread.sleep;
 
 public class Joueur extends Acteur {
 
@@ -115,7 +114,7 @@ public class Joueur extends Acteur {
     public void agit() {
         seDeplace();
         ramasse();
-//        attaque();
+        attaque();
     }
 
 

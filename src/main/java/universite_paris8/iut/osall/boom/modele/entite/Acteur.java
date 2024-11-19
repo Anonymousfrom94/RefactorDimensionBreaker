@@ -16,13 +16,11 @@ public abstract class Acteur {
     private int vitesse;
     private static int compteur = 0;
     private Position position;
-    //refactorisé
     private Hitbox hitbox;
     private PV pv;
     private Arme arme;
     private DeplacementStrategie deplacementStrategie;
 
-    // Constructeur
     public Acteur(Environnement environnement, Position position, Direction direction, int vitesse, int pvMax, Hitbox hitbox) {
         this.environnement = environnement;
         this.position = position;
@@ -51,17 +49,14 @@ public abstract class Acteur {
                                                 ACCESSEURS & MUTATEURS
 ********************************************************************************************************************* */
 
-    // Accesseur pour l'ID
     public String getId() {
         return id;
     }
 
-    // Accesseur pour la position x et y de l'Acteur
     public Position getPosition(){
         return position;
     }
 
-    // Accesseur et mutateur pour la vitesse
     public int getVitesse() {
         return vitesse;
     }
@@ -70,22 +65,18 @@ public abstract class Acteur {
         this.vitesse = vitesse;
     }
 
-    // Accesseur pour l'environnement
     public Environnement getEnvironnement() {
         return environnement;
     }
 
-    // Méthode pour vérifier si l'acteur est vivant
     public boolean estVivant(){
         return getPV().getPv() > 0;
     }
 
-    // Accesseur pour les points de vie (PV)
     public PV getPV() {
         return pv;
     }
 
-    // Accesseur et mutateur pour la direction
     public Direction getDirection() {
         return this.direction;
     }
@@ -94,7 +85,6 @@ public abstract class Acteur {
         this.direction = direction;
     }
 
-    // Accesseur et mutateur pour l'arme
     public Arme getArme() {
         return arme;
     }
@@ -103,18 +93,22 @@ public abstract class Acteur {
         this.arme = arme;
     }
 
-    // Accesseur pour la hitbox
     public Hitbox getHitbox() {
         return hitbox;
     }
 
-    //Accesseur et mutateur de deplacement
     public DeplacementStrategie getDeplacementStrategie(){
         return deplacementStrategie;
     }
 
     public void setDeplacementStrategie(DeplacementStrategie deplacementStrategie){
        this.deplacementStrategie = deplacementStrategie;
+    }
+
+    public boolean estDansLaPortee(Position joueurPosition, Position ennemiPosition, int range) {
+        int distanceX = joueurPosition.getX() - ennemiPosition.getX();
+        int distanceY = joueurPosition.getY() - ennemiPosition.getY();
+        return (distanceX * distanceX + distanceY * distanceY) <= (range * range);
     }
 
 

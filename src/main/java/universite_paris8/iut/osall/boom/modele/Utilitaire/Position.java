@@ -1,9 +1,7 @@
 package universite_paris8.iut.osall.boom.modele.Utilitaire;
-
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import universite_paris8.iut.osall.boom.modele.Environnement.Environnement;
-import universite_paris8.iut.osall.boom.modele.entite.Acteur;
 
 
 public class Position {
@@ -31,10 +29,6 @@ public class Position {
         setY(y);
     }
 
-
-
-
-
     public int getX() {
         return x.get();
     }
@@ -52,21 +46,13 @@ public class Position {
     }
 
     public void setX(int x) {
-      //  if (x < 0 || x > Map.getSizeMondeLargeur())
-        //throw new PositionInvalideExeption("x hors map");
-
         this.x.set(x);
     }
 
     public void setY(int y)
     {
-      //  if (y < 0 || y > Map.getSizeMondeHauteur())
-      //      //throw new PositionInvalideExeption("y hors map");
-
         this.y.set(y);
     }
-
-
 
 
 }

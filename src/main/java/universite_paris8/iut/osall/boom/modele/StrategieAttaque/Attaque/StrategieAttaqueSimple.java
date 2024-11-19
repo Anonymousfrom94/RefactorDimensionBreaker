@@ -1,8 +1,8 @@
-package universite_paris8.iut.osall.boom.modele.StrategieAttaque;
+package universite_paris8.iut.osall.boom.modele.StrategieAttaque.Attaque;
 
 import universite_paris8.iut.osall.boom.modele.Environnement.Environnement;
-import universite_paris8.iut.osall.boom.modele.Utilitaire.StrategiePremiereCible;
-import universite_paris8.iut.osall.boom.modele.Utilitaire.StrategieRechercheCible;
+import universite_paris8.iut.osall.boom.modele.StrategieAttaque.Cible.StrategiePremiereCible;
+import universite_paris8.iut.osall.boom.modele.StrategieAttaque.Cible.StrategieRechercheCible;
 import universite_paris8.iut.osall.boom.modele.entite.Acteur;
 import universite_paris8.iut.osall.boom.modele.item.Arme.Arme;
 

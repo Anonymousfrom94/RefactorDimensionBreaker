@@ -1,11 +1,10 @@
 package universite_paris8.iut.osall.boom.modele.item.Arme;
 
 import universite_paris8.iut.osall.boom.modele.Environnement.Environnement;
-import universite_paris8.iut.osall.boom.modele.StrategieAttaque.DecorateurAttaqueSuicidaire;
-import universite_paris8.iut.osall.boom.modele.StrategieAttaque.StrategieAttaque;
-import universite_paris8.iut.osall.boom.modele.StrategieAttaque.StrategieAttaqueSimple;
+import universite_paris8.iut.osall.boom.modele.StrategieAttaque.Attaque.DecorateurAttaqueSuicidaire;
+import universite_paris8.iut.osall.boom.modele.StrategieAttaque.Attaque.StrategieAttaque;
+import universite_paris8.iut.osall.boom.modele.StrategieAttaque.Attaque.StrategieAttaqueSimple;
 import universite_paris8.iut.osall.boom.modele.Utilitaire.Position;
-import universite_paris8.iut.osall.boom.modele.entite.Acteur;
 import universite_paris8.iut.osall.boom.modele.entite.Joueur;
 
 public class Sniper extends Arme{

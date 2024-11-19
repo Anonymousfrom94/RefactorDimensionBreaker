@@ -1,8 +1,8 @@
-package universite_paris8.iut.osall.boom.modele.StrategieAttaque;
+package universite_paris8.iut.osall.boom.modele.StrategieAttaque.Attaque;
 
 import universite_paris8.iut.osall.boom.modele.Environnement.Environnement;
-import universite_paris8.iut.osall.boom.modele.Utilitaire.StrategieRechercheCible;
-import universite_paris8.iut.osall.boom.modele.Utilitaire.StrategieRechercheZone;
+import universite_paris8.iut.osall.boom.modele.StrategieAttaque.Cible.StrategieRechercheCible;
+import universite_paris8.iut.osall.boom.modele.StrategieAttaque.Cible.StrategieRechercheZone;
 import universite_paris8.iut.osall.boom.modele.entite.Acteur;
 import universite_paris8.iut.osall.boom.modele.item.Arme.Arme;
 
@@ -15,7 +15,7 @@ public class StrategieAttaquePlusieurCibles implements StrategieAttaque {
 
     public StrategieAttaquePlusieurCibles(Arme arme) {
         this.arme = arme;
-        this.strategieRechercheCible = new StrategieRechercheZone(80);
+        this.strategieRechercheCible = new StrategieRechercheZone(arme.getRange());
     }
 
     @Override

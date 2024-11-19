@@ -1,4 +1,4 @@
-package universite_paris8.iut.osall.boom.modele.Utilitaire;
+package universite_paris8.iut.osall.boom.modele.StrategieAttaque.Cible;
 
 import javafx.collections.ObservableList;
 import universite_paris8.iut.osall.boom.modele.Environnement.Environnement;
@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class StrategieRechercheZone extends StrategieRechercheCible {
 
-    private final int rayon; // Rayon de recherche
+    private final int rayon;
 
     public StrategieRechercheZone(int rayon) {
         this.rayon = rayon;
@@ -21,7 +21,7 @@ public class StrategieRechercheZone extends StrategieRechercheCible {
         ArrayList<Acteur> result = new ArrayList<>();
 
         for (Acteur acteur : acteurs) {
-            if (acteur instanceof Ennemi) { // Vérifie si c'est un ennemi
+            if (acteur instanceof Ennemi) {
                 if (dansRayon(Environnement.getInstance().getJoueur() ,acteur)) {
                     result.add(acteur);
                 }

@@ -1,4 +1,4 @@
-package universite_paris8.iut.osall.boom.modele.StrategieAttaque;
+package universite_paris8.iut.osall.boom.modele.StrategieAttaque.Attaque;
 
 import universite_paris8.iut.osall.boom.modele.entite.Joueur;
 
@@ -19,5 +19,3 @@ public class DecorateurAttaqueSuicidaire implements StrategieAttaque {
     }
 }
 
-//rajouter la caracterisque que le joeur subit degat
-//ça evite la repetition

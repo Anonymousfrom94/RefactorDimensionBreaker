@@ -1,7 +1,6 @@
 package universite_paris8.iut.osall.boom.modele.entite.ennemi;
 import universite_paris8.iut.osall.boom.modele.DeplacementStrategie.DeplacementEnnemi;
 import universite_paris8.iut.osall.boom.modele.Environnement.Environnement;
-import universite_paris8.iut.osall.boom.modele.Environnement.Map;
 import universite_paris8.iut.osall.boom.modele.Utilitaire.Direction;
 import universite_paris8.iut.osall.boom.modele.Utilitaire.Hitbox;
 import universite_paris8.iut.osall.boom.modele.Utilitaire.Position;
