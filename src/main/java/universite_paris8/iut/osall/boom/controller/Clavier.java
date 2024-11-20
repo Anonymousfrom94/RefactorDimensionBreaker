@@ -35,23 +35,18 @@ public class Clavier implements EventHandler<KeyEvent> {
         if (touchePress.contains(Z)){
             direction += "haut";
             joueur.setDirection(Direction.HAUT);
-
-//            joueur.seDeplace();
         }
         if (touchePress.contains(S)){
             direction += "bas";
             joueur.setDirection(Direction.BAS);
-//            joueur.seDeplace();
         }
         if (touchePress.contains(Q)){
             direction += "gauche";
             joueur.setDirection(Direction.GAUCHE);
-//            joueur.seDeplace();
         }
         if (touchePress.contains(D)){
             direction += "droite";
             joueur.setDirection(Direction.DROITE);
-//            joueur.seDeplace();
         }
 
         this.joueur.getDirection().setDirectionProperty(direction);

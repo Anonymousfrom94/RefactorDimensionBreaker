@@ -26,7 +26,6 @@ public class ListObsItemEnv implements ListChangeListener<Item> {
 
     @Override
     public void onChanged(Change<? extends Item> change) {
-//        System.out.println("changement");
         while (change.next()){
             for (Item i : change.getAddedSubList()) {
                 creerSpriteItem(pane, i);

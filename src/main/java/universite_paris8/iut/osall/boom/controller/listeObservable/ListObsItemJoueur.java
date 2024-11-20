@@ -50,12 +50,7 @@ public class ListObsItemJoueur implements ListChangeListener<Item> {
 
     @Override
     public void onChanged(Change<? extends Item> change) {
-//        System.out.println("changement");
         while (change.next()){
-//            System.out.println("est-ce des ajouts(inventaire du joueur) ? " + change.wasAdded());
-//            System.out.println("est-ce des suppressions(inventaire du joueur) ? " + change.wasRemoved());
-//            System.out.println("les ajouts(inventaire du joueur) : " + change.getAddedSubList());
-//            System.out.println("Les suppressions(inventaire du joueur) : " + change.getRemoved());
             for (Item i : change.getAddedSubList()) {
                 if (i instanceof PotionHeal){
                     compteurPotionHeal++;

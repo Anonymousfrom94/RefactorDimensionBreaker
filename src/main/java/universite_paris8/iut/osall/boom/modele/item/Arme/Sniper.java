@@ -18,7 +18,4 @@ public class Sniper extends Arme{
         this.setStrategie(new DecorateurAttaqueSuicidaire(this.joueur, new StrategieAttaqueSimple(this)));
     }
 
-
-
-
 }

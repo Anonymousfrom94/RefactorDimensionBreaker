@@ -30,11 +30,6 @@ public class Map {
         return ind;
     }
 
-
-
-
-
-
     public boolean positionLibre(int x, int y, ArrayList<Integer> obstacles){
 
         int indice = indice(x, y);
